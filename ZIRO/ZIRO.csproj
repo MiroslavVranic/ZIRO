@@ -46,14 +46,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Djelatnici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Djelatnici.Designer.cs">
+      <DependentUpon>Djelatnici.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inventar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventar.Designer.cs">
+      <DependentUpon>Inventar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Korisnici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Korisnici.Designer.cs">
+      <DependentUpon>Korisnici.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Odjeli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Odjeli.Designer.cs">
+      <DependentUpon>Odjeli.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZiR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZiR.Designer.cs">
+      <DependentUpon>ZiR.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Djelatnici.resx">
+      <DependentUpon>Djelatnici.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventar.resx">
+      <DependentUpon>Inventar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Korisnici.resx">
+      <DependentUpon>Korisnici.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Odjeli.resx">
+      <DependentUpon>Odjeli.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +108,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ZiR.resx">
+      <DependentUpon>ZiR.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
