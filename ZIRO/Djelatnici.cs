@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ZIRO
 {
-    public partial class form_ZiRO : Form
+    public partial class Djelatnici : Form
     {
-        public form_ZiRO()
+        public Djelatnici()
         {
             InitializeComponent();
         }

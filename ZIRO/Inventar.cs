@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace ZIRO
 {
-    public partial class form_ZiRO : Form
+    public partial class Inventar : Form
     {
-        public form_ZiRO()
+        public Inventar()
         {
             InitializeComponent();
         }
+
     }
 }
