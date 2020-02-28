@@ -12,9 +12,22 @@ namespace ZIRO
 {
     public partial class Djelatnici : Form
     {
+        readonly DataBase DBC = new DataBase();
         public Djelatnici()
         {
             InitializeComponent();
+            DGVfill();
+        }
+
+        private void btn_spremi_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void DGVfill()
+        {
+            string DBS = $"SELECT * FROM djelatnici;";
+            DataTable dt = DBC.DGVselect(DBS);
+            dgv.DataSource = dt;
         }
     }
 }

@@ -12,10 +12,23 @@ namespace ZIRO
 {
     public partial class Inventar : Form
     {
+        readonly DataBase DBC = new DataBase();
         public Inventar()
         {
             InitializeComponent();
+            DGVfill();
         }
 
+        private void btn_spremi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DGVfill()
+        {
+            string DBS = $"SELECT * FROM inventar;";
+            DataTable dt = DBC.DGVselect(DBS);
+            dgv.DataSource = dt;
+        }
     }
 }

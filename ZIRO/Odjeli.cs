@@ -10,12 +10,26 @@ using System.Windows.Forms;
 
 namespace ZIRO
 {
+    
     public partial class Odjeli : Form
     {
+        readonly DataBase DBC = new DataBase();
         public Odjeli()
         {
             InitializeComponent();
+            DGVfill();
         }
 
+        private void btn_spremi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DGVfill()
+        {
+            string DBS = $"SELECT * FROM odjeli;";
+            DataTable dt = DBC.DGVselect(DBS);
+            dgv.DataSource = dt;
+        }
     }
 }

@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txt_odjel = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lbl_trenutniKorisnik = new System.Windows.Forms.Label();
             this.lbl_id = new System.Windows.Forms.Label();
             this.btn_izmjeni = new System.Windows.Forms.Button();
@@ -40,7 +38,12 @@
             this.lbl_djelatnik = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lbl_pretrazivanje = new System.Windows.Forms.Label();
+            this.menuOstaleForme = new System.Windows.Forms.MenuStrip();
+            this.datotekaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spremiUnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.izmjeniUnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.menuOstaleForme.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_odjel
@@ -51,16 +54,11 @@
             this.txt_odjel.Size = new System.Drawing.Size(182, 25);
             this.txt_odjel.TabIndex = 18;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // lbl_trenutniKorisnik
             // 
             this.lbl_trenutniKorisnik.AutoSize = true;
             this.lbl_trenutniKorisnik.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_trenutniKorisnik.Location = new System.Drawing.Point(12, 10);
+            this.lbl_trenutniKorisnik.Location = new System.Drawing.Point(12, 27);
             this.lbl_trenutniKorisnik.Name = "lbl_trenutniKorisnik";
             this.lbl_trenutniKorisnik.Size = new System.Drawing.Size(0, 17);
             this.lbl_trenutniKorisnik.TabIndex = 26;
@@ -92,6 +90,7 @@
             this.btn_spremi.TabIndex = 22;
             this.btn_spremi.Text = "Spremi";
             this.btn_spremi.UseVisualStyleBackColor = true;
+            this.btn_spremi.Click += new System.EventHandler(this.btn_spremi_Click);
             // 
             // txt_id
             // 
@@ -137,11 +136,47 @@
             this.lbl_pretrazivanje.TabIndex = 28;
             this.lbl_pretrazivanje.Text = "Pretraživanje:";
             // 
+            // menuOstaleForme
+            // 
+            this.menuOstaleForme.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.datotekaToolStripMenuItem});
+            this.menuOstaleForme.Location = new System.Drawing.Point(0, 0);
+            this.menuOstaleForme.Name = "menuOstaleForme";
+            this.menuOstaleForme.Size = new System.Drawing.Size(884, 24);
+            this.menuOstaleForme.TabIndex = 29;
+            this.menuOstaleForme.Text = "menuOstaleForme";
+            this.menuOstaleForme.Visible = false;
+            // 
+            // datotekaToolStripMenuItem
+            // 
+            this.datotekaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.spremiUnosToolStripMenuItem,
+            this.izmjeniUnosToolStripMenuItem});
+            this.datotekaToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
+            this.datotekaToolStripMenuItem.Name = "datotekaToolStripMenuItem";
+            this.datotekaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.datotekaToolStripMenuItem.Text = "Datoteka";
+            // 
+            // spremiUnosToolStripMenuItem
+            // 
+            this.spremiUnosToolStripMenuItem.Name = "spremiUnosToolStripMenuItem";
+            this.spremiUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.spremiUnosToolStripMenuItem.Text = "Spremi unos ";
+            // 
+            // izmjeniUnosToolStripMenuItem
+            // 
+            this.izmjeniUnosToolStripMenuItem.Name = "izmjeniUnosToolStripMenuItem";
+            this.izmjeniUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.izmjeniUnosToolStripMenuItem.Text = "Izmjeni unos";
+            // 
             // Odjeli
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 621);
+            this.Controls.Add(this.menuOstaleForme);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lbl_pretrazivanje);
             this.Controls.Add(this.txt_odjel);
@@ -157,6 +192,8 @@
             this.Name = "Odjeli";
             this.Text = "Odjeli";
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.menuOstaleForme.ResumeLayout(false);
+            this.menuOstaleForme.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,7 +202,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txt_odjel;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label lbl_trenutniKorisnik;
         private System.Windows.Forms.Label lbl_id;
         private System.Windows.Forms.Button btn_izmjeni;
@@ -175,5 +211,9 @@
         private System.Windows.Forms.Label lbl_djelatnik;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lbl_pretrazivanje;
+        private System.Windows.Forms.MenuStrip menuOstaleForme;
+        private System.Windows.Forms.ToolStripMenuItem datotekaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spremiUnosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem izmjeniUnosToolStripMenuItem;
     }
 }
