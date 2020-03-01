@@ -25,9 +25,8 @@ namespace ZIRO
         }
         private void DGVfill()
         {
-            string DBS = $"SELECT * FROM djelatnici;";
-            DataTable dt = DBC.DGVselect(DBS);
-            dgv.DataSource = dt;
+            string dbs = $"SELECT * FROM djelatnici;";
+            dgv.DataSource = DBC.DGVselect(dbs);
         }
     }
 }

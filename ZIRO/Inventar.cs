@@ -27,8 +27,7 @@ namespace ZIRO
         private void DGVfill()
         {
             string DBS = $"SELECT * FROM inventar;";
-            DataTable dt = DBC.DGVselect(DBS);
-            dgv.DataSource = dt;
+            dgv.DataSource = DBC.DGVselect(DBS);
         }
     }
 }

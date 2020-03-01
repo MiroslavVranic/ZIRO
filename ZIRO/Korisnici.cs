@@ -18,7 +18,6 @@ namespace ZIRO
             InitializeComponent();
             DGVfill();
         }
-
         private void btn_spremi_Click(object sender, EventArgs e)
         {
 
@@ -26,8 +25,7 @@ namespace ZIRO
         private void DGVfill()
         {
             string DBS = $"SELECT * FROM korisnici;";
-            DataTable dt = DBC.DGVselect(DBS);
-            dgv.DataSource = dt;
+            dgv.DataSource = DBC.DGVselect(DBS);
         }
     }
 }
