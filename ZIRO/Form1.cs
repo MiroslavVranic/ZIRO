@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ZIRO
 {
-    public partial class form_ZiRO : Form
+    public partial class Form_ZiRO : Form
     {
-        public form_ZiRO()
+        public Form_ZiRO()
         {
             InitializeComponent();
         }
@@ -51,25 +51,25 @@ namespace ZIRO
             OtvoriFormu(Forma);
         }
 
-        private void dodajKorisnikaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DodajKorisnikaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forma = new Korisnici();
             OtvoriFormu(Forma);
         }
 
-        private void dodajOdjelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DodajOdjelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forma = new Odjeli();
             OtvoriFormu(Forma);
         }
 
-        private void dodajInventarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DodajInventarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forma = new Inventar();
             OtvoriFormu(Forma);
         }
 
-        private void zatvoriToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ZatvoriToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ActiveMdiChild == null)
                 this.Close();
@@ -77,7 +77,7 @@ namespace ZIRO
                 ActiveMdiChild.Close();
         }
 
-        private void izađiIzAplikacijeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IzađiIzAplikacijeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }

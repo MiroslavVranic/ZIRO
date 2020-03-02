@@ -13,7 +13,7 @@ namespace ZIRO
         /// Sve metode za unos podataka iz formi u bazu podataka
         /// </summary>
 
-        // Unos
+        // Unos/Insert
         public bool BoolUnos(OleDbConnection Conn, OleDbCommand Cmd)
         {
             bool isSuccess = false;
@@ -34,9 +34,7 @@ namespace ZIRO
             return isSuccess;
         }
 
-
-        // Izmjena
-
+        // Izmjena/Update
         public bool BoolIzmjena(OleDbConnection Conn, OleDbCommand Cmd)
         {
             bool isSuccess = false;
@@ -56,6 +54,5 @@ namespace ZIRO
             }
             return isSuccess;
         }
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ZIRO
 {
-    partial class form_ZiRO
+    partial class Form_ZiRO
     {
         /// <summary>
         /// Required designer variable.
@@ -93,7 +93,7 @@
             this.zatvoriToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.zatvoriToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.zatvoriToolStripMenuItem.Text = "Zatvori";
-            this.zatvoriToolStripMenuItem.Click += new System.EventHandler(this.zatvoriToolStripMenuItem_Click);
+            this.zatvoriToolStripMenuItem.Click += new System.EventHandler(this.ZatvoriToolStripMenuItem_Click);
             // 
             // izađiIzAplikacijeToolStripMenuItem
             // 
@@ -101,7 +101,7 @@
             this.izađiIzAplikacijeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.izađiIzAplikacijeToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.izađiIzAplikacijeToolStripMenuItem.Text = "Izađi iz aplikacije";
-            this.izađiIzAplikacijeToolStripMenuItem.Click += new System.EventHandler(this.izađiIzAplikacijeToolStripMenuItem_Click);
+            this.izađiIzAplikacijeToolStripMenuItem.Click += new System.EventHandler(this.IzađiIzAplikacijeToolStripMenuItem_Click);
             // 
             // karticeToolStripMenuItem
             // 
@@ -127,21 +127,21 @@
             this.dodajKorisnikaToolStripMenuItem.Name = "dodajKorisnikaToolStripMenuItem";
             this.dodajKorisnikaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dodajKorisnikaToolStripMenuItem.Text = "Dodaj korisnika";
-            this.dodajKorisnikaToolStripMenuItem.Click += new System.EventHandler(this.dodajKorisnikaToolStripMenuItem_Click);
+            this.dodajKorisnikaToolStripMenuItem.Click += new System.EventHandler(this.DodajKorisnikaToolStripMenuItem_Click);
             // 
             // dodajOdjelToolStripMenuItem
             // 
             this.dodajOdjelToolStripMenuItem.Name = "dodajOdjelToolStripMenuItem";
             this.dodajOdjelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dodajOdjelToolStripMenuItem.Text = "Dodaj odjel";
-            this.dodajOdjelToolStripMenuItem.Click += new System.EventHandler(this.dodajOdjelToolStripMenuItem_Click);
+            this.dodajOdjelToolStripMenuItem.Click += new System.EventHandler(this.DodajOdjelToolStripMenuItem_Click);
             // 
             // dodajInventarToolStripMenuItem
             // 
             this.dodajInventarToolStripMenuItem.Name = "dodajInventarToolStripMenuItem";
             this.dodajInventarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dodajInventarToolStripMenuItem.Text = "Dodaj inventar";
-            this.dodajInventarToolStripMenuItem.Click += new System.EventHandler(this.dodajInventarToolStripMenuItem_Click);
+            this.dodajInventarToolStripMenuItem.Click += new System.EventHandler(this.DodajInventarToolStripMenuItem_Click);
             // 
             // pomoćToolStripMenuItem
             // 

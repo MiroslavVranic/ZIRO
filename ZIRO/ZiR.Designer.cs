@@ -103,7 +103,7 @@
             this.btn_pretrazi.TabIndex = 12;
             this.btn_pretrazi.Text = "Pretraži";
             this.btn_pretrazi.UseVisualStyleBackColor = true;
-            this.btn_pretrazi.Click += new System.EventHandler(this.btn_pretrazi_Click);
+            this.btn_pretrazi.Click += new System.EventHandler(this.Btn_pretrazi_Click);
             // 
             // lbl_inventar
             // 
