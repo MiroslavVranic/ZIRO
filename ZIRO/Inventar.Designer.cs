@@ -48,8 +48,12 @@
             this.lbl_vrsta = new System.Windows.Forms.Label();
             this.lbl_pretrazi = new System.Windows.Forms.Label();
             this.txt_pretrazi = new System.Windows.Forms.TextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuOstaleForme = new System.Windows.Forms.MenuStrip();
+            this.datotekaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spremiUnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.izmjeniUnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.menuOstaleForme.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_nazivOprme
@@ -104,6 +108,7 @@
             this.btn_spremi.TabIndex = 22;
             this.btn_spremi.Text = "Spremi";
             this.btn_spremi.UseVisualStyleBackColor = true;
+            this.btn_spremi.Click += new System.EventHandler(this.btn_spremi_Click);
             // 
             // dgv
             // 
@@ -223,20 +228,47 @@
             this.txt_pretrazi.Size = new System.Drawing.Size(322, 22);
             this.txt_pretrazi.TabIndex = 40;
             // 
-            // menuStrip1
+            // menuOstaleForme
             // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
-            this.menuStrip1.TabIndex = 41;
-            this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.Visible = false;
+            this.menuOstaleForme.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.datotekaToolStripMenuItem});
+            this.menuOstaleForme.Location = new System.Drawing.Point(0, 0);
+            this.menuOstaleForme.Name = "menuOstaleForme";
+            this.menuOstaleForme.Size = new System.Drawing.Size(884, 24);
+            this.menuOstaleForme.TabIndex = 41;
+            this.menuOstaleForme.Text = "menuOstaleForme";
+            this.menuOstaleForme.Visible = false;
+            // 
+            // datotekaToolStripMenuItem
+            // 
+            this.datotekaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.spremiUnosToolStripMenuItem,
+            this.izmjeniUnosToolStripMenuItem});
+            this.datotekaToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
+            this.datotekaToolStripMenuItem.Name = "datotekaToolStripMenuItem";
+            this.datotekaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.datotekaToolStripMenuItem.Text = "Datoteka";
+            // 
+            // spremiUnosToolStripMenuItem
+            // 
+            this.spremiUnosToolStripMenuItem.Name = "spremiUnosToolStripMenuItem";
+            this.spremiUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.spremiUnosToolStripMenuItem.Text = "Spremi unos ";
+            // 
+            // izmjeniUnosToolStripMenuItem
+            // 
+            this.izmjeniUnosToolStripMenuItem.Name = "izmjeniUnosToolStripMenuItem";
+            this.izmjeniUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.izmjeniUnosToolStripMenuItem.Text = "Izmjeni unos";
             // 
             // Inventar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 621);
+            this.Controls.Add(this.menuOstaleForme);
             this.Controls.Add(this.txt_pretrazi);
             this.Controls.Add(this.lbl_pretrazi);
             this.Controls.Add(this.lbl_vrsta);
@@ -257,13 +289,13 @@
             this.Controls.Add(this.btn_spremi);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.lbl_nazivOpreme);
-            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Inventar";
             this.Text = "Inventar";
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.menuOstaleForme.ResumeLayout(false);
+            this.menuOstaleForme.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,6 +323,9 @@
         private System.Windows.Forms.Label lbl_vrsta;
         private System.Windows.Forms.Label lbl_pretrazi;
         private System.Windows.Forms.TextBox txt_pretrazi;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuOstaleForme;
+        private System.Windows.Forms.ToolStripMenuItem datotekaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spremiUnosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem izmjeniUnosToolStripMenuItem;
     }
 }

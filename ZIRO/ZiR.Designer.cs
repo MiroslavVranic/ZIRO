@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lbl_djelatnik = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
@@ -41,13 +39,9 @@
             this.lbl_trenutniKorisnik = new System.Windows.Forms.Label();
             this.dtp_datum = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuOstaleForme = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // textBox1
             // 
@@ -109,6 +103,7 @@
             this.btn_pretrazi.TabIndex = 12;
             this.btn_pretrazi.Text = "Pretraži";
             this.btn_pretrazi.UseVisualStyleBackColor = true;
+            this.btn_pretrazi.Click += new System.EventHandler(this.btn_pretrazi_Click);
             // 
             // lbl_inventar
             // 
@@ -147,6 +142,15 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Datum:";
             // 
+            // menuOstaleForme
+            // 
+            this.menuOstaleForme.Location = new System.Drawing.Point(0, 0);
+            this.menuOstaleForme.Name = "menuOstaleForme";
+            this.menuOstaleForme.Size = new System.Drawing.Size(884, 24);
+            this.menuOstaleForme.TabIndex = 18;
+            this.menuOstaleForme.Text = "menuOstaleForme";
+            this.menuOstaleForme.Visible = false;
+            // 
             // ZiR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -163,7 +167,9 @@
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.lbl_djelatnik);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.menuOstaleForme);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuStrip = this.menuOstaleForme;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ZiR";
             this.Text = "ZiR";
@@ -174,8 +180,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lbl_djelatnik;
         private System.Windows.Forms.DataGridView dgv;
@@ -187,5 +191,6 @@
         private System.Windows.Forms.Label lbl_trenutniKorisnik;
         private System.Windows.Forms.DateTimePicker dtp_datum;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuOstaleForme;
     }
 }
