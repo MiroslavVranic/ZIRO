@@ -81,7 +81,6 @@
             this.btn_izmjeni.TabIndex = 23;
             this.btn_izmjeni.Text = "Izmjeni";
             this.btn_izmjeni.UseVisualStyleBackColor = true;
-            this.btn_izmjeni.Click += new System.EventHandler(this.btn_izmjeni_Click);
             // 
             // btn_spremi
             // 
