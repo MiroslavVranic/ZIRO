@@ -74,6 +74,7 @@
             // 
             // dtp_zaposlen
             // 
+            this.dtp_zaposlen.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_zaposlen.Location = new System.Drawing.Point(406, 49);
             this.dtp_zaposlen.Name = "dtp_zaposlen";
             this.dtp_zaposlen.Size = new System.Drawing.Size(182, 22);
@@ -191,6 +192,7 @@
             // 
             // dtp_otkaz
             // 
+            this.dtp_otkaz.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_otkaz.Location = new System.Drawing.Point(406, 77);
             this.dtp_otkaz.Name = "dtp_otkaz";
             this.dtp_otkaz.Size = new System.Drawing.Size(182, 22);
@@ -239,14 +241,14 @@
             // 
             this.spremiUnosToolStripMenuItem.Name = "spremiUnosToolStripMenuItem";
             this.spremiUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.spremiUnosToolStripMenuItem.Text = "Spremi unos ";
             // 
             // izmjeniUnosToolStripMenuItem
             // 
             this.izmjeniUnosToolStripMenuItem.Name = "izmjeniUnosToolStripMenuItem";
             this.izmjeniUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.izmjeniUnosToolStripMenuItem.Text = "Izmjeni unos";
             // 
             // Djelatnici

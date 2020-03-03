@@ -48,7 +48,7 @@ namespace ZIRO
                     // create sql connection object.
                     var conn = new SqlConnection(strConnection);
                     // create command object with SQL query and link to connection object
-                    SqlCommand cmd = new SqlCommand(unos, conn);
+                    var cmd = new SqlCommand(unos, conn);
                     cmd.Parameters.AddWithValue("@Naziv", txt_odjel.Text.Trim());
                     cmd.Parameters.AddWithValue("@Id",txt_id.Text);
 
