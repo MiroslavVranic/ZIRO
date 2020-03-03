@@ -12,6 +12,7 @@ namespace ZIRO
 {
     public partial class Form_ZiRO : Form
     {
+        
         public Form_ZiRO()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace ZIRO
         #region Otvaranje i zatvaranje GUI formi
 
         Form Forma { get; set; }
+        public string Oib { get; set; }
 
         private void KreirajFormu(Form Forma)
         {
@@ -28,7 +30,7 @@ namespace ZIRO
             Forma.WindowState = FormWindowState.Maximized;
         }
 
-        private void OtvoriFormu(Form Forma)
+        public void OtvoriFormu(Form Forma)
         {
             if (ActiveMdiChild != null)
             {
@@ -82,7 +84,5 @@ namespace ZIRO
             Application.Exit();
         }
         #endregion
-
-
     }
 }

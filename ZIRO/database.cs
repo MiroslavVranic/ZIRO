@@ -15,6 +15,8 @@ namespace ZIRO
         readonly Pomocna pomocna = new Pomocna();
 
         public int StraniKljuc { get; private set; }
+        public string Oib { get; set; }
+        public string ImePrezime { get; set; }
 
 
         // DATAGRIDVIEW select 
@@ -90,6 +92,7 @@ namespace ZIRO
             }
             return kolekcija;
         }
+
         public int ForKey(string StoTrazim, string IzTablice, string IzKolone)
         {
             string Trazi = $"SELECT id FROM { IzTablice } WHERE { IzKolone } = '{ StoTrazim }';";

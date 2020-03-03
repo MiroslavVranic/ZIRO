@@ -16,6 +16,7 @@ namespace ZIRO
         readonly DataBase dbc = new DataBase();
         readonly Upiti upiti = new Upiti();
         readonly Pomocna pomocna = new Pomocna();
+        readonly Form_ZiRO ziro = new Form_ZiRO();
         public Djelatnici()
         {
             InitializeComponent();
@@ -178,9 +179,20 @@ namespace ZIRO
             btn_spremi.PerformClick();
         }
 
-        private void izmjeniUnosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IzmjeniUnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btn_izmjeni.PerformClick();
+        }
+
+        private void BtnKorisnik_Click(object sender, EventArgs e)
+        {
+            dbc.Oib = $"{txtOib.Text.Trim()}";
+            dbc.ImePrezime = $"{txtIme.Text.Trim()} {txtPrezime.Text.Trim()}";
+            Korisnici korisnici = new Korisnici();
+            korisnici.Show();
+            korisnici.MdiParent = this.MdiParent;
+            korisnici.WindowState = FormWindowState.Maximized;
+            this.Close();
         }
     }
 }

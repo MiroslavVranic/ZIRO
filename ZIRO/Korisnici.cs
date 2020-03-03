@@ -16,7 +16,7 @@ namespace ZIRO
         readonly DataBase dbc = new DataBase();
         readonly Upiti upiti = new Upiti();
         readonly Pomocna pomocna = new Pomocna();
-
+        
         public string StraniKljuc { get; private set; }
 
         public Korisnici()
@@ -111,7 +111,6 @@ namespace ZIRO
                 Conn.Close();
             }
             return StraniKljuc;
-
         }
         private void DGVfill()
         {
