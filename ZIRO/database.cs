@@ -11,11 +11,18 @@ namespace ZIRO
 {
     class DataBase
     {
-        public OleDbConnection Conn = new OleDbConnection($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\inventar.accdb; Persist Security Info = false");
+        public string ConnString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\inventar.accdb; Persist Security Info = false";
+        readonly Pomocna pomocna = new Pomocna();
+
+        public int StraniKljuc { get; private set; }
+        public string Oib { get; set; }
+        public string ImePrezime { get; set; }
+
 
         // DATAGRIDVIEW select 
         public DataTable DGVselect(string DBS)
         {
+            var Conn = new OleDbConnection(ConnString);
             var Cmd = new OleDbCommand(DBS, Conn);
             var DataT = new DataTable();
             var Adapt = new OleDbDataAdapter(Cmd);
@@ -29,13 +36,13 @@ namespace ZIRO
             {
                 Conn.Close();
             }
-
             return DataT;
         }
         // Autocomplete lista za fomre
         public AutoCompleteStringCollection Kolekcija(string DBS, string PrviUvjet)
         {
             var kolekcija = new AutoCompleteStringCollection();
+            var Conn = new OleDbConnection(ConnString);
             var Cmd = new OleDbCommand(DBS, Conn);
             Conn.Open();
             try
@@ -50,7 +57,7 @@ namespace ZIRO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message, pomocna.MsgNazivGreska);
             }
             finally
             {
@@ -59,9 +66,10 @@ namespace ZIRO
             return kolekcija;
         }
 
-        public AutoCompleteStringCollection AutoComplete(string DBS, string PrviUvjet, string DrugiUvjet)
+        public AutoCompleteStringCollection Kolekcija(string DBS, string PrviUvjet, string DrugiUvjet)
         {
             var kolekcija = new AutoCompleteStringCollection();
+            var Conn = new OleDbConnection(ConnString);
             var Cmd = new OleDbCommand(DBS, Conn);
             Conn.Open();
             try
@@ -76,7 +84,7 @@ namespace ZIRO
             }
             catch (Exception ex)
             {
-                MessageBox.Show( ex.Message);
+                MessageBox.Show( ex.Message, pomocna.MsgNazivGreska);
             }
             finally
             {
@@ -84,6 +92,23 @@ namespace ZIRO
             }
             return kolekcija;
         }
-    }
 
+        public int ForKey(string StoTrazim, string IzTablice, string IzKolone)
+        {
+            string Trazi = $"SELECT id FROM { IzTablice } WHERE { IzKolone } = '{ StoTrazim }';";
+            var Conn = new OleDbConnection(ConnString);
+            var Cmd = new OleDbCommand(Trazi, Conn);
+            try
+            {
+                Conn.Open();
+                return StraniKljuc = (int)Cmd.ExecuteScalar();
+            }
+            catch (Exception ex) { MessageBox.Show($"Strani ključ nije nađen\n{ ex.Message }"); }
+            finally
+            {
+                Conn.Close();
+            }
+            return StraniKljuc;
+        }
+    }
 }
