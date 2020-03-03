@@ -16,8 +16,10 @@ namespace ZIRO
 
     public partial class Odjeli : Form
     {
+        Pomocna pomocna = new Pomocna();
         //readonly DataBase DBC = new DataBase();
         //readonly Upiti Upit = new Upiti();
+        readonly UpitiDB Upit = new UpitiDB();
         String strConnection = Properties.Settings.Default.DatabaseConnectionString;
 
         public Odjeli()
@@ -26,13 +28,6 @@ namespace ZIRO
             DGVfill();
             
             
-        }
-
-        // Punjenje DGV forme
-        private void DGVfill()
-        {
-            string DBS = $"SELECT * FROM odjeli;";
-            dgv.DataSource = dbc.DGVselect(DBS);
         }
 
         // Unos 
@@ -45,43 +40,34 @@ namespace ZIRO
             }            
             else
             {
-                pomocna.OkCelija(txtNaziv);
+                //pomocna.OkCelija(txtNaziv);
 
-                string unos = $"INSERT INTO odjeli(Id,nazivOdjela) VALUES(@Id,@Naziv)";
-                //var Conn = DBC.Conn;
-                //var Cmd = new OleDbCommand(Unos, Conn);            
-
+                string unos = $"INSERT INTO odjeli(nazivOdjela) VALUES(@Naziv)";
+                
                 try
                 {
                     // create sql connection object.
                     var conn = new SqlConnection(strConnection);
                     // create command object with SQL query and link to connection object
                     SqlCommand cmd = new SqlCommand(unos, conn);
-                    cmd.Parameters.AddWithValue("@Naziv", txt_odjel.Text.Trim());
-                    cmd.Parameters.AddWithValue("@Id",txt_id.Text);
+                    //cmd.Parameters.AddWithValue("@Naziv", txt_odjel.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Naziv",txtNaziv.Text);
 
-                    // open sql connection
-                    conn.Open();
-
-                    // execute the query and return number of rows affected, should be one
-                    int RowsAffected = cmd.ExecuteNonQuery();
-
-                    // close connection when done
-                    conn.Close();
-
-                    if (RowsAffected == 1)
+                    if (Upit.BoolIzmjena(cmd, conn))
                     {
                         DGVfill();
-                        txt_odjel.Clear();
-                        txt_odjel.Focus();
+                        //txt_odjel.Clear();
+                        //txt_odjel.Focus();
 
                     }
                     else
-                        MessageBox.Show(pomocna.MsgPorukaInsertError, pomocna.MsgNazivGreska);
+                        MessageBox.Show("RowsAffected nije 1, sql nije ispravno izvrsio");
+                        //MessageBox.Show(pomocna.MsgPorukaInsertError, pomocna.MsgNazivGreska);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
+                    MessageBox.Show(ex.ToString());
+                    //MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
                 }
             }
         }
@@ -113,8 +99,9 @@ namespace ZIRO
         }
 
 
+        /*
             // Izmjena postojećih unosa
-       /*     private void btn_izmjeni_Click(object sender, EventArgs e)
+            private void btn_izmjeni_Click(object sender, EventArgs e)
             {
             if (txt_odjel.Text == "")
             {
@@ -151,8 +138,8 @@ namespace ZIRO
                     MessageBox.Show(pomocna.MsgPorukaEditError + ex.ToString(), pomocna.MsgNazivGreska); 
                 }
             }
-        }
-        */
+        }*/
+        
         // PRetraživanje učitanih polja tablice
 
         private void txt_pretrazivanje_TextChanged_1(object sender, EventArgs e)
