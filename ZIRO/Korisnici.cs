@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,10 @@ namespace ZIRO
     public partial class Korisnici : Form
     {
         readonly DataBase dbc = new DataBase();
-        readonly Upiti upiti = new Upiti();
+        readonly UpitiDB upiti = new UpitiDB();
         readonly Pomocna pomocna = new Pomocna();
-        
+        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
+
         public string StraniKljuc { get; private set; }
 
         public Korisnici()
@@ -70,15 +72,15 @@ namespace ZIRO
                 else
                 {
                     string Unos = $"INSERT INTO korisnici(oibDjelatnici, username, password, uloga) VALUES(?, ?, ?, ?)";
-                    var Conn = new OleDbConnection(dbc.ConnString);
-                    var Cmd = new OleDbCommand(Unos, Conn);
+                    var Conn = new SqlConnection(strConnection);
+                    var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@oibDjelatnici", txtDjelatnik.Text.Trim());
                     Cmd.Parameters.AddWithValue("@username", txtKorIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@password", txtKorIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@uloga", cmbUloga.ToString());
                     try
                     {
-                        bool success = upiti.BoolUnos(Conn, Cmd);
+                        bool success = upiti.BoolUnos(Cmd, Conn);
                         if (success == true)
                         {
                             //UspjesanUnos();
@@ -98,8 +100,8 @@ namespace ZIRO
         {
             string tablica = "'ime'" + " " + "'prezime'";
             string Select = $"SELECT oib FROM djelatnici WHERE ime = 'Miro'";
-            var Conn = new OleDbConnection(dbc.ConnString);
-            var Cmd = new OleDbCommand(Select, Conn);
+            var Conn = new SqlConnection(strConnection);
+            var Cmd = new SqlCommand(Select, Conn);
             try
             {
                 Conn.Open();

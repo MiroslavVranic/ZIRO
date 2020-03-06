@@ -99,11 +99,11 @@ namespace ZIRO
         }
 
 
-        /*
+        
             // Izmjena postojećih unosa
             private void btn_izmjeni_Click(object sender, EventArgs e)
             {
-            if (txt_odjel.Text == "")
+            if (txtNaziv.Text == "")//txt_odjel je bio
             {
                 txtNaziv.BackColor = Color.LightPink;
                 MessageBox.Show(pomocna.MsgPorukaPraznaCelija, pomocna.MsgNazivPozor);
@@ -112,14 +112,16 @@ namespace ZIRO
             {
                 txtNaziv.BackColor = Color.White;
 
-                string Uredi = $"UPDATE odjeli SET Naziv=? WHERE ID=?";
-                var Conn = new OleDbConnection(dbc.ConnString);
-                var Cmd = new OleDbCommand(Uredi, Conn);
+                string Uredi = $"UPDATE odjeli SET nazivOdjela=@Naziv WHERE Id=@ID";
+
+                var conn = new SqlConnection(strConnection);
+                SqlCommand Cmd = new SqlCommand(Uredi, conn);
+                int brojId = int.Parse(txtId.Text);
                 Cmd.Parameters.AddWithValue("@Naziv", txtNaziv.Text.Trim());
-                Cmd.Parameters.AddWithValue("@ID", int.Parse(txtId.Text.Trim()));
+                Cmd.Parameters.AddWithValue("@ID", brojId);
                 try
                 {
-                    bool success = upiti.BoolIzmjena(Conn, Cmd);
+                    bool success = Upit.BoolIzmjena(Cmd, conn);
 
                     if (success == true)
                     {
@@ -138,7 +140,7 @@ namespace ZIRO
                     MessageBox.Show(pomocna.MsgPorukaEditError + ex.ToString(), pomocna.MsgNazivGreska); 
                 }
             }
-        }*/
+        }
         
         // PRetraživanje učitanih polja tablice
 
@@ -164,6 +166,17 @@ namespace ZIRO
         private void IzmjeniUnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btn_izmjeni.PerformClick();
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dgv.Rows[e.RowIndex];
+                txtId.Text = row.Cells["Id"].Value.ToString();
+                txtNaziv.Text = row.Cells["nazivOdjela"].Value.ToString();
+                
+            }
         }
     }
 }

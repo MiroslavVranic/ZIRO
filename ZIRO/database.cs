@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,8 @@ namespace ZIRO
 {
     class DataBase
     {
-        public string ConnString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\inventar.accdb; Persist Security Info = false";
+        //public string ConnString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\inventar.accdb; Persist Security Info = false";
+        String ConnString = Properties.Settings.Default.DatabaseConnectionString;
         readonly Pomocna pomocna = new Pomocna();
 
         public int StraniKljuc { get; private set; }
@@ -22,7 +24,7 @@ namespace ZIRO
         // DATAGRIDVIEW select 
         public DataTable DGVselect(string DBS)
         {
-            var Conn = new OleDbConnection(ConnString);
+            /*var Conn = new OleDbConnection(ConnString);
             var Cmd = new OleDbCommand(DBS, Conn);
             var DataT = new DataTable();
             var Adapt = new OleDbDataAdapter(Cmd);
@@ -37,17 +39,33 @@ namespace ZIRO
                 Conn.Close();
             }
             return DataT;
+            */
+            var Conn = new SqlConnection(ConnString);
+            SqlCommand Cmd = new SqlCommand(DBS, Conn);
+            var DataT = new DataTable();
+            var Adapt = new SqlDataAdapter(DBS, Conn);
+            try
+            {
+                Conn.Open();
+                Adapt.Fill(DataT);
+            }
+            catch (Exception ex) { throw ex; }
+            finally
+            {
+                Conn.Close();
+            }
+            return DataT;
         }
         // Autocomplete lista za fomre
         public AutoCompleteStringCollection Kolekcija(string DBS, string PrviUvjet)
         {
             var kolekcija = new AutoCompleteStringCollection();
-            var Conn = new OleDbConnection(ConnString);
-            var Cmd = new OleDbCommand(DBS, Conn);
+            var Conn = new SqlConnection(ConnString);
+            var Cmd = new SqlCommand(DBS, Conn);
             Conn.Open();
             try
             {
-                OleDbDataReader myReader = Cmd.ExecuteReader();
+                SqlDataReader myReader = Cmd.ExecuteReader();
                 int jedan = myReader.GetOrdinal(PrviUvjet);
                 while (myReader.Read())
                 {
@@ -69,12 +87,12 @@ namespace ZIRO
         public AutoCompleteStringCollection Kolekcija(string DBS, string PrviUvjet, string DrugiUvjet)
         {
             var kolekcija = new AutoCompleteStringCollection();
-            var Conn = new OleDbConnection(ConnString);
-            var Cmd = new OleDbCommand(DBS, Conn);
+            var Conn = new SqlConnection(ConnString);
+            var Cmd = new SqlCommand(DBS, Conn);
             Conn.Open();
             try
             {
-                OleDbDataReader myReader = Cmd.ExecuteReader();
+                SqlDataReader myReader = Cmd.ExecuteReader();
                 while (myReader.Read())
                 {
                     string prviString = myReader[PrviUvjet].ToString();
@@ -96,8 +114,8 @@ namespace ZIRO
         public int ForKey(string StoTrazim, string IzTablice, string IzKolone)
         {
             string Trazi = $"SELECT id FROM { IzTablice } WHERE { IzKolone } = '{ StoTrazim }';";
-            var Conn = new OleDbConnection(ConnString);
-            var Cmd = new OleDbCommand(Trazi, Conn);
+            var Conn = new SqlConnection(ConnString);
+            var Cmd = new SqlCommand(Trazi, Conn);
             try
             {
                 Conn.Open();

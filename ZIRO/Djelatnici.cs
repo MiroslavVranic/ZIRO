@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,12 @@ namespace ZIRO
     public partial class Djelatnici : Form
     {
         readonly DataBase dbc = new DataBase();
-        readonly Upiti upiti = new Upiti();
+        readonly UpitiDB upiti = new UpitiDB();
         readonly Pomocna pomocna = new Pomocna();
         readonly Form_ZiRO ziro = new Form_ZiRO();
+
+        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
+        readonly UpitiDB Upit = new UpitiDB();
         public Djelatnici()
         {
             InitializeComponent();
@@ -27,16 +31,16 @@ namespace ZIRO
         // Punjenje DGV forme
         private void DGVfill()
         {
-            string dbs = $"SELECT djelatnici.oib, djelatnici.Ime, djelatnici.prezime, djelatnici.datZaposlenja, " +
-                $"djelatnici.datOtkaza, odjeli.naziv FROM djelatnici LEFT JOIN odjeli ON odjeli.id = djelatnici.idOdjeli;";
+            string dbs = $"SELECT djelatnici.oib, djelatnici.ime, djelatnici.prezime, djelatnici.datZaposlenja, " +
+                $"djelatnici.datOtkaza, odjeli.nazivOdjela FROM djelatnici LEFT JOIN odjeli ON odjeli.Id = djelatnici.odjelID;";
             dgv.DataSource = dbc.DGVselect(dbs);
         }
 
         // Autocomplete lista za odjele
         private void KolekcijaOdjeli()
         {
-            string odjel = "naziv";
-            string dbAc = "SELECT naziv FROM odjeli";
+            string odjel = "nazivOdjela";
+            string dbAc = "SELECT nazivOdjela FROM odjeli";
             var acLista = dbc.Kolekcija(dbAc, odjel);
             txtOdjel.AutoCompleteCustomSource = acLista;
         }
@@ -82,14 +86,14 @@ namespace ZIRO
             }
             else
             {
-                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "naziv");
+                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "nazivOdjela");
                 if (dbc.StraniKljuc < 1)
                     MessageBox.Show($"Unešeni odjel ne postji u odjelima!");
                 else
                 {
-                    string Unos = $"INSERT INTO djelatnici(oib, Ime, Prezime, datZaposlenja, idOdjeli) VALUES(?, ?, ?, ?, ?)";
-                    var Conn = new OleDbConnection(dbc.ConnString);
-                    var Cmd = new OleDbCommand(Unos, Conn);
+                    string Unos = $"INSERT INTO djelatnici(oib, ime, prezime, datZaposlenja, odjelId) VALUES(@oib, @Ime, @prezime, @datZaposlenja, @idOdjel)";
+                    var Conn = new SqlConnection(strConnection);
+                    var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@oib", txtOib.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Ime", txtIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Prezime", txtPrezime.Text.Trim());
@@ -97,7 +101,7 @@ namespace ZIRO
                     Cmd.Parameters.AddWithValue("@idOdjel", dbc.StraniKljuc);
                     try
                     {
-                        bool success = upiti.BoolUnos(Conn, Cmd);
+                        bool success = upiti.BoolUnos(Cmd, Conn);
                         if (success == true)
                         {
                             UspjesanUnos();
@@ -123,14 +127,14 @@ namespace ZIRO
             }
             else
             {
-                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "naziv");
+                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "nazivOdjela");
                 if (dbc.StraniKljuc < 1)
                     MessageBox.Show($"Nepostojeći odjel u tablici odjela!");
                 else
                 {
-                    string Uredi = $"UPDATE djelatnici SET [Ime]=?, [Prezime]=?, [datZaposlenja]=?, [idOdjeli]=? WHERE [Oib] =?";
-                    var Conn = new OleDbConnection(dbc.ConnString);
-                    var Cmd = new OleDbCommand(Uredi, Conn);
+                    string Uredi = $"UPDATE djelatnici SET [Ime]=@Ime, [Prezime]=@prezime, [datZaposlenja]=@datZaposlenja, [odjelId]=@idOdjel WHERE [oib] =@oib";
+                    var Conn = new SqlConnection(strConnection);
+                    var Cmd = new SqlCommand(Uredi, Conn);
                     Cmd.Parameters.AddWithValue("@Ime", txtIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Prezime", txtPrezime.Text.Trim());
                     Cmd.Parameters.AddWithValue("@datZaposlenja", DateTime.Parse(dtp_zaposlen.Text));
@@ -139,7 +143,7 @@ namespace ZIRO
 
                     try
                     {
-                        bool success = upiti.BoolUnos(Conn, Cmd);
+                        bool success = upiti.BoolUnos(Cmd, Conn);
                         if (success == true)
                         {
                             UspjesanUnos();
