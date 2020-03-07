@@ -63,6 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="database.cs" />
+    <Compile Include="DatabaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Djelatnici.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -49,7 +49,7 @@ namespace ZIRO
                     // create sql connection object.
                     var conn = new SqlConnection(strConnection);
                     // create command object with SQL query and link to connection object
-                    SqlCommand cmd = new SqlCommand(unos, conn);
+                    var cmd = new SqlCommand(unos, conn);
                     //cmd.Parameters.AddWithValue("@Naziv", txt_odjel.Text.Trim());
                     cmd.Parameters.AddWithValue("@Naziv",txtNaziv.Text);
 
@@ -142,7 +142,7 @@ namespace ZIRO
         
         // PRetraživanje učitanih polja tablice
 
-        private void txt_pretrazivanje_TextChanged_1(object sender, EventArgs e)
+        private void Txt_pretrazivanje_TextChanged_1(object sender, EventArgs e)
         {
             (dgv.DataSource as DataTable).DefaultView.RowFilter = string.Format("nazivOdjela LIKE '%{0}%'", txt_pretrazivanje.Text.Trim());
             if (dgv.Rows[0].Cells[0].Value == null) { return; }

@@ -10,7 +10,7 @@ namespace ZIRO
 {
     class UpitiDB
     {
-        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
+        public string strConnection = Properties.Settings.Default.DatabaseConnectionString;
 
         /// <summary>
         /// Sve metode za unos podataka iz formi u bazu podataka

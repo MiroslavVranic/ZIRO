@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,27 +15,64 @@ namespace ZIRO
     public partial class Korisnici : Form
     {
         readonly DataBase dbc = new DataBase();
-        readonly Upiti upiti = new Upiti();
+        readonly UpitiDB upiti = new UpitiDB();
         readonly Pomocna pomocna = new Pomocna();
-        
-        public string StraniKljuc { get; private set; }
 
+        #region PROPERTIES
+        public string DjelatniciOib { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string UlogaKorisnika { get; set; }
+
+        public static Dictionary<string, string> Djelatnici = new Dictionary<string, string>();
+        #endregion
+        
         public Korisnici()
         {
             InitializeComponent();
             DGVfill();
             KolekcijaDjelatnici();
+            ListaDijelatnika();
+            cmbUloga.SelectedIndex = 0;
         }
 
+        #region LISTE DJELATNIK ZA UNOS U BAZU
+        private void ListaDijelatnika()
+        {
+            var dbs = "SELECT oib, ime, prezime FROM djelatnici;";
+            var Conn = new SqlConnection(dbc.strConnection);
+            var Cmd = new SqlCommand(dbs, Conn);
+            Conn.Open();
+            try
+            {
+                SqlDataReader myReader = Cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    var oib = myReader["oib"].ToString();
+                    var Ime = myReader["ime"].ToString();
+                    var Prezime = myReader["prezime"].ToString();
+                    var imePrezime = $"{Ime} {Prezime}";
+                    Djelatnici.Add(oib, imePrezime);
+                }
+            }
+            catch (Exception ex) { MessageBox.Show($"Greška kod učitavanja djelatnika\n{ ex.Message }", pomocna.MsgNazivGreska); }
+            finally
+            {
+                Conn.Close();
+            }
+        }
+        
         private void KolekcijaDjelatnici()
         {
-            string ime = "ime";
-            string prezime = "prezime";
-            string dbAc = "SELECT ime, prezime FROM djelatnici";
+            var ime = "ime";
+            var prezime = "prezime";
+            var dbAc = "SELECT ime, prezime FROM djelatnici";
             var acLista = dbc.Kolekcija(dbAc, ime, prezime);
             txtDjelatnik.AutoCompleteCustomSource = acLista;
         }
+        #endregion
 
+        #region POLJA FOMRE PROVJERA I BRISANJE
         private void ProvjeraCelija()
         {
             if (String.IsNullOrWhiteSpace(txtDjelatnik.Text))
@@ -55,6 +93,18 @@ namespace ZIRO
                 cmbUloga.BackColor = Color.White;
             MessageBox.Show(pomocna.MsgPorukaPraznaCelija, pomocna.MsgNazivPozor);
         }
+
+        private void OcistiCelije()
+        {
+            txtDjelatnik.Text = "";
+            txtKorIme.Text = "";
+            txtLozinka.Text = "";
+            cmbUloga.SelectedIndex = 0;
+            txtDjelatnik.Focus();
+        }
+        #endregion
+
+        #region SPREMI NOVOG(INSERT) KORISNIKA
         private void Btn_spremi_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(txtDjelatnik.Text) || String.IsNullOrWhiteSpace(txtKorIme.Text)
@@ -64,58 +114,95 @@ namespace ZIRO
             }
             else
             {
-                ForKey();
-                if (dbc.StraniKljuc < 1)
-                    MessageBox.Show($"Unešeni djelatnik ne postoji!");
+                DjelatniciOib = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
+                if (DjelatniciOib == null)
+                    MessageBox.Show($"Oib za djelatnika nije nađen", "Pažnja");
                 else
                 {
-                    string Unos = $"INSERT INTO korisnici(oibDjelatnici, username, password, uloga) VALUES(?, ?, ?, ?)";
-                    var Conn = new OleDbConnection(dbc.ConnString);
-                    var Cmd = new OleDbCommand(Unos, Conn);
-                    Cmd.Parameters.AddWithValue("@oibDjelatnici", txtDjelatnik.Text.Trim());
+                    string Unos = $"INSERT INTO korisnici(username, password, uloga, djelatniciOib) " +
+                        $"VALUES(@username, @password, @uloga, @djelatniciOib);";
+                    var Conn = new SqlConnection(dbc.strConnection);
+                    var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@username", txtKorIme.Text.Trim());
-                    Cmd.Parameters.AddWithValue("@password", txtKorIme.Text.Trim());
-                    Cmd.Parameters.AddWithValue("@uloga", cmbUloga.ToString());
+                    Cmd.Parameters.AddWithValue("@password", txtLozinka.Text.Trim());
+                    Cmd.Parameters.AddWithValue("@uloga", cmbUloga.SelectedItem.ToString());
+                    Cmd.Parameters.AddWithValue("@djelatniciOib", DjelatniciOib.Trim());
                     try
                     {
-                        bool success = upiti.BoolUnos(Conn, Cmd);
+                        bool success = upiti.BoolUnos(Cmd, Conn);
                         if (success == true)
                         {
-                            //UspjesanUnos();
+                            OcistiCelije();
+                            DGVfill();
                         }
-                        else
-                            MessageBox.Show(pomocna.MsgPorukaInsertError, pomocna.MsgNazivGreska);
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(pomocna.MsgPorukaInsertError + ex.Message, pomocna.MsgNazivGreska);
-                    }
+                    catch (Exception ex) { MessageBox.Show($"{pomocna.MsgPorukaInsertError}\n{ ex.Message}", pomocna.MsgNazivGreska); }
                 }
             }
         }
+        #endregion
 
-        public string ForKey()
+        #region IZMJENI KORISNIKA (UPDATE)
+        private void BtnIzmjeni_Click(object sender, EventArgs e)
         {
-            string tablica = "'ime'" + " " + "'prezime'";
-            string Select = $"SELECT oib FROM djelatnici WHERE ime = 'Miro'";
-            var Conn = new OleDbConnection(dbc.ConnString);
-            var Cmd = new OleDbCommand(Select, Conn);
-            try
+            if (String.IsNullOrWhiteSpace(txtDjelatnik.Text) || String.IsNullOrWhiteSpace(txtKorIme.Text)
+                || String.IsNullOrWhiteSpace(txtLozinka.Text) || String.IsNullOrWhiteSpace(cmbUloga.Text))
             {
-                Conn.Open();
-                return StraniKljuc = (string)Cmd.ExecuteScalar();
+                ProvjeraCelija();
             }
-            catch (Exception ex) { MessageBox.Show($"Strani ključ nije nađen\n{ ex.Message }"); }
-            finally
+            else
             {
-                Conn.Close();
+                DjelatniciOib = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
+                if (DjelatniciOib == null)
+                    MessageBox.Show($"Oib za djelatnika nije nađen", "Pažnja");
+                else
+                {
+                    string Unos = $"UPDATE korisnici SET username=@username, password=@password, uloga=@uloga WHERE djelatniciOib=@djelatniciOib;";
+                    var Conn = new SqlConnection(dbc.strConnection);
+                    var Cmd = new SqlCommand(Unos, Conn);
+                    Cmd.Parameters.AddWithValue("@username", txtKorIme.Text.Trim());
+                    Cmd.Parameters.AddWithValue("@password", txtLozinka.Text.Trim());
+                    Cmd.Parameters.AddWithValue("@uloga", cmbUloga.SelectedItem.ToString());
+                    Cmd.Parameters.AddWithValue("@djelatniciOib", DjelatniciOib.Trim());
+                    try
+                    {
+                        bool success = upiti.BoolIzmjena(Cmd, Conn);
+                        if (success == true)
+                        {
+                            OcistiCelije();
+                            DGVfill();
+                        }
+                    }
+                    catch (Exception ex) { MessageBox.Show($"{pomocna.MsgPorukaInsertError}\n{ ex.Message}", pomocna.MsgNazivGreska); }
+                }
             }
-            return StraniKljuc;
         }
+        #endregion#
+
+        #region METODE ZA RAD S FORMOM UČITAVANJA I PRETRAŽIVANJA
         private void DGVfill()
         {
             string DBS = $"SELECT * FROM korisnici;";
             dgv.DataSource = dbc.DGVselect(DBS);
         }
+
+        private void Dgv_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) 
+        {
+            int RowIndex = e.RowIndex;
+            txtKorIme.Text = dgv.Rows[RowIndex].Cells[0].Value.ToString();
+            txtLozinka.Text = dgv.Rows[RowIndex].Cells[1].Value.ToString();
+            cmbUloga.Text = dgv.Rows[RowIndex].Cells[2].Value.ToString();
+            DjelatniciOib = dgv.Rows[RowIndex].Cells[3].Value.ToString();
+            txtDjelatnik.Text = Djelatnici.FirstOrDefault(d => d.Key == DjelatniciOib).Value;
+        }
+
+        private void txtPretrazivanje_TextChanged(object sender, EventArgs e)
+        {
+            (dgv.DataSource as DataTable).DefaultView.RowFilter =
+                string.Format($"username LIKE '%{ txtPretrazivanje.Text.Trim() }%' OR uloga LIKE '%{ txtPretrazivanje.Text.Trim() }%' " +
+                $"OR djelatniciOib LIKE '%{ txtPretrazivanje.Text.Trim() }%'");
+            if (dgv.Rows[0].Cells[0].Value == null) { return; }
+        }
+        #endregion
     }
 }

@@ -102,6 +102,7 @@
             this.dgv.RowHeadersWidth = 51;
             this.dgv.Size = new System.Drawing.Size(860, 395);
             this.dgv.TabIndex = 20;
+            this.dgv.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Dgv_RowHeaderMouseClick);
             // 
             // lbl_djelatnik
             // 
@@ -159,6 +160,7 @@
             this.txtPretrazivanje.Name = "txtPretrazivanje";
             this.txtPretrazivanje.Size = new System.Drawing.Size(366, 29);
             this.txtPretrazivanje.TabIndex = 31;
+            this.txtPretrazivanje.TextChanged += new System.EventHandler(this.txtPretrazivanje_TextChanged);
             // 
             // lbl_pretrazivanje
             // 
@@ -178,6 +180,7 @@
             this.btnIzmjeni.TabIndex = 34;
             this.btnIzmjeni.Text = "Izmjeni";
             this.btnIzmjeni.UseVisualStyleBackColor = true;
+            this.btnIzmjeni.Click += new System.EventHandler(this.BtnIzmjeni_Click);
             // 
             // btnSpremi
             // 

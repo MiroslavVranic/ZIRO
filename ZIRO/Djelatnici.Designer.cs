@@ -53,7 +53,6 @@
             this.izmjeniUnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblOdjel = new System.Windows.Forms.Label();
             this.txtOdjel = new System.Windows.Forms.TextBox();
-            this.btnKorisnik = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menuOstaleForme.SuspendLayout();
             this.SuspendLayout();
@@ -126,7 +125,7 @@
             this.dgv.Size = new System.Drawing.Size(860, 395);
             this.dgv.TabIndex = 20;
             this.dgv.TabStop = false;
-            this.dgv.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_RowHeaderMouseDoubleClick);
+            this.dgv.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Dgv_RowHeaderMouseDoubleClick);
             // 
             // lbl_ime
             // 
@@ -289,22 +288,11 @@
             this.txtOdjel.Size = new System.Drawing.Size(182, 25);
             this.txtOdjel.TabIndex = 40;
             // 
-            // btnKorisnik
-            // 
-            this.btnKorisnik.Location = new System.Drawing.Point(670, 127);
-            this.btnKorisnik.Name = "btnKorisnik";
-            this.btnKorisnik.Size = new System.Drawing.Size(88, 51);
-            this.btnKorisnik.TabIndex = 42;
-            this.btnKorisnik.Text = "Dodaj korisnika";
-            this.btnKorisnik.UseVisualStyleBackColor = true;
-            this.btnKorisnik.Click += new System.EventHandler(this.BtnKorisnik_Click);
-            // 
             // Djelatnici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 621);
-            this.Controls.Add(this.btnKorisnik);
             this.Controls.Add(this.lblOdjel);
             this.Controls.Add(this.txtOdjel);
             this.Controls.Add(this.menuOstaleForme);
@@ -364,6 +352,5 @@
         private System.Windows.Forms.ToolStripMenuItem izmjeniUnosToolStripMenuItem;
         private System.Windows.Forms.Label lblOdjel;
         private System.Windows.Forms.TextBox txtOdjel;
-        private System.Windows.Forms.Button btnKorisnik;
     }
 }

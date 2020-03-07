@@ -135,7 +135,7 @@
             this.txt_pretrazivanje.Name = "txt_pretrazivanje";
             this.txt_pretrazivanje.Size = new System.Drawing.Size(366, 29);
             this.txt_pretrazivanje.TabIndex = 27;
-            this.txt_pretrazivanje.Click += new System.EventHandler(this.txt_pretrazivanje_TextChanged_1);
+            this.txt_pretrazivanje.Click += new System.EventHandler(this.Txt_pretrazivanje_TextChanged_1);
             // 
             // lbl_pretrazivanje
             // 
