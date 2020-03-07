@@ -19,7 +19,7 @@ namespace ZIRO
             DGVfill();
         }
 
-        private void btn_pretrazi_Click(object sender, EventArgs e)
+        private void Btn_pretrazi_Click(object sender, EventArgs e)
         {
             string Test = $"Miro testira dbf pull i push";
         }

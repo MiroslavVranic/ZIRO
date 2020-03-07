@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_nazivOprme = new System.Windows.Forms.TextBox();
             this.lbl_kupljenoDatum = new System.Windows.Forms.Label();
             this.dtp_datum = new System.Windows.Forms.DateTimePicker();
@@ -93,25 +94,31 @@
             // 
             // btn_izmjeni
             // 
-            this.btn_izmjeni.Location = new System.Drawing.Point(703, 99);
+            this.btn_izmjeni.Location = new System.Drawing.Point(703, 118);
             this.btn_izmjeni.Name = "btn_izmjeni";
-            this.btn_izmjeni.Size = new System.Drawing.Size(88, 43);
+            this.btn_izmjeni.Size = new System.Drawing.Size(88, 25);
             this.btn_izmjeni.TabIndex = 23;
-            this.btn_izmjeni.Text = "Izmjeni";
+            this.btn_izmjeni.Text = "Izmjeni (F3)";
             this.btn_izmjeni.UseVisualStyleBackColor = true;
             // 
             // btn_spremi
             // 
-            this.btn_spremi.Location = new System.Drawing.Point(703, 50);
+            this.btn_spremi.Location = new System.Drawing.Point(703, 51);
             this.btn_spremi.Name = "btn_spremi";
-            this.btn_spremi.Size = new System.Drawing.Size(88, 43);
+            this.btn_spremi.Size = new System.Drawing.Size(88, 25);
             this.btn_spremi.TabIndex = 22;
-            this.btn_spremi.Text = "Spremi";
+            this.btn_spremi.Text = "Spremi (F4)";
             this.btn_spremi.UseVisualStyleBackColor = true;
-            this.btn_spremi.Click += new System.EventHandler(this.btn_spremi_Click);
+            this.btn_spremi.Click += new System.EventHandler(this.Btn_spremi_Click);
             // 
             // dgv
             // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(12, 215);
             this.dgv.Name = "dgv";

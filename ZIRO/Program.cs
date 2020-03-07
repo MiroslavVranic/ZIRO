@@ -16,7 +16,7 @@ namespace ZIRO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form_ZiRO());
+            Application.Run(new Form_ZiRO());
         }
     }
 }
