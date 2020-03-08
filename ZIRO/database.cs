@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,21 +13,21 @@ namespace ZIRO
 {
     class DataBase
     {
-        public string ConnString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\inventar.accdb; Persist Security Info = false";
+        public string strConnection = Properties.Settings.Default.DatabaseConnectionString;
+
+        // public string ConnString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\inventar.accdb; Persist Security Info = false";
         readonly Pomocna pomocna = new Pomocna();
 
         public int StraniKljuc { get; private set; }
-        public string Oib { get; set; }
-        public string ImePrezime { get; set; }
-
+        public string Username { get; set; }
 
         // DATAGRIDVIEW select 
         public DataTable DGVselect(string DBS)
         {
-            var Conn = new OleDbConnection(ConnString);
-            var Cmd = new OleDbCommand(DBS, Conn);
+            var Conn = new SqlConnection(strConnection);
+            var Cmd = new SqlCommand(DBS, Conn);
             var DataT = new DataTable();
-            var Adapt = new OleDbDataAdapter(Cmd);
+            var Adapt = new SqlDataAdapter(Cmd);
             try
             {
                 Conn.Open();
@@ -42,12 +44,12 @@ namespace ZIRO
         public AutoCompleteStringCollection Kolekcija(string DBS, string PrviUvjet)
         {
             var kolekcija = new AutoCompleteStringCollection();
-            var Conn = new OleDbConnection(ConnString);
-            var Cmd = new OleDbCommand(DBS, Conn);
+            var Conn = new SqlConnection(strConnection);
+            var Cmd = new SqlCommand(DBS, Conn);
             Conn.Open();
             try
             {
-                OleDbDataReader myReader = Cmd.ExecuteReader();
+                SqlDataReader myReader = Cmd.ExecuteReader();
                 int jedan = myReader.GetOrdinal(PrviUvjet);
                 while (myReader.Read())
                 {
@@ -69,12 +71,12 @@ namespace ZIRO
         public AutoCompleteStringCollection Kolekcija(string DBS, string PrviUvjet, string DrugiUvjet)
         {
             var kolekcija = new AutoCompleteStringCollection();
-            var Conn = new OleDbConnection(ConnString);
-            var Cmd = new OleDbCommand(DBS, Conn);
+            var Conn = new SqlConnection(strConnection);
+            var Cmd = new SqlCommand(DBS, Conn);
             Conn.Open();
             try
             {
-                OleDbDataReader myReader = Cmd.ExecuteReader();
+                SqlDataReader myReader = Cmd.ExecuteReader();
                 while (myReader.Read())
                 {
                     string prviString = myReader[PrviUvjet].ToString();
@@ -82,10 +84,7 @@ namespace ZIRO
                     kolekcija.Add($"{prviString} {drugiString}");
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message, pomocna.MsgNazivGreska);
-            }
+            catch (Exception ex){ MessageBox.Show( ex.Message, pomocna.MsgNazivGreska); }
             finally
             {
                 Conn.Close();
@@ -96,8 +95,8 @@ namespace ZIRO
         public int ForKey(string StoTrazim, string IzTablice, string IzKolone)
         {
             string Trazi = $"SELECT id FROM { IzTablice } WHERE { IzKolone } = '{ StoTrazim }';";
-            var Conn = new OleDbConnection(ConnString);
-            var Cmd = new OleDbCommand(Trazi, Conn);
+            var Conn = new SqlConnection(strConnection);
+            var Cmd = new SqlCommand(Trazi, Conn);
             try
             {
                 Conn.Open();
@@ -109,6 +108,20 @@ namespace ZIRO
                 Conn.Close();
             }
             return StraniKljuc;
+        }
+        public string KriptirajLozinku(string rawData)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
     }
 }

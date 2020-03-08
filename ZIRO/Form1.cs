@@ -12,7 +12,33 @@ namespace ZIRO
 {
     public partial class Form_ZiRO : Form
     {
-        
+        private void Form_ZiRO_Load(object sender, EventArgs e)
+        {
+            using (Login login = new Login())
+            {
+                if (login.ShowDialog() != DialogResult.OK)
+                {
+                    Application.Exit();
+                    return;
+                }
+                else
+                {
+                    Forma = new ZiR();
+                    OtvoriFormu(Forma);
+                    //string _korime = EditClass.KorisnickoIme;
+                    //string IzTablice = "korisnici";
+                    //string GdjeTrazim = "korisnickoIme";
+                    //string Uloga = Uredi.UlogaUlogiranogKor(_korime, IzTablice, GdjeTrazim);
+                    //if (Uloga == "Administrator")
+                    //{
+                    //    dodajKorisnikaToolStripMenuItem.Visible = true;
+                    //    FormaKPP();
+                    //}
+                    //else
+                    //    FormaKPP();
+                }
+            }
+        }
         public Form_ZiRO()
         {
             InitializeComponent();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,9 @@ namespace ZIRO
     public partial class Djelatnici : Form
     {
         readonly DataBase dbc = new DataBase();
-        readonly Upiti upiti = new Upiti();
+        readonly UpitiDB upiti = new UpitiDB();
         readonly Pomocna pomocna = new Pomocna();
-        readonly Form_ZiRO ziro = new Form_ZiRO();
+
         public Djelatnici()
         {
             InitializeComponent();
@@ -27,16 +28,20 @@ namespace ZIRO
         // Punjenje DGV forme
         private void DGVfill()
         {
-            string dbs = $"SELECT djelatnici.oib, djelatnici.Ime, djelatnici.prezime, djelatnici.datZaposlenja, " +
-                $"djelatnici.datOtkaza, odjeli.naziv FROM djelatnici LEFT JOIN odjeli ON odjeli.id = djelatnici.idOdjeli;";
-            dgv.DataSource = dbc.DGVselect(dbs);
+            string dbs = $"SELECT djelatnici.oib, djelatnici.ime, djelatnici.prezime, djelatnici.datZaposlenja, " +
+                $"djelatnici.datOtkaza, odjeli.nazivOdjela FROM djelatnici LEFT JOIN odjeli ON odjeli.id = djelatnici.odjelID;";
+            try
+            {
+                dgv.DataSource = dbc.DGVselect(dbs);
+            }
+            catch(Exception ex) { MessageBox.Show($"Greška pri dohvačanju djelatnika\n{ex.Message}", pomocna.MsgNazivGreska); }
         }
 
         // Autocomplete lista za odjele
         private void KolekcijaOdjeli()
         {
-            string odjel = "naziv";
-            string dbAc = "SELECT naziv FROM odjeli";
+            string odjel = "nazivOdjela";
+            string dbAc = "SELECT nazivOdjela FROM odjeli";
             var acLista = dbc.Kolekcija(dbAc, odjel);
             txtOdjel.AutoCompleteCustomSource = acLista;
         }
@@ -88,8 +93,8 @@ namespace ZIRO
                 else
                 {
                     string Unos = $"INSERT INTO djelatnici(oib, Ime, Prezime, datZaposlenja, idOdjeli) VALUES(?, ?, ?, ?, ?)";
-                    var Conn = new OleDbConnection(dbc.ConnString);
-                    var Cmd = new OleDbCommand(Unos, Conn);
+                    var Conn = new SqlConnection(dbc.strConnection);
+                    var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@oib", txtOib.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Ime", txtIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Prezime", txtPrezime.Text.Trim());
@@ -97,7 +102,7 @@ namespace ZIRO
                     Cmd.Parameters.AddWithValue("@idOdjel", dbc.StraniKljuc);
                     try
                     {
-                        bool success = upiti.BoolUnos(Conn, Cmd);
+                        bool success = upiti.BoolUnos(Cmd, Conn);
                         if (success == true)
                         {
                             UspjesanUnos();
@@ -129,8 +134,8 @@ namespace ZIRO
                 else
                 {
                     string Uredi = $"UPDATE djelatnici SET [Ime]=?, [Prezime]=?, [datZaposlenja]=?, [idOdjeli]=? WHERE [Oib] =?";
-                    var Conn = new OleDbConnection(dbc.ConnString);
-                    var Cmd = new OleDbCommand(Uredi, Conn);
+                    var Conn = new SqlConnection(dbc.strConnection);
+                    var Cmd = new SqlCommand(Uredi, Conn);
                     Cmd.Parameters.AddWithValue("@Ime", txtIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Prezime", txtPrezime.Text.Trim());
                     Cmd.Parameters.AddWithValue("@datZaposlenja", DateTime.Parse(dtp_zaposlen.Text));
@@ -139,7 +144,7 @@ namespace ZIRO
 
                     try
                     {
-                        bool success = upiti.BoolUnos(Conn, Cmd);
+                        bool success = upiti.BoolUnos(Cmd, Conn);
                         if (success == true)
                         {
                             UspjesanUnos();
@@ -156,7 +161,7 @@ namespace ZIRO
         }
 
         // Odabir reda iz tablice za izmjene
-        private void dgv_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void Dgv_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             int RowIndex = e.RowIndex;
             txtOib.Text = dgv.Rows[RowIndex].Cells[0].Value.ToString();
@@ -186,8 +191,6 @@ namespace ZIRO
 
         private void BtnKorisnik_Click(object sender, EventArgs e)
         {
-            dbc.Oib = $"{txtOib.Text.Trim()}";
-            dbc.ImePrezime = $"{txtIme.Text.Trim()} {txtPrezime.Text.Trim()}";
             Korisnici korisnici = new Korisnici();
             korisnici.Show();
             korisnici.MdiParent = this.MdiParent;

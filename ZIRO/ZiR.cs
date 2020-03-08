@@ -21,7 +21,7 @@ namespace ZIRO
 
         private void Btn_pretrazi_Click(object sender, EventArgs e)
         {
-
+            // treba učtati zaduženja za djelatnika
         }
 
         private void DGVfill()
