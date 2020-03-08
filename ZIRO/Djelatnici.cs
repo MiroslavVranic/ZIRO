@@ -17,7 +17,10 @@ namespace ZIRO
         readonly DataBase dbc = new DataBase();
         readonly UpitiDB upiti = new UpitiDB();
         readonly Pomocna pomocna = new Pomocna();
+        readonly Form_ZiRO ziro = new Form_ZiRO();
 
+        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
+        readonly UpitiDB Upit = new UpitiDB();
         public Djelatnici()
         {
             InitializeComponent();
@@ -29,12 +32,8 @@ namespace ZIRO
         private void DGVfill()
         {
             string dbs = $"SELECT djelatnici.oib, djelatnici.ime, djelatnici.prezime, djelatnici.datZaposlenja, " +
-                $"djelatnici.datOtkaza, odjeli.nazivOdjela FROM djelatnici LEFT JOIN odjeli ON odjeli.id = djelatnici.odjelID;";
-            try
-            { 
-                dgv.DataSource = dbc.DGVselect(dbs);
-            }
-            catch(Exception ex) { MessageBox.Show($"Greška pri dohvačanju djelatnika\n{ex.Message}", pomocna.MsgNazivGreska); }
+                $"djelatnici.datOtkaza, odjeli.nazivOdjela FROM djelatnici LEFT JOIN odjeli ON odjeli.Id = djelatnici.odjelID;";
+            dgv.DataSource = dbc.DGVselect(dbs);
         }
 
         // Autocomplete lista za odjele
@@ -87,13 +86,13 @@ namespace ZIRO
             }
             else
             {
-                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "naziv");
+                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "nazivOdjela");
                 if (dbc.StraniKljuc < 1)
                     MessageBox.Show($"Unešeni odjel ne postji u odjelima!");
                 else
                 {
-                    string Unos = $"INSERT INTO djelatnici(oib, Ime, Prezime, datZaposlenja, idOdjeli) VALUES(?, ?, ?, ?, ?)";
-                    var Conn = new SqlConnection(dbc.strConnection);
+                    string Unos = $"INSERT INTO djelatnici(oib, ime, prezime, datZaposlenja, odjelId) VALUES(@oib, @Ime, @prezime, @datZaposlenja, @idOdjel)";
+                    var Conn = new SqlConnection(strConnection);
                     var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@oib", txtOib.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Ime", txtIme.Text.Trim());
@@ -128,13 +127,13 @@ namespace ZIRO
             }
             else
             {
-                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "naziv");
+                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "nazivOdjela");
                 if (dbc.StraniKljuc < 1)
                     MessageBox.Show($"Nepostojeći odjel u tablici odjela!");
                 else
                 {
-                    string Uredi = $"UPDATE djelatnici SET [Ime]=?, [Prezime]=?, [datZaposlenja]=?, [idOdjeli]=? WHERE [Oib] =?";
-                    var Conn = new SqlConnection(dbc.strConnection);
+                    string Uredi = $"UPDATE djelatnici SET [Ime]=@Ime, [Prezime]=@prezime, [datZaposlenja]=@datZaposlenja, [odjelId]=@idOdjel WHERE [oib] =@oib";
+                    var Conn = new SqlConnection(strConnection);
                     var Cmd = new SqlCommand(Uredi, Conn);
                     Cmd.Parameters.AddWithValue("@Ime", txtIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Prezime", txtPrezime.Text.Trim());

@@ -17,6 +17,9 @@ namespace ZIRO
         readonly DataBase dbc = new DataBase();
         readonly UpitiDB upiti = new UpitiDB();
         readonly Pomocna pomocna = new Pomocna();
+        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
+
+        public string StraniKljuc { get; private set; }
 
         #region PROPERTIES
         public string DjelatniciOib { get; set; }
