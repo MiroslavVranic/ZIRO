@@ -12,7 +12,8 @@ namespace ZIRO
 {
     public partial class ZiR : Form
     {
-        readonly DataBase DBC = new DataBase();
+        readonly DataBase dbc = new DataBase();
+        readonly Pomocna pomocna = new Pomocna();
         public ZiR()
         {
             InitializeComponent();
@@ -26,16 +27,16 @@ namespace ZIRO
 
         private void DGVfill()
         {
-            string DBS = $"SELECT inventar.id, inventar.invBroj, inventar.naziv, zaduzenja.datZaduzenja FROM ([inventar]" +
-                $" LEFT JOIN zaduzenja ON [inventar].[ID] = [zaduzenja].[idInventar]);";
+            string DBS = $"SELECT uredaji.invBroj, uredaji.nazivUredaja, zaduzenja.datZaduzenja FROM uredaji" +
+                $" LEFT JOIN zaduzenja ON uredaji.invBroj = zaduzenja.uredajInvBroj WHERE zaduzenja.datRazduzenja IS NULL;";
 
             try 
             {
-                dgv.DataSource = DBC.DGVselect(DBS);
+                dgv.DataSource = dbc.DGVselect(DBS);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show($"Greška pri dohvačanju djelatnika\n{ex.Message}", pomocna.MsgNazivGreska);
             }
         }
     }
