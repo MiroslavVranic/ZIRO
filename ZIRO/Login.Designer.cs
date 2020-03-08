@@ -59,6 +59,7 @@
             this.txtKorIme.TabIndex = 1;
             this.txtKorIme.Text = "Unesi korisničko ime";
             this.txtKorIme.Enter += new System.EventHandler(this.TxtKorIme_Enter);
+            this.txtKorIme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtKorIme_KeyPress);
             this.txtKorIme.Leave += new System.EventHandler(this.TxtKorIme_Leave);
             // 
             // txtLozinka
@@ -71,6 +72,7 @@
             this.txtLozinka.TabIndex = 2;
             this.txtLozinka.Text = "Unesi lozinku";
             this.txtLozinka.Enter += new System.EventHandler(this.TxtLozinka_Enter);
+            this.txtLozinka.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtLozinka_KeyPress);
             this.txtLozinka.Leave += new System.EventHandler(this.TxtLozinka_Leave);
             // 
             // btnPromjena

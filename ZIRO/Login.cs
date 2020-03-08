@@ -83,7 +83,7 @@ namespace ZIRO
             var Conn = new SqlConnection(dbc.strConnection);
             var Cmd = new SqlCommand(dalPostojis, Conn);
             Cmd.Parameters.AddWithValue("@username", txtKorIme.Text.Trim());
-            Cmd.Parameters.AddWithValue("@password", txtLozinka.Text.Trim());
+            Cmd.Parameters.AddWithValue("@password", dbc.KriptirajLozinku(txtLozinka.Text.Trim()));
             try
             {
                 Conn.Open();
@@ -93,6 +93,8 @@ namespace ZIRO
                     dbc.Username = txtKorIme.Text;
                     this.DialogResult = DialogResult.OK;
                 }
+                else
+                    MessageBox.Show($"Korisničko ime ili lozinka nisu točni\nPokušaj ponovno!\n", "Pažnja");
             }
             catch (Exception ex) { MessageBox.Show($"Korisničko ime ili lozinka nisu točni\nPokušaj ponovno!\n{ex.Message}", "Pažnja"); }
             finally
@@ -114,7 +116,7 @@ namespace ZIRO
             var Conn = new SqlConnection(dbc.strConnection);
             var Cmd = new SqlCommand(dalPostojis, Conn);
             Cmd.Parameters.AddWithValue("@username", txtKorIme.Text.Trim());
-            Cmd.Parameters.AddWithValue("@password", txtLozinka.Text.Trim());
+            Cmd.Parameters.AddWithValue("@password", dbc.KriptirajLozinku(txtLozinka.Text.Trim()));
             try
             {
                 Conn.Open();
@@ -180,8 +182,23 @@ namespace ZIRO
             txtLozinka.Text = "Unesi lozinku";
             txtPromjena.Text = "Ponovi lozinku";
         }
+
         #endregion
 
+        private void TxtKorIme_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnPrijava.PerformClick();
+            }
+        }
 
+        private void TxtLozinka_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnPrijava.PerformClick();
+            }
+        }
     }
 }
