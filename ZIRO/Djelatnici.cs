@@ -31,7 +31,7 @@ namespace ZIRO
             string dbs = $"SELECT djelatnici.oib, djelatnici.ime, djelatnici.prezime, djelatnici.datZaposlenja, " +
                 $"djelatnici.datOtkaza, odjeli.nazivOdjela FROM djelatnici LEFT JOIN odjeli ON odjeli.id = djelatnici.odjelID;";
             try
-            {
+            { 
                 dgv.DataSource = dbc.DGVselect(dbs);
             }
             catch(Exception ex) { MessageBox.Show($"Greška pri dohvačanju djelatnika\n{ex.Message}", pomocna.MsgNazivGreska); }

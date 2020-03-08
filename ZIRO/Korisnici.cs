@@ -20,9 +20,6 @@ namespace ZIRO
 
         #region PROPERTIES
         public string DjelatniciOib { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string UlogaKorisnika { get; set; }
 
         public static Dictionary<string, string> Djelatnici = new Dictionary<string, string>();
         #endregion
@@ -37,7 +34,7 @@ namespace ZIRO
         }
 
         #region LISTE DJELATNIK ZA UNOS U BAZU
-        private void ListaDijelatnika()
+        public void ListaDijelatnika()
         {
             var dbs = "SELECT oib, ime, prezime FROM djelatnici;";
             var Conn = new SqlConnection(dbc.strConnection);
@@ -62,7 +59,7 @@ namespace ZIRO
             }
         }
         
-        private void KolekcijaDjelatnici()
+        public void KolekcijaDjelatnici()
         {
             var ime = "ime";
             var prezime = "prezime";
