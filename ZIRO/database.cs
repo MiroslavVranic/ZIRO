@@ -40,6 +40,22 @@ namespace ZIRO
             }
             return DataT;
         }
+        public DataTable DGVselect(SqlCommand Cmd, SqlConnection Conn)
+        {
+            var DataT = new DataTable();
+            var Adapt = new SqlDataAdapter(Cmd);
+            try
+            {
+                Conn.Open();
+                Adapt.Fill(DataT);
+            }
+            catch(Exception ex) { throw ex; }
+            finally
+            {
+                Conn.Close();
+            }
+            return DataT;
+        }
         // Autocomplete lista za fomre
         public AutoCompleteStringCollection Kolekcija(string DBS, string PrviUvjet)
         {
