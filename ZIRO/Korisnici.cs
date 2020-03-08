@@ -124,7 +124,7 @@ namespace ZIRO
                     var Conn = new SqlConnection(dbc.strConnection);
                     var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@username", txtKorIme.Text.Trim());
-                    Cmd.Parameters.AddWithValue("@password", txtLozinka.Text.Trim());
+                    Cmd.Parameters.AddWithValue("@password", dbc.KriptirajLozinku(txtLozinka.Text.Trim()));
                     Cmd.Parameters.AddWithValue("@uloga", cmbUloga.SelectedItem.ToString());
                     Cmd.Parameters.AddWithValue("@djelatniciOib", DjelatniciOib.Trim());
                     try
@@ -161,7 +161,7 @@ namespace ZIRO
                     var Conn = new SqlConnection(dbc.strConnection);
                     var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@username", txtKorIme.Text.Trim());
-                    Cmd.Parameters.AddWithValue("@password", txtLozinka.Text.Trim());
+                    Cmd.Parameters.AddWithValue("@password", dbc.KriptirajLozinku(txtLozinka.Text.Trim()));
                     Cmd.Parameters.AddWithValue("@uloga", cmbUloga.SelectedItem.ToString());
                     Cmd.Parameters.AddWithValue("@djelatniciOib", DjelatniciOib.Trim());
                     try
@@ -196,7 +196,7 @@ namespace ZIRO
             txtDjelatnik.Text = Djelatnici.FirstOrDefault(d => d.Key == DjelatniciOib).Value;
         }
 
-        private void txtPretrazivanje_TextChanged(object sender, EventArgs e)
+        private void TxtPretrazivanje_TextChanged(object sender, EventArgs e)
         {
             (dgv.DataSource as DataTable).DefaultView.RowFilter =
                 string.Format($"username LIKE '%{ txtPretrazivanje.Text.Trim() }%' OR uloga LIKE '%{ txtPretrazivanje.Text.Trim() }%' " +
