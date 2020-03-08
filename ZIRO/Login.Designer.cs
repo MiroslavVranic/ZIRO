@@ -55,9 +55,9 @@
             this.txtKorIme.ForeColor = System.Drawing.Color.Silver;
             this.txtKorIme.Location = new System.Drawing.Point(93, 66);
             this.txtKorIme.Name = "txtKorIme";
-            this.txtKorIme.Size = new System.Drawing.Size(184, 33);
+            this.txtKorIme.Size = new System.Drawing.Size(184, 39);
             this.txtKorIme.TabIndex = 1;
-            this.txtKorIme.Text = "Unesi korisničko ime";
+            this.txtKorIme.Text = "ihorvat";
             this.txtKorIme.Enter += new System.EventHandler(this.TxtKorIme_Enter);
             this.txtKorIme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtKorIme_KeyPress);
             this.txtKorIme.Leave += new System.EventHandler(this.TxtKorIme_Leave);
@@ -68,9 +68,9 @@
             this.txtLozinka.ForeColor = System.Drawing.Color.Silver;
             this.txtLozinka.Location = new System.Drawing.Point(93, 105);
             this.txtLozinka.Name = "txtLozinka";
-            this.txtLozinka.Size = new System.Drawing.Size(184, 33);
+            this.txtLozinka.Size = new System.Drawing.Size(184, 39);
             this.txtLozinka.TabIndex = 2;
-            this.txtLozinka.Text = "Unesi lozinku";
+            this.txtLozinka.Text = "admin";
             this.txtLozinka.Enter += new System.EventHandler(this.TxtLozinka_Enter);
             this.txtLozinka.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtLozinka_KeyPress);
             this.txtLozinka.Leave += new System.EventHandler(this.TxtLozinka_Leave);
@@ -103,7 +103,7 @@
             this.txtPromjena.ForeColor = System.Drawing.Color.Silver;
             this.txtPromjena.Location = new System.Drawing.Point(93, 144);
             this.txtPromjena.Name = "txtPromjena";
-            this.txtPromjena.Size = new System.Drawing.Size(184, 33);
+            this.txtPromjena.Size = new System.Drawing.Size(184, 39);
             this.txtPromjena.TabIndex = 3;
             this.txtPromjena.Text = "Ponovi lozinku";
             this.txtPromjena.Visible = false;
@@ -136,7 +136,7 @@
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 298);
             this.Controls.Add(this.btnSpremiLozinku);

@@ -32,7 +32,11 @@ namespace ZIRO
             InitializeComponent();
             DGVfill();
             KolekcijaDjelatnici();
-            ListaDijelatnika();
+
+            if(Djelatnici.Count == 0)
+            {
+                ListaDijelatnika();
+            }
             cmbUloga.SelectedIndex = 0;
         }
 
@@ -55,7 +59,7 @@ namespace ZIRO
                     Djelatnici.Add(oib, imePrezime);
                 }
             }
-            catch (Exception ex) { MessageBox.Show($"Greška kod učitavanja djelatnika\n{ ex.Message }", pomocna.MsgNazivGreska); }
+            catch (Exception ex) { MessageBox.Show($"Greška kod učitavanja korisnika\n{ ex.ToString()}", pomocna.MsgNazivGreska); }
             finally
             {
                 Conn.Close();
@@ -225,5 +229,6 @@ namespace ZIRO
 
 
         #endregion
+
     }
 }
