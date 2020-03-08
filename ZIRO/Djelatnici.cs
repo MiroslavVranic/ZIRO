@@ -23,30 +23,7 @@ namespace ZIRO
         readonly UpitiDB Upit = new UpitiDB();
         public Djelatnici()
         {
-            /*  FormCollection fc = Application.OpenForms;
-              bool bDjelatnici = false;
-              foreach (Form frm in fc)
-              {
-                  //iterate through
-                  if (frm.Name == "Djelatnici")
-                  {
-                      bDjelatnici = true;
-                  }
-              }
-
-              if (!bDjelatnici)
-              {
-                  InitializeComponent();
-                  DGVfill();
-                  KolekcijaOdjeli();
-              }
-              else
-              {
-                  InitializeComponent();
-                  DGVfill();
-                  KolekcijaOdjeli();
-              }
-              */
+            
             InitializeComponent();
             DGVfill();
             KolekcijaOdjeli();
