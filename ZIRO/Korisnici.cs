@@ -144,24 +144,41 @@ namespace ZIRO
 
         #region IZMJENI KORISNIKA (UPDATE)
         private void BtnIzmjeni_Click(object sender, EventArgs e)
-        {
-            if (String.IsNullOrWhiteSpace(txtDjelatnik.Text) || String.IsNullOrWhiteSpace(txtKorIme.Text)
-                || String.IsNullOrWhiteSpace(txtLozinka.Text) || String.IsNullOrWhiteSpace(cmbUloga.Text))
-            {
-                ProvjeraCelija();
-            }
+        { 
+            DjelatniciOib = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
+            if (DjelatniciOib == null)
+                MessageBox.Show($"Oib za djelatnika nije nađen", "Pažnja");
             else
             {
-                DjelatniciOib = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
-                if (DjelatniciOib == null)
-                    MessageBox.Show($"Oib za djelatnika nije nađen", "Pažnja");
-                else
+                if (String.IsNullOrWhiteSpace(txtDjelatnik.Text) || String.IsNullOrWhiteSpace(txtKorIme.Text)
+                || String.IsNullOrWhiteSpace(cmbUloga.Text))
+                    ProvjeraCelija();
+                if (!String.IsNullOrWhiteSpace(txtLozinka.Text))
                 {
                     string Unos = $"UPDATE korisnici SET username=@username, password=@password, uloga=@uloga WHERE djelatniciOib=@djelatniciOib;";
                     var Conn = new SqlConnection(dbc.strConnection);
                     var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@username", txtKorIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@password", dbc.KriptirajLozinku(txtLozinka.Text.Trim()));
+                    Cmd.Parameters.AddWithValue("@uloga", cmbUloga.SelectedItem.ToString());
+                    Cmd.Parameters.AddWithValue("@djelatniciOib", DjelatniciOib.Trim());
+                    try
+                    {
+                        bool success = upiti.BoolIzmjena(Cmd, Conn);
+                        if (success == true)
+                        {
+                            OcistiCelije();
+                            DGVfill();
+                        }
+                    }
+                    catch (Exception ex) { MessageBox.Show($"{pomocna.MsgPorukaInsertError}\n{ ex.Message}", pomocna.MsgNazivGreska); }
+                }
+                else
+                {
+                    string Unos = $"UPDATE korisnici SET username=@username, uloga=@uloga WHERE djelatniciOib=@djelatniciOib;";
+                    var Conn = new SqlConnection(dbc.strConnection);
+                    var Cmd = new SqlCommand(Unos, Conn);
+                    Cmd.Parameters.AddWithValue("@username", txtKorIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@uloga", cmbUloga.SelectedItem.ToString());
                     Cmd.Parameters.AddWithValue("@djelatniciOib", DjelatniciOib.Trim());
                     try
@@ -190,7 +207,6 @@ namespace ZIRO
         {
             int RowIndex = e.RowIndex;
             txtKorIme.Text = dgv.Rows[RowIndex].Cells[0].Value.ToString();
-            txtLozinka.Text = dgv.Rows[RowIndex].Cells[1].Value.ToString();
             cmbUloga.Text = dgv.Rows[RowIndex].Cells[2].Value.ToString();
             DjelatniciOib = dgv.Rows[RowIndex].Cells[3].Value.ToString();
             txtDjelatnik.Text = Djelatnici.FirstOrDefault(d => d.Key == DjelatniciOib).Value;
@@ -203,6 +219,11 @@ namespace ZIRO
                 $"OR djelatniciOib LIKE '%{ txtPretrazivanje.Text.Trim() }%'");
             if (dgv.Rows[0].Cells[0].Value == null) { return; }
         }
+        #endregion
+
+        #region OSTALO POMOĆNO NPR ENTER ZA PRIJAVU
+
+
         #endregion
     }
 }
