@@ -17,7 +17,6 @@ namespace ZIRO
         readonly DataBase dbc = new DataBase();
         readonly UpitiDB upiti = new UpitiDB();
         readonly Pomocna pomocna = new Pomocna();
-        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
 
         public string StraniKljuc { get; private set; }
 
@@ -32,18 +31,16 @@ namespace ZIRO
             InitializeComponent();
             DGVfill();
             KolekcijaDjelatnici();
-
-            if(Djelatnici.Count == 0)
-            {
-                ListaDijelatnika();
-            }
+            if (Djelatnici.Count != 0)
+                Djelatnici.Clear();
+            ListaDijelatnika();
             cmbUloga.SelectedIndex = 0;
         }
 
         #region LISTE DJELATNIK ZA UNOS U BAZU
         public void ListaDijelatnika()
         {
-            var dbs = "SELECT oib, ime, prezime FROM djelatnici;";
+            var dbs = "SELECT oib, ime, prezime FROM djelatnici WHERE datOtkaza IS NULL;";
             var Conn = new SqlConnection(dbc.strConnection);
             var Cmd = new SqlCommand(dbs, Conn);
             Conn.Open();
@@ -70,7 +67,7 @@ namespace ZIRO
         {
             var ime = "ime";
             var prezime = "prezime";
-            var dbAc = "SELECT ime, prezime FROM djelatnici";
+            var dbAc = "SELECT ime, prezime FROM djelatnici WHERE datOtkaza IS NULL";
             var acLista = dbc.Kolekcija(dbAc, ime, prezime);
             txtDjelatnik.AutoCompleteCustomSource = acLista;
         }

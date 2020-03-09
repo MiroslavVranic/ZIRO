@@ -18,7 +18,11 @@ namespace ZIRO
         public ZiR()
         {
             InitializeComponent();
+            if (Djelatnici.Count != 0)
+                Djelatnici.Clear();
             ListaDijelatnika();
+            if (Uredaji.Count != 0)
+                Uredaji.Clear();
             ListaInventara();
             KolekcijaInventar();
             KolekcijaDjelatnici();
@@ -27,7 +31,7 @@ namespace ZIRO
 
         public void ListaDijelatnika()
         {
-            var dbs = "SELECT oib, ime, prezime FROM djelatnici;";
+            var dbs = "SELECT oib, ime, prezime FROM djelatnici WHERE datOtkaza IS NULL;";
             var Conn = new SqlConnection(dbc.strConnection);
             var Cmd = new SqlCommand(dbs, Conn);
             Conn.Open();
@@ -51,7 +55,7 @@ namespace ZIRO
         }
         public void ListaInventara()
         {
-            var dbs = "SELECT invBroj, nazivUredaja FROM uredaji;";
+            var dbs = "SELECT invBroj, nazivUredaja FROM uredaji WHERE datRashoda IS NULL;";
             var Conn = new SqlConnection(dbc.strConnection);
             var Cmd = new SqlCommand(dbs, Conn);
             Conn.Open();
@@ -77,7 +81,7 @@ namespace ZIRO
         {
             var ime = "ime";
             var prezime = "prezime";
-            var dbAc = "SELECT ime, prezime FROM djelatnici";
+            var dbAc = "SELECT ime, prezime FROM djelatnici WHERE datOtkaza IS NULL";
             var acLista = dbc.Kolekcija(dbAc, ime, prezime);
             txtDjelatnik.AutoCompleteCustomSource = acLista;
         } 
@@ -86,7 +90,7 @@ namespace ZIRO
         {
             var uredaj = "nazivUredaja";
             var invBroj = "invBroj";
-            var dbAc = "SELECT nazivUredaja, invBroj FROM uredaji;";
+            var dbAc = "SELECT nazivUredaja, invBroj FROM uredaji WHERE datRashoda IS NULL;";
             var acLista = dbc.Kolekcija(dbAc, uredaj, invBroj);
             txtInventar.AutoCompleteCustomSource = acLista;
         }
