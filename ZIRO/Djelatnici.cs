@@ -87,19 +87,20 @@ namespace ZIRO
             }
             else
             {
-                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "naziv");
+                dbc.ForKey(txtOdjel.Text.Trim(), "odjeli", "nazivOdjela");
                 if (dbc.StraniKljuc < 1)
                     MessageBox.Show($"Unešeni odjel ne postji u odjelima!");
                 else
                 {
-                    string Unos = $"INSERT INTO djelatnici(oib, Ime, Prezime, datZaposlenja, idOdjeli) VALUES(?, ?, ?, ?, ?)";
+                    string Unos = $"INSERT INTO djelatnici(oib, Ime, Prezime, datZaposlenja, odjelID) " +
+                        $"VALUES(@oib, @Ime, @Prezime, @datZaposlenja, @odjelID)";
                     var Conn = new SqlConnection(dbc.strConnection);
                     var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@oib", txtOib.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Ime", txtIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Prezime", txtPrezime.Text.Trim());
                     Cmd.Parameters.AddWithValue("@datZaposlenja", DateTime.Parse(dtp_zaposlen.Text));
-                    Cmd.Parameters.AddWithValue("@idOdjel", dbc.StraniKljuc);
+                    Cmd.Parameters.AddWithValue("@odjelID", dbc.StraniKljuc);
                     try
                     {
                         bool success = upiti.BoolUnos(Cmd, Conn);

@@ -18,7 +18,11 @@ namespace ZIRO
         public ZiR()
         {
             InitializeComponent();
+            if(Djelatnici != null)
+                Djelatnici.Clear();
             ListaDijelatnika();
+            if(Uredaji != null)
+                Uredaji.Clear();
             ListaInventara();
             KolekcijaInventar();
             KolekcijaDjelatnici();

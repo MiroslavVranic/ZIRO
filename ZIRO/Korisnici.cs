@@ -29,6 +29,8 @@ namespace ZIRO
             InitializeComponent();
             DGVfill();
             KolekcijaDjelatnici();
+            if(Djelatnici != null)
+                Djelatnici.Clear();
             ListaDijelatnika();
             cmbUloga.SelectedIndex = 0;
         }
