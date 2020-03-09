@@ -51,11 +51,11 @@
             // 
             // txtKorIme
             // 
-            this.txtKorIme.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKorIme.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKorIme.ForeColor = System.Drawing.Color.Silver;
             this.txtKorIme.Location = new System.Drawing.Point(93, 66);
             this.txtKorIme.Name = "txtKorIme";
-            this.txtKorIme.Size = new System.Drawing.Size(184, 33);
+            this.txtKorIme.Size = new System.Drawing.Size(184, 29);
             this.txtKorIme.TabIndex = 1;
             this.txtKorIme.Text = "Unesi korisničko ime";
             this.txtKorIme.Enter += new System.EventHandler(this.TxtKorIme_Enter);
@@ -64,11 +64,11 @@
             // 
             // txtLozinka
             // 
-            this.txtLozinka.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLozinka.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLozinka.ForeColor = System.Drawing.Color.Silver;
             this.txtLozinka.Location = new System.Drawing.Point(93, 105);
             this.txtLozinka.Name = "txtLozinka";
-            this.txtLozinka.Size = new System.Drawing.Size(184, 33);
+            this.txtLozinka.Size = new System.Drawing.Size(184, 29);
             this.txtLozinka.TabIndex = 2;
             this.txtLozinka.Text = "Unesi lozinku";
             this.txtLozinka.Enter += new System.EventHandler(this.TxtLozinka_Enter);
@@ -99,11 +99,11 @@
             // 
             // txtPromjena
             // 
-            this.txtPromjena.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPromjena.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPromjena.ForeColor = System.Drawing.Color.Silver;
             this.txtPromjena.Location = new System.Drawing.Point(93, 144);
             this.txtPromjena.Name = "txtPromjena";
-            this.txtPromjena.Size = new System.Drawing.Size(184, 33);
+            this.txtPromjena.Size = new System.Drawing.Size(184, 29);
             this.txtPromjena.TabIndex = 3;
             this.txtPromjena.Text = "Ponovi lozinku";
             this.txtPromjena.Visible = false;
