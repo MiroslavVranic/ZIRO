@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Office.Interop.Word;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace ZIRO
 {
@@ -11,6 +11,20 @@ namespace ZIRO
     {
         public void IzradaWord()
         {
+            //string SaveToFile = $"C:\Users\vranicm\Pictures";
+
+            //Word.Application application = new Word.Application();
+            //application.Visible = true;
+            //application.WindowState = Word.WdWindowState.wdWindowStateNormal;
+
+            //Word.Document document = application.Documents.Add();
+
+            //Word.Paragraph paragraph;
+            //paragraph = document.Paragraphs.Add();
+            //paragraph.Range.Text = "Neki tekst koji se treba ispisati";
+
+            //document.Save("C:\\Users\\vranicm\\Pictures");
+
 
         }
     }

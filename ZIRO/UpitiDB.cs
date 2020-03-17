@@ -65,7 +65,7 @@ namespace ZIRO
             bool success = false;
             string dalPostojis = $"SELECT * FROM zaduzenja WHERE " +
                 $"uredajInvBroj=@uredajInvBroj AND datRazduzenja IS NULL";
-            var Conn = new SqlConnection(dbc.strConnection);
+            var Conn = new SqlConnection(strConnection);
             var Cmd = new SqlCommand(dalPostojis, Conn);
             Cmd.Parameters.AddWithValue("@uredajInvBroj", invBroj);
             try
@@ -89,7 +89,7 @@ namespace ZIRO
             bool success = false;
             string dalPostojis = $"SELECT * FROM zaduzenja WHERE " +
                 $"djelatnikOib=@djelatnikOib AND uredajInvBroj=@uredajInvBroj AND datRazduzenja IS NULL";
-            var Conn = new SqlConnection(dbc.strConnection);
+            var Conn = new SqlConnection(strConnection);
             var Cmd = new SqlCommand(dalPostojis, Conn);
             Cmd.Parameters.AddWithValue("@djelatnikOib", djelatnik);
             Cmd.Parameters.AddWithValue("@uredajInvBroj", invBroj);

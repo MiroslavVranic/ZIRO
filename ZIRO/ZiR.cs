@@ -90,7 +90,7 @@ namespace ZIRO
         {
             var uredaj = "nazivUredaja";
             var invBroj = "invBroj";
-            var dbAc = "SELECT nazivUredaja, invBroj FROM uredaji;";
+            var dbAc = "SELECT nazivUredaja, invBroj FROM uredaji WHERE datRashoda IS NULL;";
             var acLista = dbc.Kolekcija(dbAc, uredaj, invBroj);
             txtInventar.AutoCompleteCustomSource = acLista;
         }
