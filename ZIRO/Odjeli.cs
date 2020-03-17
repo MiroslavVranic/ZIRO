@@ -17,10 +17,10 @@ namespace ZIRO
     public partial class Odjeli : Form
     {
         Pomocna pomocna = new Pomocna();
-        //readonly DataBase DBC = new DataBase();
+        readonly DataBase dbc = new DataBase();
         //readonly Upiti Upit = new Upiti();
         readonly UpitiDB Upit = new UpitiDB();
-        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
+        string strConnection = Properties.Settings.Default.DatabaseConnectionString;
 
         public Odjeli()
         {
@@ -99,11 +99,11 @@ namespace ZIRO
         }
 
 
-        /*
+        
             // Izmjena postojećih unosa
             private void btn_izmjeni_Click(object sender, EventArgs e)
             {
-            if (txt_odjel.Text == "")
+            if (txtNaziv.Text == "")
             {
                 txtNaziv.BackColor = Color.LightPink;
                 MessageBox.Show(pomocna.MsgPorukaPraznaCelija, pomocna.MsgNazivPozor);
@@ -112,14 +112,14 @@ namespace ZIRO
             {
                 txtNaziv.BackColor = Color.White;
 
-                string Uredi = $"UPDATE odjeli SET Naziv=? WHERE ID=?";
-                var Conn = new OleDbConnection(dbc.ConnString);
-                var Cmd = new OleDbCommand(Uredi, Conn);
+                string Uredi = $"UPDATE odjeli SET nazivOdjela=@Naziv WHERE ID=@ID";
+                var Conn = new SqlConnection(dbc.strConnection);
+                var Cmd = new SqlCommand(Uredi, Conn);
                 Cmd.Parameters.AddWithValue("@Naziv", txtNaziv.Text.Trim());
                 Cmd.Parameters.AddWithValue("@ID", int.Parse(txtId.Text.Trim()));
                 try
                 {
-                    bool success = upiti.BoolIzmjena(Conn, Cmd);
+                    bool success = Upit.BoolIzmjena(Cmd, Conn);
 
                     if (success == true)
                     {
@@ -135,10 +135,10 @@ namespace ZIRO
                 }
                 catch (Exception ex) 
                 { 
-                    MessageBox.Show(pomocna.MsgPorukaEditError + ex.ToString(), pomocna.MsgNazivGreska); 
+                    MessageBox.Show(pomocna.MsgPorukaEditError + ex.Message, pomocna.MsgNazivGreska); 
                 }
             }
-        }*/
+        }
         
         // PRetraživanje učitanih polja tablice
 
@@ -165,5 +165,6 @@ namespace ZIRO
         {
             btn_izmjeni.PerformClick();
         }
+
     }
 }
