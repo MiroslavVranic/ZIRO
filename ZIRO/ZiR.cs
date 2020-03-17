@@ -132,7 +132,7 @@ namespace ZIRO
             {
                 string Uredaj = Uredaji.FirstOrDefault(u => u.Value == txtInventar.Text.Trim()).Key;
                 string Djelatnik = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
-                bool provjera = ProvjeraZaduzenja(Uredaj);
+                bool provjera = upiti.ProvjeraZaduzenja(Uredaj);
                 if(provjera == true) 
                 {
                     if (Djelatnik == null || Uredaj == null)
@@ -160,55 +160,6 @@ namespace ZIRO
             }
         }
 
-        public bool ProvjeraZaduzenja(string invBroj)
-        {
-            bool success = false;
-            string dalPostojis = $"SELECT * FROM zaduzenja WHERE " +
-                $"uredajInvBroj=@uredajInvBroj AND datRazduzenja IS NULL";
-            var Conn = new SqlConnection(dbc.strConnection);
-            var Cmd = new SqlCommand(dalPostojis, Conn);
-            Cmd.Parameters.AddWithValue("@uredajInvBroj", invBroj);
-            try
-            {
-                Conn.Open();
-                SqlDataReader korisnik = Cmd.ExecuteReader();
-                if (korisnik.HasRows)
-                    success = false;
-                else
-                    success = true;
-            }
-            catch (Exception ex) { MessageBox.Show($"Dgodila se greška prilikom pretrage zaduženja!\n{ex.Message}", "Pažnja"); }
-            finally
-            {
-                Conn.Close();
-            }
-            return success;
-        } 
-        public bool ProvjeraZaduzenja(string djelatnik, string invBroj)
-        {
-            bool success = false;
-            string dalPostojis = $"SELECT * FROM zaduzenja WHERE " +
-                $"djelatnikOib=@djelatnikOib AND uredajInvBroj=@uredajInvBroj AND datRazduzenja IS NULL";
-            var Conn = new SqlConnection(dbc.strConnection);
-            var Cmd = new SqlCommand(dalPostojis, Conn);
-            Cmd.Parameters.AddWithValue("@djelatnikOib", djelatnik);
-            Cmd.Parameters.AddWithValue("@uredajInvBroj", invBroj);
-            try
-            {
-                Conn.Open();
-                SqlDataReader korisnik = Cmd.ExecuteReader();
-                if (korisnik.HasRows)
-                    success = true;
-                else
-                    success = false;
-            }
-            catch (Exception ex) { MessageBox.Show($"Dgodila se greška prilikom pretrage zaduženja!\n{ex.Message}", "Pažnja"); }
-            finally
-            {
-                Conn.Close();
-            }
-            return success;
-        }
         #region POLJA FORME PROVJERA I BRISANJE
         private void ProvjeraCelija()
         {
@@ -234,7 +185,7 @@ namespace ZIRO
             {
                 string Uredaj = Uredaji.FirstOrDefault(u => u.Value == txtInventar.Text.Trim()).Key;
                 string Djelatnik = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
-                bool provjera = ProvjeraZaduzenja(Djelatnik, Uredaj);
+                bool provjera = upiti.ProvjeraZaduzenja(Djelatnik, Uredaj);
                 if (provjera == false)
                     MessageBox.Show($"Povrat se ne može napraviti!", "Pažnja");
                 if (Djelatnik == null || Uredaj == null)
@@ -257,6 +208,10 @@ namespace ZIRO
                     catch (Exception ex) { MessageBox.Show($"{pomocna.MsgPorukaInsertError}\n{ ex.Message}", pomocna.MsgNazivGreska); }
                 }
             }
+        }
+
+        private void BtnRevers_Click(object sender, EventArgs e)
+        {
 
         }
     }

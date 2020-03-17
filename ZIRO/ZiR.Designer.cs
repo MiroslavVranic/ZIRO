@@ -44,6 +44,8 @@
             this.dtpRazduzen = new System.Windows.Forms.DateTimePicker();
             this.txtPretrazivanje = new System.Windows.Forms.TextBox();
             this.lbl_pretrazivanje = new System.Windows.Forms.Label();
+            this.btnRevers = new System.Windows.Forms.Button();
+            this.btnPovrat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -199,11 +201,32 @@
             this.lbl_pretrazivanje.TabIndex = 34;
             this.lbl_pretrazivanje.Text = "Pretraživanje:";
             // 
+            // btnRevers
+            // 
+            this.btnRevers.Location = new System.Drawing.Point(291, 165);
+            this.btnRevers.Name = "btnRevers";
+            this.btnRevers.Size = new System.Drawing.Size(178, 25);
+            this.btnRevers.TabIndex = 35;
+            this.btnRevers.Text = "Izrada reversa";
+            this.btnRevers.UseVisualStyleBackColor = true;
+            this.btnRevers.Click += new System.EventHandler(this.BtnRevers_Click);
+            // 
+            // btnPovrat
+            // 
+            this.btnPovrat.Location = new System.Drawing.Point(479, 165);
+            this.btnPovrat.Name = "btnPovrat";
+            this.btnPovrat.Size = new System.Drawing.Size(178, 25);
+            this.btnPovrat.TabIndex = 36;
+            this.btnPovrat.Text = "Izrada povrata";
+            this.btnPovrat.UseVisualStyleBackColor = true;
+            // 
             // ZiR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 660);
+            this.Controls.Add(this.btnPovrat);
+            this.Controls.Add(this.btnRevers);
             this.Controls.Add(this.txtPretrazivanje);
             this.Controls.Add(this.lbl_pretrazivanje);
             this.Controls.Add(this.dtpRazduzen);
@@ -248,5 +271,7 @@
         private System.Windows.Forms.DateTimePicker dtpRazduzen;
         private System.Windows.Forms.TextBox txtPretrazivanje;
         private System.Windows.Forms.Label lbl_pretrazivanje;
+        private System.Windows.Forms.Button btnRevers;
+        private System.Windows.Forms.Button btnPovrat;
     }
 }

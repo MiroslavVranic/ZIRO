@@ -58,7 +58,8 @@
             this.pomoćToolStripMenuItem1});
             this.menuGLforma.Location = new System.Drawing.Point(0, 0);
             this.menuGLforma.Name = "menuGLforma";
-            this.menuGLforma.Size = new System.Drawing.Size(1245, 31);
+            this.menuGLforma.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuGLforma.Size = new System.Drawing.Size(934, 25);
             this.menuGLforma.TabIndex = 0;
             this.menuGLforma.Text = "menuGLforma";
             // 
@@ -72,27 +73,27 @@
             this.toolStripSeparator2});
             this.datotekaToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datotekaToolStripMenuItem.Name = "datotekaToolStripMenuItem";
-            this.datotekaToolStripMenuItem.Size = new System.Drawing.Size(93, 27);
+            this.datotekaToolStripMenuItem.Size = new System.Drawing.Size(72, 21);
             this.datotekaToolStripMenuItem.Text = "Datoteka";
             // 
             // otvoriZiRToolStripMenuItem
             // 
             this.otvoriZiRToolStripMenuItem.Name = "otvoriZiRToolStripMenuItem";
             this.otvoriZiRToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.otvoriZiRToolStripMenuItem.Size = new System.Drawing.Size(281, 28);
+            this.otvoriZiRToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.otvoriZiRToolStripMenuItem.Text = "Otvori ZiR";
             this.otvoriZiRToolStripMenuItem.Click += new System.EventHandler(this.OtvoriZiRToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(215, 6);
             // 
             // zatvoriToolStripMenuItem
             // 
             this.zatvoriToolStripMenuItem.Name = "zatvoriToolStripMenuItem";
             this.zatvoriToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.zatvoriToolStripMenuItem.Size = new System.Drawing.Size(281, 28);
+            this.zatvoriToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.zatvoriToolStripMenuItem.Text = "Zatvori";
             this.zatvoriToolStripMenuItem.Click += new System.EventHandler(this.ZatvoriToolStripMenuItem_Click);
             // 
@@ -100,14 +101,14 @@
             // 
             this.izađiIzAplikacijeToolStripMenuItem.Name = "izađiIzAplikacijeToolStripMenuItem";
             this.izađiIzAplikacijeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.izađiIzAplikacijeToolStripMenuItem.Size = new System.Drawing.Size(281, 28);
+            this.izađiIzAplikacijeToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.izađiIzAplikacijeToolStripMenuItem.Text = "Izađi iz aplikacije";
             this.izađiIzAplikacijeToolStripMenuItem.Click += new System.EventHandler(this.IzađiIzAplikacijeToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(215, 6);
             // 
             // karticeToolStripMenuItem
             // 
@@ -118,34 +119,34 @@
             this.dodajInventarToolStripMenuItem});
             this.karticeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.karticeToolStripMenuItem.Name = "karticeToolStripMenuItem";
-            this.karticeToolStripMenuItem.Size = new System.Drawing.Size(65, 27);
+            this.karticeToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
             this.karticeToolStripMenuItem.Text = "Uredi";
             // 
             // dodajDleatnikaToolStripMenuItem
             // 
             this.dodajDleatnikaToolStripMenuItem.Name = "dodajDleatnikaToolStripMenuItem";
-            this.dodajDleatnikaToolStripMenuItem.Size = new System.Drawing.Size(217, 28);
+            this.dodajDleatnikaToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.dodajDleatnikaToolStripMenuItem.Text = "Dodaj djelatnika";
             this.dodajDleatnikaToolStripMenuItem.Click += new System.EventHandler(this.DodajDjelatnikaToolStripMenuItem_Click);
             // 
             // dodajKorisnikaToolStripMenuItem
             // 
             this.dodajKorisnikaToolStripMenuItem.Name = "dodajKorisnikaToolStripMenuItem";
-            this.dodajKorisnikaToolStripMenuItem.Size = new System.Drawing.Size(217, 28);
+            this.dodajKorisnikaToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.dodajKorisnikaToolStripMenuItem.Text = "Dodaj korisnika";
             this.dodajKorisnikaToolStripMenuItem.Click += new System.EventHandler(this.DodajKorisnikaToolStripMenuItem_Click);
             // 
             // dodajOdjelToolStripMenuItem
             // 
             this.dodajOdjelToolStripMenuItem.Name = "dodajOdjelToolStripMenuItem";
-            this.dodajOdjelToolStripMenuItem.Size = new System.Drawing.Size(217, 28);
+            this.dodajOdjelToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.dodajOdjelToolStripMenuItem.Text = "Dodaj odjel";
             this.dodajOdjelToolStripMenuItem.Click += new System.EventHandler(this.DodajOdjelToolStripMenuItem_Click);
             // 
             // dodajInventarToolStripMenuItem
             // 
             this.dodajInventarToolStripMenuItem.Name = "dodajInventarToolStripMenuItem";
-            this.dodajInventarToolStripMenuItem.Size = new System.Drawing.Size(217, 28);
+            this.dodajInventarToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.dodajInventarToolStripMenuItem.Text = "Dodaj inventar";
             this.dodajInventarToolStripMenuItem.Click += new System.EventHandler(this.DodajInventarToolStripMenuItem_Click);
             // 
@@ -156,36 +157,37 @@
             this.listaZaRashodToolStripMenuItem});
             this.pomoćToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pomoćToolStripMenuItem.Name = "pomoćToolStripMenuItem";
-            this.pomoćToolStripMenuItem.Size = new System.Drawing.Size(136, 27);
+            this.pomoćToolStripMenuItem.Size = new System.Drawing.Size(106, 21);
             this.pomoćToolStripMenuItem.Text = "Baza podataka";
             // 
             // inventurnaListaToolStripMenuItem
             // 
             this.inventurnaListaToolStripMenuItem.Name = "inventurnaListaToolStripMenuItem";
-            this.inventurnaListaToolStripMenuItem.Size = new System.Drawing.Size(212, 28);
+            this.inventurnaListaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.inventurnaListaToolStripMenuItem.Text = "Inventurna lista";
+            this.inventurnaListaToolStripMenuItem.Click += new System.EventHandler(this.InventurnaListaToolStripMenuItem_Click);
             // 
             // listaZaRashodToolStripMenuItem
             // 
             this.listaZaRashodToolStripMenuItem.Name = "listaZaRashodToolStripMenuItem";
-            this.listaZaRashodToolStripMenuItem.Size = new System.Drawing.Size(212, 28);
+            this.listaZaRashodToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listaZaRashodToolStripMenuItem.Text = "Lista za rashod";
+            this.listaZaRashodToolStripMenuItem.Click += new System.EventHandler(this.ListaZaRashodToolStripMenuItem_Click);
             // 
             // pomoćToolStripMenuItem1
             // 
             this.pomoćToolStripMenuItem1.Name = "pomoćToolStripMenuItem1";
-            this.pomoćToolStripMenuItem1.Size = new System.Drawing.Size(76, 27);
+            this.pomoćToolStripMenuItem1.Size = new System.Drawing.Size(60, 21);
             this.pomoćToolStripMenuItem1.Text = "Pomoć";
             // 
             // Form_ZiRO
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1245, 850);
+            this.ClientSize = new System.Drawing.Size(934, 687);
             this.Controls.Add(this.menuGLforma);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuGLforma;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form_ZiRO";
             this.Text = "ZiRO";
             this.Load += new System.EventHandler(this.Form_ZiRO_Load);

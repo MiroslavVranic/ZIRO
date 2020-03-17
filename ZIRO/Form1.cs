@@ -25,17 +25,6 @@ namespace ZIRO
                 {
                     Forma = new ZiR();
                     OtvoriFormu(Forma);
-                    //string _korime = EditClass.KorisnickoIme;
-                    //string IzTablice = "korisnici";
-                    //string GdjeTrazim = "korisnickoIme";
-                    //string Uloga = Uredi.UlogaUlogiranogKor(_korime, IzTablice, GdjeTrazim);
-                    //if (Uloga == "Administrator")
-                    //{
-                    //    dodajKorisnikaToolStripMenuItem.Visible = true;
-                    //    FormaKPP();
-                    //}
-                    //else
-                    //    FormaKPP();
                 }
             }
         }
@@ -96,6 +85,19 @@ namespace ZIRO
             Forma = new Inventar();
             OtvoriFormu(Forma);
         }
+
+        private void InventurnaListaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forma = new Inventura();
+            OtvoriFormu(Forma);
+        }
+
+        private void ListaZaRashodToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forma = new Rashod();
+            OtvoriFormu(Forma);
+        }
+
 
         private void ZatvoriToolStripMenuItem_Click(object sender, EventArgs e)
         {

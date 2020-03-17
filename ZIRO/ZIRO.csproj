@@ -80,6 +80,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inventura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventura.Designer.cs">
+      <DependentUpon>Inventura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IzvozExcel.cs" />
+    <Compile Include="IzvozWord.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +95,12 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Pomocna.cs" />
+    <Compile Include="Rashod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rashod.Designer.cs">
+      <DependentUpon>Rashod.cs</DependentUpon>
+    </Compile>
     <Compile Include="Upiti.cs" />
     <Compile Include="Inventar.cs">
       <SubType>Form</SubType>
@@ -124,6 +138,9 @@
     <EmbeddedResource Include="Inventar.resx">
       <DependentUpon>Inventar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Inventura.resx">
+      <DependentUpon>Inventura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Korisnici.resx">
       <DependentUpon>Korisnici.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +170,9 @@
     <None Include="DatabaseDataSet.xss">
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </None>
+    <EmbeddedResource Include="Rashod.resx">
+      <DependentUpon>Rashod.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ZiR.resx">
       <DependentUpon>ZiR.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +209,44 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
