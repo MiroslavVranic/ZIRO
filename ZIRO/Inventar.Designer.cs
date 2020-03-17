@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_nazivOprme = new System.Windows.Forms.TextBox();
             this.lbl_kupljenoDatum = new System.Windows.Forms.Label();
             this.dtp_datum = new System.Windows.Forms.DateTimePicker();
@@ -114,8 +114,8 @@
             // 
             // dgv
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -237,6 +237,7 @@
             this.txt_pretrazi.Name = "txt_pretrazi";
             this.txt_pretrazi.Size = new System.Drawing.Size(322, 26);
             this.txt_pretrazi.TabIndex = 40;
+            this.txt_pretrazi.TextChanged += new System.EventHandler(this.txt_pretrazi_TextChanged);
             // 
             // menuOstaleForme
             // 

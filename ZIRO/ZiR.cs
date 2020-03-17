@@ -214,5 +214,10 @@ namespace ZIRO
         {
 
         }
+
+        private void txtPretrazivanje_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

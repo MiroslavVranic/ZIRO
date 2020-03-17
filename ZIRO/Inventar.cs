@@ -155,5 +155,11 @@ namespace ZIRO
             }
 
         }
+
+        private void txt_pretrazi_TextChanged(object sender, EventArgs e)
+        {
+            (dgv.DataSource as DataTable).DefaultView.RowFilter = string.Format("nazivUredaja LIKE '%{0}%'", txt_pretrazi.Text.Trim());
+            if (dgv.Rows[0].Cells[0].Value == null) { return; }
+        }
     }
 }

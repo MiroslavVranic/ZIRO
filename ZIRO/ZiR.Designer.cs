@@ -42,8 +42,6 @@
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.dtpRazduzen = new System.Windows.Forms.DateTimePicker();
-            this.txtPretrazivanje = new System.Windows.Forms.TextBox();
-            this.lbl_pretrazivanje = new System.Windows.Forms.Label();
             this.btnRevers = new System.Windows.Forms.Button();
             this.btnPovrat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -56,7 +54,7 @@
             this.txtDjelatnik.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDjelatnik.Location = new System.Drawing.Point(75, 52);
             this.txtDjelatnik.Name = "txtDjelatnik";
-            this.txtDjelatnik.Size = new System.Drawing.Size(160, 25);
+            this.txtDjelatnik.Size = new System.Drawing.Size(160, 29);
             this.txtDjelatnik.TabIndex = 1;
             // 
             // lbl_djelatnik
@@ -65,7 +63,7 @@
             this.lbl_djelatnik.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_djelatnik.Location = new System.Drawing.Point(10, 56);
             this.lbl_djelatnik.Name = "lbl_djelatnik";
-            this.lbl_djelatnik.Size = new System.Drawing.Size(60, 17);
+            this.lbl_djelatnik.Size = new System.Drawing.Size(80, 23);
             this.lbl_djelatnik.TabIndex = 2;
             this.lbl_djelatnik.Text = "Djelatnik:";
             // 
@@ -74,6 +72,7 @@
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(10, 227);
             this.dgv.Name = "dgv";
+            this.dgv.RowHeadersWidth = 51;
             this.dgv.Size = new System.Drawing.Size(752, 420);
             this.dgv.TabIndex = 3;
             // 
@@ -84,7 +83,7 @@
             this.txtInventar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInventar.Location = new System.Drawing.Point(442, 52);
             this.txtInventar.Name = "txtInventar";
-            this.txtInventar.Size = new System.Drawing.Size(215, 25);
+            this.txtInventar.Size = new System.Drawing.Size(215, 29);
             this.txtInventar.TabIndex = 7;
             // 
             // btn_zaduzi
@@ -123,7 +122,7 @@
             this.lbl_inventar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_inventar.Location = new System.Drawing.Point(372, 56);
             this.lbl_inventar.Name = "lbl_inventar";
-            this.lbl_inventar.Size = new System.Drawing.Size(57, 17);
+            this.lbl_inventar.Size = new System.Drawing.Size(77, 23);
             this.lbl_inventar.TabIndex = 14;
             this.lbl_inventar.Text = "Inventar:";
             // 
@@ -133,7 +132,7 @@
             this.lbl_trenutniKorisnik.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_trenutniKorisnik.Location = new System.Drawing.Point(10, 10);
             this.lbl_trenutniKorisnik.Name = "lbl_trenutniKorisnik";
-            this.lbl_trenutniKorisnik.Size = new System.Drawing.Size(0, 17);
+            this.lbl_trenutniKorisnik.Size = new System.Drawing.Size(0, 23);
             this.lbl_trenutniKorisnik.TabIndex = 15;
             // 
             // dtpZaduzen
@@ -141,11 +140,12 @@
             this.dtpZaduzen.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpZaduzen.Location = new System.Drawing.Point(442, 91);
             this.dtpZaduzen.Name = "dtpZaduzen";
-            this.dtpZaduzen.Size = new System.Drawing.Size(100, 25);
+            this.dtpZaduzen.Size = new System.Drawing.Size(100, 29);
             this.dtpZaduzen.TabIndex = 16;
             // 
             // menuOstaleForme
             // 
+            this.menuOstaleForme.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuOstaleForme.Location = new System.Drawing.Point(0, 0);
             this.menuOstaleForme.Name = "menuOstaleForme";
             this.menuOstaleForme.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -162,7 +162,7 @@
             "Razduženo"});
             this.cmbStatus.Location = new System.Drawing.Point(75, 122);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(160, 25);
+            this.cmbStatus.Size = new System.Drawing.Size(160, 29);
             this.cmbStatus.TabIndex = 19;
             // 
             // lblStatus
@@ -171,7 +171,7 @@
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(24, 126);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(46, 17);
+            this.lblStatus.Size = new System.Drawing.Size(60, 23);
             this.lblStatus.TabIndex = 20;
             this.lblStatus.Text = "Status:";
             // 
@@ -180,26 +180,8 @@
             this.dtpRazduzen.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpRazduzen.Location = new System.Drawing.Point(442, 122);
             this.dtpRazduzen.Name = "dtpRazduzen";
-            this.dtpRazduzen.Size = new System.Drawing.Size(100, 25);
+            this.dtpRazduzen.Size = new System.Drawing.Size(100, 29);
             this.dtpRazduzen.TabIndex = 21;
-            // 
-            // txtPretrazivanje
-            // 
-            this.txtPretrazivanje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPretrazivanje.Location = new System.Drawing.Point(291, 196);
-            this.txtPretrazivanje.Name = "txtPretrazivanje";
-            this.txtPretrazivanje.Size = new System.Drawing.Size(366, 25);
-            this.txtPretrazivanje.TabIndex = 33;
-            // 
-            // lbl_pretrazivanje
-            // 
-            this.lbl_pretrazivanje.AutoSize = true;
-            this.lbl_pretrazivanje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_pretrazivanje.Location = new System.Drawing.Point(192, 200);
-            this.lbl_pretrazivanje.Name = "lbl_pretrazivanje";
-            this.lbl_pretrazivanje.Size = new System.Drawing.Size(85, 17);
-            this.lbl_pretrazivanje.TabIndex = 34;
-            this.lbl_pretrazivanje.Text = "Pretraživanje:";
             // 
             // btnRevers
             // 
@@ -222,13 +204,11 @@
             // 
             // ZiR
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 660);
             this.Controls.Add(this.btnPovrat);
             this.Controls.Add(this.btnRevers);
-            this.Controls.Add(this.txtPretrazivanje);
-            this.Controls.Add(this.lbl_pretrazivanje);
             this.Controls.Add(this.dtpRazduzen);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cmbStatus);
@@ -269,8 +249,6 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.DateTimePicker dtpRazduzen;
-        private System.Windows.Forms.TextBox txtPretrazivanje;
-        private System.Windows.Forms.Label lbl_pretrazivanje;
         private System.Windows.Forms.Button btnRevers;
         private System.Windows.Forms.Button btnPovrat;
     }
