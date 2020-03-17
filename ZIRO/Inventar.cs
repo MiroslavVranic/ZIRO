@@ -18,7 +18,6 @@ namespace ZIRO
             InitializeComponent();
             DGVfill();
         }
-
         
         private void Btn_spremi_Click(object sender, EventArgs e)
         {
@@ -27,7 +26,7 @@ namespace ZIRO
 
         private void DGVfill()
         {
-            string DBS = $"SELECT * FROM inventar;";
+            string DBS = $"SELECT * FROM uredaji;";
             dgv.DataSource = dbc.DGVselect(DBS);
         }
     }

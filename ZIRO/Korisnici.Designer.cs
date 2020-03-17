@@ -47,8 +47,10 @@
             this.datotekaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spremiUnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.izmjeniUnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseDataSet1 = new ZIRO.DatabaseDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menuOstaleForme.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDjelatnik
@@ -102,6 +104,7 @@
             this.dgv.RowHeadersWidth = 51;
             this.dgv.Size = new System.Drawing.Size(860, 395);
             this.dgv.TabIndex = 20;
+            this.dgv.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Dgv_RowHeaderMouseClick);
             // 
             // lbl_djelatnik
             // 
@@ -130,6 +133,7 @@
             this.txtLozinka.Name = "txtLozinka";
             this.txtLozinka.Size = new System.Drawing.Size(182, 29);
             this.txtLozinka.TabIndex = 27;
+            this.txtLozinka.UseSystemPasswordChar = true;
             // 
             // lbl_uloga
             // 
@@ -159,6 +163,7 @@
             this.txtPretrazivanje.Name = "txtPretrazivanje";
             this.txtPretrazivanje.Size = new System.Drawing.Size(366, 29);
             this.txtPretrazivanje.TabIndex = 31;
+            this.txtPretrazivanje.TextChanged += new System.EventHandler(this.TxtPretrazivanje_TextChanged);
             // 
             // lbl_pretrazivanje
             // 
@@ -178,6 +183,7 @@
             this.btnIzmjeni.TabIndex = 34;
             this.btnIzmjeni.Text = "Izmjeni";
             this.btnIzmjeni.UseVisualStyleBackColor = true;
+            this.btnIzmjeni.Click += new System.EventHandler(this.BtnIzmjeni_Click);
             // 
             // btnSpremi
             // 
@@ -225,6 +231,11 @@
             this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
             this.izmjeniUnosToolStripMenuItem.Text = "Izmjeni unos";
             // 
+            // databaseDataSet1
+            // 
+            this.databaseDataSet1.DataSetName = "DatabaseDataSet";
+            this.databaseDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // Korisnici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -252,6 +263,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.menuOstaleForme.ResumeLayout(false);
             this.menuOstaleForme.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,5 +289,6 @@
         private System.Windows.Forms.ToolStripMenuItem datotekaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spremiUnosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem izmjeniUnosToolStripMenuItem;
+        private DatabaseDataSet databaseDataSet1;
     }
 }

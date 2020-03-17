@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,20 +16,18 @@ namespace ZIRO
 
     public partial class Odjeli : Form
     {
-        readonly DataBase dbc = new DataBase();
-        readonly Upiti upiti = new Upiti();
-        readonly Pomocna pomocna = new Pomocna();
+        Pomocna pomocna = new Pomocna();
+        //readonly DataBase DBC = new DataBase();
+        //readonly Upiti Upit = new Upiti();
+        readonly UpitiDB Upit = new UpitiDB();
+        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
+
         public Odjeli()
         {
             InitializeComponent();
             DGVfill();
-        }
-
-        // Punjenje DGV forme
-        private void DGVfill()
-        {
-            string DBS = $"SELECT * FROM odjeli;";
-            dgv.DataSource = dbc.DGVselect(DBS);
+            
+            
         }
 
         // Unos 
@@ -40,35 +40,70 @@ namespace ZIRO
             }            
             else
             {
-                pomocna.OkCelija(txtNaziv);
+                //pomocna.OkCelija(txtNaziv);
 
-                string Unos = $"INSERT INTO odjeli(Naziv) VALUES(?)";
-                var Conn = new OleDbConnection(dbc.ConnString);
-                var Cmd = new OleDbCommand(Unos, Conn);
-                Cmd.Parameters.AddWithValue("@Naziv", txtNaziv.Text.Trim());
+                string unos = $"INSERT INTO odjeli(nazivOdjela) VALUES(@Naziv)";
+                
                 try
                 {
-                    bool success = upiti.BoolUnos(Conn, Cmd);
-                    if (success == true)
+                    // create sql connection object.
+                    var conn = new SqlConnection(strConnection);
+                    // create command object with SQL query and link to connection object
+                    var cmd = new SqlCommand(unos, conn);
+                    //cmd.Parameters.AddWithValue("@Naziv", txt_odjel.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Naziv",txtNaziv.Text);
+
+                    if (Upit.BoolIzmjena(cmd, conn))
                     {
                         DGVfill();
-                        txtNaziv.Clear();
-                        txtNaziv.Focus();
+                        //txt_odjel.Clear();
+                        //txt_odjel.Focus();
+
                     }
                     else
-                        MessageBox.Show(pomocna.MsgPorukaInsertError, pomocna.MsgNazivGreska);
+                        MessageBox.Show("RowsAffected nije 1, sql nije ispravno izvrsio");
+                        //MessageBox.Show(pomocna.MsgPorukaInsertError, pomocna.MsgNazivGreska);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
+                    MessageBox.Show(ex.ToString());
+                    //MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
                 }
             }
         }
 
-        // Izmjena postojećih unosa
-        private void Btn_izmjeni_Click(object sender, EventArgs e)
+        // Punjenje DGV forme
+        private void DGVfill()
         {
-            if (String.IsNullOrWhiteSpace(txtNaziv.Text))
+            //string DBS = $"SELECT * FROM odjeli;";
+            //dgv.DataSource = DBC.DGVselect(DBS);
+            try
+            {
+                var select = "SELECT * FROM odjeli";
+                var c = new SqlConnection(strConnection); // Your Connection String here
+                var dataAdapter = new SqlDataAdapter(select, c);
+
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+
+                //dataGridView1.ReadOnly = true;
+                //dataGridView1.DataSource = ds.Tables[0];
+                dgv.ReadOnly = true;
+                dgv.DataSource = ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+
+        /*
+            // Izmjena postojećih unosa
+            private void btn_izmjeni_Click(object sender, EventArgs e)
+            {
+            if (txt_odjel.Text == "")
             {
                 txtNaziv.BackColor = Color.LightPink;
                 MessageBox.Show(pomocna.MsgPorukaPraznaCelija, pomocna.MsgNazivPozor);
@@ -103,12 +138,13 @@ namespace ZIRO
                     MessageBox.Show(pomocna.MsgPorukaEditError + ex.ToString(), pomocna.MsgNazivGreska); 
                 }
             }
-        }
+        }*/
+        
+        // PRetraživanje učitanih polja tablice
 
-        // Pretraživanje učitanih polja tablice
         private void Txt_pretrazivanje_TextChanged_1(object sender, EventArgs e)
         {
-            (dgv.DataSource as DataTable).DefaultView.RowFilter = string.Format($"naziv LIKE '%{ txt_pretrazivanje.Text.Trim() }%'");
+            (dgv.DataSource as DataTable).DefaultView.RowFilter = string.Format("nazivOdjela LIKE '%{0}%'", txt_pretrazivanje.Text.Trim());
             if (dgv.Rows[0].Cells[0].Value == null) { return; }
         }
 

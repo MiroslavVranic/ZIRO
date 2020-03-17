@@ -12,7 +12,22 @@ namespace ZIRO
 {
     public partial class Form_ZiRO : Form
     {
-        
+        private void Form_ZiRO_Load(object sender, EventArgs e)
+        {
+            using (Login login = new Login())
+            {
+                if (login.ShowDialog() != DialogResult.OK)
+                {
+                    Application.Exit();
+                    return;
+                }
+                else
+                {
+                    Forma = new ZiR();
+                    OtvoriFormu(Forma);
+                }
+            }
+        }
         public Form_ZiRO()
         {
             InitializeComponent();
@@ -70,6 +85,19 @@ namespace ZIRO
             Forma = new Inventar();
             OtvoriFormu(Forma);
         }
+
+        private void InventurnaListaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forma = new Inventura();
+            OtvoriFormu(Forma);
+        }
+
+        private void ListaZaRashodToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forma = new Rashod();
+            OtvoriFormu(Forma);
+        }
+
 
         private void ZatvoriToolStripMenuItem_Click(object sender, EventArgs e)
         {
