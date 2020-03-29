@@ -56,7 +56,7 @@ namespace ZIRO
                     Djelatnici.Add(oib, imePrezime);
                 }
             }
-            catch (Exception ex) { MessageBox.Show($"Greška kod učitavanja korisnika\n{ ex.ToString()}", pomocna.MsgNazivGreska); }
+            catch (Exception ex) { MessageBox.Show($"Greška kod učitavanja korisnika\n{ ex.Message }", pomocna.MsgNazivGreska); }
             finally
             {
                 Conn.Close();

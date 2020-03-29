@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtIme = new System.Windows.Forms.TextBox();
             this.lbl_zaposlenDatum = new System.Windows.Forms.Label();
-            this.dtp_zaposlen = new System.Windows.Forms.DateTimePicker();
+            this.dtpZaposlen = new System.Windows.Forms.DateTimePicker();
             this.lbl_trenutniKorisnik = new System.Windows.Forms.Label();
             this.lbl_prezime = new System.Windows.Forms.Label();
             this.txtPrezime = new System.Windows.Forms.TextBox();
@@ -41,10 +41,8 @@
             this.btn_spremi = new System.Windows.Forms.Button();
             this.lbk_oib = new System.Windows.Forms.Label();
             this.txtOib = new System.Windows.Forms.TextBox();
-            this.lbl_personalNr = new System.Windows.Forms.Label();
-            this.txtPnNum = new System.Windows.Forms.TextBox();
             this.lbl_otkaz = new System.Windows.Forms.Label();
-            this.dtp_otkaz = new System.Windows.Forms.DateTimePicker();
+            this.dtpOtkaz = new System.Windows.Forms.DateTimePicker();
             this.txtPretrazivanje = new System.Windows.Forms.TextBox();
             this.lbl_pretrazivanje = new System.Windows.Forms.Label();
             this.menuOstaleForme = new System.Windows.Forms.MenuStrip();
@@ -63,7 +61,7 @@
             this.txtIme.Location = new System.Drawing.Point(78, 50);
             this.txtIme.Name = "txtIme";
             this.txtIme.Size = new System.Drawing.Size(182, 25);
-            this.txtIme.TabIndex = 18;
+            this.txtIme.TabIndex = 1;
             // 
             // lbl_zaposlenDatum
             // 
@@ -75,13 +73,13 @@
             this.lbl_zaposlenDatum.TabIndex = 28;
             this.lbl_zaposlenDatum.Text = "Zaposlen:";
             // 
-            // dtp_zaposlen
+            // dtpZaposlen
             // 
-            this.dtp_zaposlen.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_zaposlen.Location = new System.Drawing.Point(406, 49);
-            this.dtp_zaposlen.Name = "dtp_zaposlen";
-            this.dtp_zaposlen.Size = new System.Drawing.Size(182, 22);
-            this.dtp_zaposlen.TabIndex = 27;
+            this.dtpZaposlen.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpZaposlen.Location = new System.Drawing.Point(406, 49);
+            this.dtpZaposlen.Name = "dtpZaposlen";
+            this.dtpZaposlen.Size = new System.Drawing.Size(182, 22);
+            this.dtpZaposlen.TabIndex = 5;
             // 
             // lbl_trenutniKorisnik
             // 
@@ -108,12 +106,12 @@
             this.txtPrezime.Location = new System.Drawing.Point(78, 81);
             this.txtPrezime.Name = "txtPrezime";
             this.txtPrezime.Size = new System.Drawing.Size(182, 25);
-            this.txtPrezime.TabIndex = 21;
+            this.txtPrezime.TabIndex = 2;
             // 
             // dgv
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -139,20 +137,22 @@
             // 
             // btn_izmjeni
             // 
-            this.btn_izmjeni.Location = new System.Drawing.Point(670, 96);
+            this.btn_izmjeni.Location = new System.Drawing.Point(670, 76);
             this.btn_izmjeni.Name = "btn_izmjeni";
             this.btn_izmjeni.Size = new System.Drawing.Size(88, 25);
             this.btn_izmjeni.TabIndex = 30;
+            this.btn_izmjeni.TabStop = false;
             this.btn_izmjeni.Text = "Izmjeni (F3)";
             this.btn_izmjeni.UseVisualStyleBackColor = true;
             this.btn_izmjeni.Click += new System.EventHandler(this.Btn_izmjeni_Click);
             // 
             // btn_spremi
             // 
-            this.btn_spremi.Location = new System.Drawing.Point(670, 50);
+            this.btn_spremi.Location = new System.Drawing.Point(670, 48);
             this.btn_spremi.Name = "btn_spremi";
             this.btn_spremi.Size = new System.Drawing.Size(88, 25);
             this.btn_spremi.TabIndex = 29;
+            this.btn_spremi.TabStop = false;
             this.btn_spremi.Text = "Spremi (F4)";
             this.btn_spremi.UseVisualStyleBackColor = true;
             this.btn_spremi.Click += new System.EventHandler(this.Btn_spremi_Click);
@@ -173,25 +173,7 @@
             this.txtOib.Location = new System.Drawing.Point(78, 112);
             this.txtOib.Name = "txtOib";
             this.txtOib.Size = new System.Drawing.Size(182, 25);
-            this.txtOib.TabIndex = 31;
-            // 
-            // lbl_personalNr
-            // 
-            this.lbl_personalNr.AutoSize = true;
-            this.lbl_personalNr.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_personalNr.Location = new System.Drawing.Point(27, 147);
-            this.lbl_personalNr.Name = "lbl_personalNr";
-            this.lbl_personalNr.Size = new System.Drawing.Size(45, 17);
-            this.lbl_personalNr.TabIndex = 34;
-            this.lbl_personalNr.Text = "PN br:";
-            // 
-            // txtPnNum
-            // 
-            this.txtPnNum.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPnNum.Location = new System.Drawing.Point(78, 143);
-            this.txtPnNum.Name = "txtPnNum";
-            this.txtPnNum.Size = new System.Drawing.Size(182, 25);
-            this.txtPnNum.TabIndex = 33;
+            this.txtOib.TabIndex = 3;
             // 
             // lbl_otkaz
             // 
@@ -203,13 +185,14 @@
             this.lbl_otkaz.TabIndex = 36;
             this.lbl_otkaz.Text = "Otkaz:";
             // 
-            // dtp_otkaz
+            // dtpOtkaz
             // 
-            this.dtp_otkaz.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_otkaz.Location = new System.Drawing.Point(406, 77);
-            this.dtp_otkaz.Name = "dtp_otkaz";
-            this.dtp_otkaz.Size = new System.Drawing.Size(182, 22);
-            this.dtp_otkaz.TabIndex = 35;
+            this.dtpOtkaz.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpOtkaz.Location = new System.Drawing.Point(406, 77);
+            this.dtpOtkaz.Name = "dtpOtkaz";
+            this.dtpOtkaz.Size = new System.Drawing.Size(182, 22);
+            this.dtpOtkaz.TabIndex = 35;
+            this.dtpOtkaz.TabStop = false;
             // 
             // txtPretrazivanje
             // 
@@ -218,6 +201,7 @@
             this.txtPretrazivanje.Name = "txtPretrazivanje";
             this.txtPretrazivanje.Size = new System.Drawing.Size(352, 25);
             this.txtPretrazivanje.TabIndex = 37;
+            this.txtPretrazivanje.TabStop = false;
             this.txtPretrazivanje.TextChanged += new System.EventHandler(this.TxtPretrazivanje_TextChanged);
             // 
             // lbl_pretrazivanje
@@ -286,7 +270,7 @@
             this.txtOdjel.Location = new System.Drawing.Point(406, 108);
             this.txtOdjel.Name = "txtOdjel";
             this.txtOdjel.Size = new System.Drawing.Size(182, 25);
-            this.txtOdjel.TabIndex = 40;
+            this.txtOdjel.TabIndex = 4;
             // 
             // Djelatnici
             // 
@@ -299,16 +283,14 @@
             this.Controls.Add(this.txtPretrazivanje);
             this.Controls.Add(this.lbl_pretrazivanje);
             this.Controls.Add(this.lbl_otkaz);
-            this.Controls.Add(this.dtp_otkaz);
-            this.Controls.Add(this.lbl_personalNr);
-            this.Controls.Add(this.txtPnNum);
+            this.Controls.Add(this.dtpOtkaz);
             this.Controls.Add(this.lbk_oib);
             this.Controls.Add(this.txtOib);
             this.Controls.Add(this.btn_izmjeni);
             this.Controls.Add(this.btn_spremi);
             this.Controls.Add(this.txtIme);
             this.Controls.Add(this.lbl_zaposlenDatum);
-            this.Controls.Add(this.dtp_zaposlen);
+            this.Controls.Add(this.dtpZaposlen);
             this.Controls.Add(this.lbl_trenutniKorisnik);
             this.Controls.Add(this.lbl_prezime);
             this.Controls.Add(this.txtPrezime);
@@ -330,7 +312,7 @@
 
         private System.Windows.Forms.TextBox txtIme;
         private System.Windows.Forms.Label lbl_zaposlenDatum;
-        private System.Windows.Forms.DateTimePicker dtp_zaposlen;
+        private System.Windows.Forms.DateTimePicker dtpZaposlen;
         private System.Windows.Forms.Label lbl_trenutniKorisnik;
         private System.Windows.Forms.Label lbl_prezime;
         private System.Windows.Forms.TextBox txtPrezime;
@@ -340,10 +322,8 @@
         private System.Windows.Forms.Button btn_spremi;
         private System.Windows.Forms.Label lbk_oib;
         private System.Windows.Forms.TextBox txtOib;
-        private System.Windows.Forms.Label lbl_personalNr;
-        private System.Windows.Forms.TextBox txtPnNum;
         private System.Windows.Forms.Label lbl_otkaz;
-        private System.Windows.Forms.DateTimePicker dtp_otkaz;
+        private System.Windows.Forms.DateTimePicker dtpOtkaz;
         private System.Windows.Forms.TextBox txtPretrazivanje;
         private System.Windows.Forms.Label lbl_pretrazivanje;
         private System.Windows.Forms.MenuStrip menuOstaleForme;

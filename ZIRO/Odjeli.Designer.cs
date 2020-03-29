@@ -52,8 +52,8 @@
             this.txtNaziv.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNaziv.Location = new System.Drawing.Point(78, 86);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(182, 29);
-            this.txtNaziv.TabIndex = 18;
+            this.txtNaziv.Size = new System.Drawing.Size(182, 25);
+            this.txtNaziv.TabIndex = 1;
             // 
             // lbl_trenutniKorisnik
             // 
@@ -61,7 +61,7 @@
             this.lbl_trenutniKorisnik.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_trenutniKorisnik.Location = new System.Drawing.Point(12, 27);
             this.lbl_trenutniKorisnik.Name = "lbl_trenutniKorisnik";
-            this.lbl_trenutniKorisnik.Size = new System.Drawing.Size(0, 23);
+            this.lbl_trenutniKorisnik.Size = new System.Drawing.Size(0, 17);
             this.lbl_trenutniKorisnik.TabIndex = 26;
             // 
             // lbl_id
@@ -70,7 +70,7 @@
             this.lbl_id.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_id.Location = new System.Drawing.Point(15, 53);
             this.lbl_id.Name = "lbl_id";
-            this.lbl_id.Size = new System.Drawing.Size(31, 23);
+            this.lbl_id.Size = new System.Drawing.Size(23, 17);
             this.lbl_id.TabIndex = 25;
             this.lbl_id.Text = "ID:";
             // 
@@ -80,6 +80,7 @@
             this.btn_izmjeni.Name = "btn_izmjeni";
             this.btn_izmjeni.Size = new System.Drawing.Size(88, 25);
             this.btn_izmjeni.TabIndex = 23;
+            this.btn_izmjeni.TabStop = false;
             this.btn_izmjeni.Text = "Izmjeni (F3)";
             this.btn_izmjeni.UseVisualStyleBackColor = true;
             this.btn_izmjeni.Click += new System.EventHandler(this.btn_izmjeni_Click);
@@ -90,6 +91,7 @@
             this.btn_spremi.Name = "btn_spremi";
             this.btn_spremi.Size = new System.Drawing.Size(88, 25);
             this.btn_spremi.TabIndex = 22;
+            this.btn_spremi.TabStop = false;
             this.btn_spremi.Text = "Spremi (F4)";
             this.btn_spremi.UseVisualStyleBackColor = true;
             this.btn_spremi.Click += new System.EventHandler(this.Btn_spremi_Click);
@@ -100,8 +102,9 @@
             this.txtId.Location = new System.Drawing.Point(78, 50);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(182, 29);
+            this.txtId.Size = new System.Drawing.Size(182, 25);
             this.txtId.TabIndex = 21;
+            this.txtId.TabStop = false;
             // 
             // dgv
             // 
@@ -126,7 +129,7 @@
             this.lbl_djelatnik.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_djelatnik.Location = new System.Drawing.Point(12, 90);
             this.lbl_djelatnik.Name = "lbl_djelatnik";
-            this.lbl_djelatnik.Size = new System.Drawing.Size(56, 23);
+            this.lbl_djelatnik.Size = new System.Drawing.Size(43, 17);
             this.lbl_djelatnik.TabIndex = 19;
             this.lbl_djelatnik.Text = "Naziv:";
             // 
@@ -135,8 +138,9 @@
             this.txt_pretrazivanje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_pretrazivanje.Location = new System.Drawing.Point(113, 184);
             this.txt_pretrazivanje.Name = "txt_pretrazivanje";
-            this.txt_pretrazivanje.Size = new System.Drawing.Size(366, 29);
+            this.txt_pretrazivanje.Size = new System.Drawing.Size(366, 25);
             this.txt_pretrazivanje.TabIndex = 27;
+            this.txt_pretrazivanje.TabStop = false;
             this.txt_pretrazivanje.Click += new System.EventHandler(this.Txt_pretrazivanje_TextChanged_1);
             // 
             // lbl_pretrazivanje
@@ -145,7 +149,7 @@
             this.lbl_pretrazivanje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_pretrazivanje.Location = new System.Drawing.Point(14, 188);
             this.lbl_pretrazivanje.Name = "lbl_pretrazivanje";
-            this.lbl_pretrazivanje.Size = new System.Drawing.Size(112, 23);
+            this.lbl_pretrazivanje.Size = new System.Drawing.Size(85, 17);
             this.lbl_pretrazivanje.TabIndex = 28;
             this.lbl_pretrazivanje.Text = "Pretraživanje:";
             // 
@@ -168,14 +172,14 @@
             this.izmjeniUnosToolStripMenuItem});
             this.datotekaToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.datotekaToolStripMenuItem.Name = "datotekaToolStripMenuItem";
-            this.datotekaToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.datotekaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.datotekaToolStripMenuItem.Text = "Datoteka";
             // 
             // spremiUnosToolStripMenuItem
             // 
             this.spremiUnosToolStripMenuItem.Name = "spremiUnosToolStripMenuItem";
             this.spremiUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.spremiUnosToolStripMenuItem.Text = "Spremi unos ";
             this.spremiUnosToolStripMenuItem.Click += new System.EventHandler(this.SpremiUnosToolStripMenuItem_Click);
             // 
@@ -183,13 +187,13 @@
             // 
             this.izmjeniUnosToolStripMenuItem.Name = "izmjeniUnosToolStripMenuItem";
             this.izmjeniUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.izmjeniUnosToolStripMenuItem.Text = "Izmjeni unos";
             this.izmjeniUnosToolStripMenuItem.Click += new System.EventHandler(this.IzmjeniUnosToolStripMenuItem_Click);
             // 
             // Odjeli
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 621);
             this.Controls.Add(this.menuOstaleForme);

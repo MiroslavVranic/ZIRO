@@ -17,25 +17,28 @@ namespace ZIRO
         readonly DataBase dbc = new DataBase();
         readonly UpitiDB upiti = new UpitiDB();
         readonly Pomocna pomocna = new Pomocna();
-        readonly Form_ZiRO ziro = new Form_ZiRO();
 
-        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
-        readonly UpitiDB Upit = new UpitiDB();
         public Djelatnici()
-        {
-            
+        {            
             InitializeComponent();
             DGVfill();
             KolekcijaOdjeli();
-
         }
 
         // Punjenje DGV forme
         private void DGVfill()
         {
-            string dbs = $"SELECT djelatnici.oib, djelatnici.ime, djelatnici.prezime, djelatnici.datZaposlenja, " +
-                $"djelatnici.datOtkaza, odjeli.nazivOdjela FROM djelatnici LEFT JOIN odjeli ON odjeli.Id = djelatnici.odjelID;";
-            dgv.DataSource = dbc.DGVselect(dbs);
+            try
+            {
+                string dbs = $"SELECT djelatnici.oib, djelatnici.ime, djelatnici.prezime, djelatnici.datZaposlenja, " +
+                    $"djelatnici.datOtkaza, odjeli.nazivOdjela FROM djelatnici " +
+                    $"LEFT JOIN odjeli ON odjeli.Id = djelatnici.odjelID;";
+                dgv.DataSource = dbc.DGVselect(dbs);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), pomocna.MsgNazivGreska);
+            }
         }
 
         // Autocomplete lista za odjele
@@ -94,12 +97,12 @@ namespace ZIRO
                 else
                 {
                     string Unos = $"INSERT INTO djelatnici(oib, ime, prezime, datZaposlenja, odjelId) VALUES(@oib, @Ime, @prezime, @datZaposlenja, @idOdjel)";
-                    var Conn = new SqlConnection(strConnection);
+                    var Conn = new SqlConnection(dbc.strConnection);
                     var Cmd = new SqlCommand(Unos, Conn);
                     Cmd.Parameters.AddWithValue("@oib", txtOib.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Ime", txtIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Prezime", txtPrezime.Text.Trim());
-                    Cmd.Parameters.AddWithValue("@datZaposlenja", DateTime.Parse(dtp_zaposlen.Text));
+                    Cmd.Parameters.AddWithValue("@datZaposlenja", DateTime.Parse(dtpZaposlen.Text));
                     Cmd.Parameters.AddWithValue("@idOdjel", dbc.StraniKljuc);
                     try
                     {
@@ -113,7 +116,7 @@ namespace ZIRO
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(pomocna.MsgPorukaInsertError + ex.Message, pomocna.MsgNazivGreska);
+                        MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
                     }
                 }
             }
@@ -135,11 +138,11 @@ namespace ZIRO
                 else
                 {
                     string Uredi = $"UPDATE djelatnici SET [Ime]=@Ime, [Prezime]=@prezime, [datZaposlenja]=@datZaposlenja, [odjelId]=@idOdjel WHERE [oib] =@oib";
-                    var Conn = new SqlConnection(strConnection);
+                    var Conn = new SqlConnection(dbc.strConnection);
                     var Cmd = new SqlCommand(Uredi, Conn);
                     Cmd.Parameters.AddWithValue("@Ime", txtIme.Text.Trim());
                     Cmd.Parameters.AddWithValue("@Prezime", txtPrezime.Text.Trim());
-                    Cmd.Parameters.AddWithValue("@datZaposlenja", DateTime.Parse(dtp_zaposlen.Text));
+                    Cmd.Parameters.AddWithValue("@datZaposlenja", DateTime.Parse(dtpZaposlen.Text));
                     Cmd.Parameters.AddWithValue("@idOdjel", dbc.StraniKljuc);
                     Cmd.Parameters.AddWithValue("@oib", txtOib.Text.Trim());
 
@@ -155,7 +158,7 @@ namespace ZIRO
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(pomocna.MsgPorukaInsertError + ex.Message, pomocna.MsgNazivGreska);
+                        MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
                     }
                 }
             }
@@ -168,7 +171,7 @@ namespace ZIRO
             txtOib.Text = dgv.Rows[RowIndex].Cells[0].Value.ToString();
             txtIme.Text = dgv.Rows[RowIndex].Cells[1].Value.ToString();
             txtPrezime.Text = dgv.Rows[RowIndex].Cells[2].Value.ToString();
-            dtp_zaposlen.Text = dgv.Rows[RowIndex].Cells[3].Value.ToString();
+            dtpZaposlen.Text = dgv.Rows[RowIndex].Cells[3].Value.ToString();
             txtOdjel.Text = dgv.Rows[RowIndex].Cells[5].Value.ToString();
         }
 
@@ -188,15 +191,6 @@ namespace ZIRO
         private void IzmjeniUnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btn_izmjeni.PerformClick();
-        }
-
-        private void BtnKorisnik_Click(object sender, EventArgs e)
-        {
-            Korisnici korisnici = new Korisnici();
-            korisnici.Show();
-            korisnici.MdiParent = this.MdiParent;
-            korisnici.WindowState = FormWindowState.Maximized;
-            this.Close();
         }
     }
 }
