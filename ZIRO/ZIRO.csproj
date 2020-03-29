@@ -87,6 +87,7 @@
       <DependentUpon>Inventura.cs</DependentUpon>
     </Compile>
     <Compile Include="IzvozExcel.cs" />
+    <Compile Include="IzvozWord.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>

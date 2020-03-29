@@ -20,6 +20,7 @@ namespace ZIRO
 
         public int StraniKljuc { get; private set; }
         public string Username { get; set; }
+        public string TrenutniKorisnik { get; set; }
 
         // DATAGRIDVIEW select 
         public DataTable DGVselect(string DBS)

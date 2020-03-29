@@ -214,6 +214,7 @@
             this.btnRevers.TabStop = false;
             this.btnRevers.Text = "Revers";
             this.btnRevers.UseVisualStyleBackColor = true;
+            this.btnRevers.Click += new System.EventHandler(this.BtnRevers_Click);
             // 
             // btnPovratReversa
             // 

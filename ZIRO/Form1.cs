@@ -121,8 +121,6 @@ namespace ZIRO
         {
             Application.Exit();
         }
-
-
         #endregion
     }
 }

@@ -83,9 +83,8 @@ namespace ZIRO
 
                 var Conn = new SqlConnection(dbc.strConnection);
                 var Cmd = new SqlCommand(Uredi, Conn);
-                int brojId = int.Parse(txtId.Text);
                 Cmd.Parameters.AddWithValue("@Naziv", txtNaziv.Text.Trim());
-                Cmd.Parameters.AddWithValue("@ID", brojId);
+                Cmd.Parameters.AddWithValue("@ID", int.Parse(txtId.Text));
                 try
                 {
                     bool success = Upit.BoolIzmjena(Cmd, Conn);

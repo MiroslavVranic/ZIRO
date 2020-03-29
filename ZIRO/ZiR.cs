@@ -12,6 +12,7 @@ namespace ZIRO
         readonly DataBase dbc = new DataBase();
         readonly Pomocna pomocna = new Pomocna();
         readonly UpitiDB upiti = new UpitiDB();
+        readonly IzvozWord izvozWord = new IzvozWord();
 
         public static Dictionary<string, string> Djelatnici = new Dictionary<string, string>();
         public static Dictionary<string, string> Uredaji = new Dictionary<string, string>();
@@ -222,5 +223,15 @@ namespace ZIRO
             MessageBox.Show(pomocna.MsgPorukaPraznaCelija, pomocna.MsgNazivPozor);
         }
         #endregion
+
+        private void BtnRevers_Click(object sender, EventArgs e)
+        {
+            izvozWord.Datum = dtpZaduzen.ToString();
+            izvozWord.ImePrezime = txtDjelatnik.Text;
+            izvozWord.IzdanoOd = dbc.TrenutniKorisnik;
+            izvozWord.Zaduzen = txtDjelatnik.Text;
+            //izvozWord.ListaZaduzenja = dgv.SelectedRows();
+            izvozWord.Revers();
+        }
     }
 }
