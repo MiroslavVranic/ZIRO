@@ -54,6 +54,7 @@
             this.spremiUnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.izmjeniUnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnBrisanjeRashoda = new System.Windows.Forms.Button();
+            this.btnRashod = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menuOstaleForme.SuspendLayout();
             this.SuspendLayout();
@@ -63,14 +64,14 @@
             this.txtNazivOpreme.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNazivOpreme.Location = new System.Drawing.Point(78, 81);
             this.txtNazivOpreme.Name = "txtNazivOpreme";
-            this.txtNazivOpreme.Size = new System.Drawing.Size(182, 25);
-            this.txtNazivOpreme.TabIndex = 18;
+            this.txtNazivOpreme.Size = new System.Drawing.Size(253, 25);
+            this.txtNazivOpreme.TabIndex = 1;
             // 
             // lbl_kupljenoDatum
             // 
             this.lbl_kupljenoDatum.AutoSize = true;
             this.lbl_kupljenoDatum.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_kupljenoDatum.Location = new System.Drawing.Point(447, 55);
+            this.lbl_kupljenoDatum.Location = new System.Drawing.Point(528, 54);
             this.lbl_kupljenoDatum.Name = "lbl_kupljenoDatum";
             this.lbl_kupljenoDatum.Size = new System.Drawing.Size(62, 17);
             this.lbl_kupljenoDatum.TabIndex = 28;
@@ -79,10 +80,10 @@
             // dtpKupljeno
             // 
             this.dtpKupljeno.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpKupljeno.Location = new System.Drawing.Point(515, 52);
+            this.dtpKupljeno.Location = new System.Drawing.Point(596, 51);
             this.dtpKupljeno.Name = "dtpKupljeno";
             this.dtpKupljeno.Size = new System.Drawing.Size(182, 22);
-            this.dtpKupljeno.TabIndex = 27;
+            this.dtpKupljeno.TabIndex = 3;
             // 
             // lbl_trenutniKorisnik
             // 
@@ -95,20 +96,22 @@
             // 
             // btn_izmjeni
             // 
-            this.btn_izmjeni.Location = new System.Drawing.Point(703, 84);
+            this.btn_izmjeni.Location = new System.Drawing.Point(784, 83);
             this.btn_izmjeni.Name = "btn_izmjeni";
             this.btn_izmjeni.Size = new System.Drawing.Size(88, 25);
             this.btn_izmjeni.TabIndex = 23;
+            this.btn_izmjeni.TabStop = false;
             this.btn_izmjeni.Text = "Izmjeni (F3)";
             this.btn_izmjeni.UseVisualStyleBackColor = true;
             this.btn_izmjeni.Click += new System.EventHandler(this.Btn_izmjeni_Click);
             // 
             // btn_spremi
             // 
-            this.btn_spremi.Location = new System.Drawing.Point(703, 51);
+            this.btn_spremi.Location = new System.Drawing.Point(784, 50);
             this.btn_spremi.Name = "btn_spremi";
             this.btn_spremi.Size = new System.Drawing.Size(88, 25);
             this.btn_spremi.TabIndex = 22;
+            this.btn_spremi.TabStop = false;
             this.btn_spremi.Text = "Spremi (F4)";
             this.btn_spremi.UseVisualStyleBackColor = true;
             this.btn_spremi.Click += new System.EventHandler(this.Btn_spremi_Click);
@@ -122,11 +125,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(12, 215);
+            this.dgv.Location = new System.Drawing.Point(12, 198);
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 51;
-            this.dgv.Size = new System.Drawing.Size(860, 395);
+            this.dgv.Size = new System.Drawing.Size(860, 412);
             this.dgv.TabIndex = 20;
+            this.dgv.TabStop = false;
             this.dgv.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Dgv_RowHeaderMouseClick);
             // 
             // lbl_nazivOpreme
@@ -143,8 +147,8 @@
             // 
             this.txtSerijskiBroj.Location = new System.Drawing.Point(78, 114);
             this.txtSerijskiBroj.Name = "txtSerijskiBroj";
-            this.txtSerijskiBroj.Size = new System.Drawing.Size(182, 22);
-            this.txtSerijskiBroj.TabIndex = 29;
+            this.txtSerijskiBroj.Size = new System.Drawing.Size(253, 22);
+            this.txtSerijskiBroj.TabIndex = 2;
             // 
             // lbl_serBr
             // 
@@ -169,16 +173,18 @@
             this.txtInvBroj.Location = new System.Drawing.Point(78, 144);
             this.txtInvBroj.Name = "txtInvBroj";
             this.txtInvBroj.ReadOnly = true;
-            this.txtInvBroj.Size = new System.Drawing.Size(182, 22);
+            this.txtInvBroj.Size = new System.Drawing.Size(253, 22);
             this.txtInvBroj.TabIndex = 32;
+            this.txtInvBroj.TabStop = false;
             // 
             // txtID
             // 
             this.txtID.Location = new System.Drawing.Point(78, 51);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(182, 22);
+            this.txtID.Size = new System.Drawing.Size(253, 22);
             this.txtID.TabIndex = 33;
+            this.txtID.TabStop = false;
             // 
             // lbl_id
             // 
@@ -192,16 +198,16 @@
             // cmbVrstaOpreme
             // 
             this.cmbVrstaOpreme.FormattingEnabled = true;
-            this.cmbVrstaOpreme.Location = new System.Drawing.Point(515, 118);
+            this.cmbVrstaOpreme.Location = new System.Drawing.Point(596, 84);
             this.cmbVrstaOpreme.Name = "cmbVrstaOpreme";
             this.cmbVrstaOpreme.Size = new System.Drawing.Size(182, 24);
-            this.cmbVrstaOpreme.TabIndex = 35;
+            this.cmbVrstaOpreme.TabIndex = 4;
             // 
             // lbl_rashodDatum
             // 
             this.lbl_rashodDatum.AutoSize = true;
             this.lbl_rashodDatum.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_rashodDatum.Location = new System.Drawing.Point(410, 88);
+            this.lbl_rashodDatum.Location = new System.Drawing.Point(491, 120);
             this.lbl_rashodDatum.Name = "lbl_rashodDatum";
             this.lbl_rashodDatum.Size = new System.Drawing.Size(99, 17);
             this.lbl_rashodDatum.TabIndex = 37;
@@ -210,15 +216,16 @@
             // dtpRashodovano
             // 
             this.dtpRashodovano.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRashodovano.Location = new System.Drawing.Point(515, 85);
+            this.dtpRashodovano.Location = new System.Drawing.Point(596, 117);
             this.dtpRashodovano.Name = "dtpRashodovano";
             this.dtpRashodovano.Size = new System.Drawing.Size(182, 22);
             this.dtpRashodovano.TabIndex = 36;
+            this.dtpRashodovano.TabStop = false;
             // 
             // lbl_vrsta
             // 
             this.lbl_vrsta.AutoSize = true;
-            this.lbl_vrsta.Location = new System.Drawing.Point(467, 122);
+            this.lbl_vrsta.Location = new System.Drawing.Point(548, 88);
             this.lbl_vrsta.Name = "lbl_vrsta";
             this.lbl_vrsta.Size = new System.Drawing.Size(42, 16);
             this.lbl_vrsta.TabIndex = 38;
@@ -227,7 +234,7 @@
             // lbl_pretrazi
             // 
             this.lbl_pretrazi.AutoSize = true;
-            this.lbl_pretrazi.Location = new System.Drawing.Point(313, 175);
+            this.lbl_pretrazi.Location = new System.Drawing.Point(394, 173);
             this.lbl_pretrazi.Name = "lbl_pretrazi";
             this.lbl_pretrazi.Size = new System.Drawing.Size(56, 16);
             this.lbl_pretrazi.TabIndex = 39;
@@ -235,10 +242,11 @@
             // 
             // txtPretrazi
             // 
-            this.txtPretrazi.Location = new System.Drawing.Point(375, 172);
+            this.txtPretrazi.Location = new System.Drawing.Point(456, 170);
             this.txtPretrazi.Name = "txtPretrazi";
             this.txtPretrazi.Size = new System.Drawing.Size(322, 22);
             this.txtPretrazi.TabIndex = 40;
+            this.txtPretrazi.TabStop = false;
             // 
             // menuOstaleForme
             // 
@@ -278,19 +286,32 @@
             // 
             // btnBrisanjeRashoda
             // 
-            this.btnBrisanjeRashoda.Location = new System.Drawing.Point(703, 118);
+            this.btnBrisanjeRashoda.Location = new System.Drawing.Point(784, 147);
             this.btnBrisanjeRashoda.Name = "btnBrisanjeRashoda";
             this.btnBrisanjeRashoda.Size = new System.Drawing.Size(88, 45);
             this.btnBrisanjeRashoda.TabIndex = 42;
+            this.btnBrisanjeRashoda.TabStop = false;
             this.btnBrisanjeRashoda.Text = "Brisanje rashoda";
             this.btnBrisanjeRashoda.UseVisualStyleBackColor = true;
             this.btnBrisanjeRashoda.Click += new System.EventHandler(this.BtnBrisanjeRashoda_Click);
+            // 
+            // btnRashod
+            // 
+            this.btnRashod.Location = new System.Drawing.Point(784, 116);
+            this.btnRashod.Name = "btnRashod";
+            this.btnRashod.Size = new System.Drawing.Size(88, 25);
+            this.btnRashod.TabIndex = 43;
+            this.btnRashod.TabStop = false;
+            this.btnRashod.Text = "Rashod";
+            this.btnRashod.UseVisualStyleBackColor = true;
+            this.btnRashod.Click += new System.EventHandler(this.BtnRashod_Click);
             // 
             // Inventar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 621);
+            this.Controls.Add(this.btnRashod);
             this.Controls.Add(this.btnBrisanjeRashoda);
             this.Controls.Add(this.menuOstaleForme);
             this.Controls.Add(this.txtPretrazi);
@@ -352,5 +373,6 @@
         private System.Windows.Forms.ToolStripMenuItem spremiUnosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem izmjeniUnosToolStripMenuItem;
         private System.Windows.Forms.Button btnBrisanjeRashoda;
+        private System.Windows.Forms.Button btnRashod;
     }
 }
