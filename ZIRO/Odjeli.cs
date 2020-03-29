@@ -16,21 +16,24 @@ namespace ZIRO
 
     public partial class Odjeli : Form
     {
-        Pomocna pomocna = new Pomocna();
-        //readonly DataBase DBC = new DataBase();
-        //readonly Upiti Upit = new Upiti();
+        readonly Pomocna pomocna = new Pomocna();
+        readonly DataBase dbc = new DataBase();
         readonly UpitiDB Upit = new UpitiDB();
-        String strConnection = Properties.Settings.Default.DatabaseConnectionString;
 
         public Odjeli()
         {
             InitializeComponent();
-            DGVfill();
-            
-            
+            DGVfill();            
         }
 
-        // Unos 
+        private void Clear()
+        {
+            txtId.Clear();
+            txtNaziv.Clear();
+            txtNaziv.Focus();
+        }
+
+        #region UNOS I IZMJENA PODATAKA
         private void Btn_spremi_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(txtNaziv.Text))
@@ -40,113 +43,90 @@ namespace ZIRO
             }            
             else
             {
-                //pomocna.OkCelija(txtNaziv);
+                pomocna.OkCelija(txtNaziv);
 
                 string unos = $"INSERT INTO odjeli(nazivOdjela) VALUES(@Naziv)";
                 
                 try
                 {
-                    // create sql connection object.
-                    var conn = new SqlConnection(strConnection);
-                    // create command object with SQL query and link to connection object
-                    var cmd = new SqlCommand(unos, conn);
-                    //cmd.Parameters.AddWithValue("@Naziv", txt_odjel.Text.Trim());
-                    cmd.Parameters.AddWithValue("@Naziv",txtNaziv.Text);
+                    var Conn = new SqlConnection(dbc.strConnection);
+                    var Cmd = new SqlCommand(unos, Conn);
+                    Cmd.Parameters.AddWithValue("@Naziv",txtNaziv.Text);
 
-                    if (Upit.BoolIzmjena(cmd, conn))
+                    if (Upit.BoolIzmjena(Cmd, Conn))
                     {
                         DGVfill();
-                        //txt_odjel.Clear();
-                        //txt_odjel.Focus();
-
+                        Clear();
                     }
                     else
-                        MessageBox.Show("RowsAffected nije 1, sql nije ispravno izvrsio");
-                        //MessageBox.Show(pomocna.MsgPorukaInsertError, pomocna.MsgNazivGreska);
+                        MessageBox.Show(pomocna.MsgPorukaInsertError, pomocna.MsgNazivGreska);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
-                    //MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
+                    MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
                 }
             }
         }
 
-        // Punjenje DGV forme
-        private void DGVfill()
+        private void btn_izmjeni_Click(object sender, EventArgs e)
         {
-            //string DBS = $"SELECT * FROM odjeli;";
-            //dgv.DataSource = DBC.DGVselect(DBS);
-            try
+            if (String.IsNullOrWhiteSpace(txtNaziv.Text))
             {
-                var select = "SELECT * FROM odjeli";
-                var c = new SqlConnection(strConnection); // Your Connection String here
-                var dataAdapter = new SqlDataAdapter(select, c);
-
-                var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                var ds = new DataSet();
-                dataAdapter.Fill(ds);
-
-                //dataGridView1.ReadOnly = true;
-                //dataGridView1.DataSource = ds.Tables[0];
-                dgv.ReadOnly = true;
-                dgv.DataSource = ds.Tables[0];
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.StackTrace);
-            }
-        }
-
-
-        
-            // Izmjena postojećih unosa
-            private void btn_izmjeni_Click(object sender, EventArgs e)
-            {
-            if (txtNaziv.Text == "")//txt_odjel je bio
-            {
-                txtNaziv.BackColor = Color.LightPink;
+                pomocna.PraznaCelija(txtNaziv);
                 MessageBox.Show(pomocna.MsgPorukaPraznaCelija, pomocna.MsgNazivPozor);
             }
             else
             {
-                txtNaziv.BackColor = Color.White;
+                pomocna.OkCelija(txtNaziv);
 
                 string Uredi = $"UPDATE odjeli SET nazivOdjela=@Naziv WHERE Id=@ID";
 
-                var conn = new SqlConnection(strConnection);
-                SqlCommand Cmd = new SqlCommand(Uredi, conn);
+                var Conn = new SqlConnection(dbc.strConnection);
+                var Cmd = new SqlCommand(Uredi, Conn);
                 int brojId = int.Parse(txtId.Text);
                 Cmd.Parameters.AddWithValue("@Naziv", txtNaziv.Text.Trim());
                 Cmd.Parameters.AddWithValue("@ID", brojId);
                 try
                 {
-                    bool success = Upit.BoolIzmjena(Cmd, conn);
+                    bool success = Upit.BoolIzmjena(Cmd, Conn);
 
                     if (success == true)
                     {
                         DGVfill();
-                        txtId.Clear();
-                        txtNaziv.Clear();
-                        txtNaziv.Focus();
+                        Clear();
                     }
                     else
-                    {
                         MessageBox.Show(pomocna.MsgPorukaEditError, pomocna.MsgNazivGreska);
-                    }
                 }
-                catch (Exception ex) 
-                { 
-                    MessageBox.Show(pomocna.MsgPorukaEditError + ex.ToString(), pomocna.MsgNazivGreska); 
+                catch (Exception ex)
+                {
+                    MessageBox.Show(pomocna.MsgPorukaEditError + ex.ToString(), pomocna.MsgNazivGreska);
                 }
             }
         }
-        
+        #endregion
+
+
+        // Punjenje DGV forme
+        private void DGVfill()
+        {
+            try
+            {
+                string dbs = "SELECT * FROM odjeli";
+                dgv.DataSource = dbc.DGVselect(dbs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), pomocna.MsgNazivGreska);
+            }
+        }        
+       
         // PRetraživanje učitanih polja tablice
 
         private void Txt_pretrazivanje_TextChanged_1(object sender, EventArgs e)
         {
-            (dgv.DataSource as DataTable).DefaultView.RowFilter = string.Format("nazivOdjela LIKE '%{0}%'", txt_pretrazivanje.Text.Trim());
+            (dgv.DataSource as DataTable).DefaultView.RowFilter = 
+                string.Format("nazivOdjela LIKE '%{0}%'", txt_pretrazivanje.Text.Trim());
             if (dgv.Rows[0].Cells[0].Value == null) { return; }
         }
 
@@ -174,8 +154,7 @@ namespace ZIRO
             {
                 DataGridViewRow row = this.dgv.Rows[e.RowIndex];
                 txtId.Text = row.Cells["Id"].Value.ToString();
-                txtNaziv.Text = row.Cells["nazivOdjela"].Value.ToString();
-                
+                txtNaziv.Text = row.Cells["nazivOdjela"].Value.ToString();                
             }
         }
     }
