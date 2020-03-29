@@ -64,7 +64,7 @@ namespace ZIRO
             bool success = false;
             string dalPostojis = $"SELECT * FROM zaduzenja WHERE " +
                 $"uredajInvBroj=@uredajInvBroj AND datRazduzenja IS NULL";
-            var Conn = new SqlConnection(dbc.strConnection);
+            var Conn = new SqlConnection(strConnection);
             var Cmd = new SqlCommand(dalPostojis, Conn);
             Cmd.Parameters.AddWithValue("@uredajInvBroj", invBroj);
             try
