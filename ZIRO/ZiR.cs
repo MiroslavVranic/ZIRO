@@ -100,28 +100,37 @@ namespace ZIRO
 
         private void Btn_pretrazi_Click(object sender, EventArgs e)
         {
-            string dbs = null;
-            string Djelatnik = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text.Trim()).Key;
-            if (cmbStatus.Text == "Zaduženo")
-                dbs = $"SELECT uredaji.invBroj, uredaji.nazivUredaja, zaduzenja.datZaduzenja, zaduzenja.datRazduzenja FROM uredaji " +
-                    $"LEFT JOIN zaduzenja ON uredaji.invBroj = zaduzenja.uredajInvBroj " +
-                    $"LEFT JOIN djelatnici ON djelatnici.oib = zaduzenja.djelatnikOib " +
-                    $"WHERE zaduzenja.djelatnikOib = @djelatnik AND zaduzenja.datRazduzenja IS NULL;";
-            else
-                dbs = $"SELECT uredaji.invBroj, uredaji.nazivUredaja, zaduzenja.datZaduzenja, zaduzenja.datRazduzenja FROM uredaji " +
-                  $"LEFT JOIN zaduzenja ON uredaji.invBroj = zaduzenja.uredajInvBroj " +
-                  $"LEFT JOIN djelatnici ON djelatnici.oib = zaduzenja.djelatnikOib " +
-                  $"WHERE zaduzenja.djelatnikOib = @djelatnik AND zaduzenja.datRazduzenja IS NOT NULL;";
-            var Conn = new SqlConnection(dbc.strConnection);
-            var Cmd = new SqlCommand(dbs, Conn);
-            Cmd.Parameters.AddWithValue("@djelatnik", Djelatnik);
-            try
+            if (String.IsNullOrWhiteSpace(txtDjelatnik.Text))
             {
-                dgv.DataSource = dbc.DGVselect(Cmd, Conn);
+                pomocna.PraznaCelija(txtDjelatnik);
+                MessageBox.Show("Unesi ime i prezime djelatnika!", pomocna.MsgNazivPozor);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Greška pri dohvačanju djelatnika\n{ex.Message}", pomocna.MsgNazivGreska);
+                pomocna.OkCelija(txtDjelatnik);
+                string dbs = null;
+                string Djelatnik = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text.Trim()).Key;
+                if (cmbStatus.Text == "Zaduženo")
+                    dbs = $"SELECT uredaji.invBroj, uredaji.nazivUredaja, zaduzenja.datZaduzenja, zaduzenja.datRazduzenja FROM uredaji " +
+                        $"LEFT JOIN zaduzenja ON uredaji.invBroj = zaduzenja.uredajInvBroj " +
+                        $"LEFT JOIN djelatnici ON djelatnici.oib = zaduzenja.djelatnikOib " +
+                        $"WHERE zaduzenja.djelatnikOib = @djelatnik AND zaduzenja.datRazduzenja IS NULL;";
+                else
+                    dbs = $"SELECT uredaji.invBroj, uredaji.nazivUredaja, zaduzenja.datZaduzenja, zaduzenja.datRazduzenja FROM uredaji " +
+                      $"LEFT JOIN zaduzenja ON uredaji.invBroj = zaduzenja.uredajInvBroj " +
+                      $"LEFT JOIN djelatnici ON djelatnici.oib = zaduzenja.djelatnikOib " +
+                      $"WHERE zaduzenja.djelatnikOib = @djelatnik AND zaduzenja.datRazduzenja IS NOT NULL;";
+                var Conn = new SqlConnection(dbc.strConnection);
+                var Cmd = new SqlCommand(dbs, Conn);
+                Cmd.Parameters.AddWithValue("@djelatnik", Djelatnik);
+                try
+                {
+                    dgv.DataSource = dbc.DGVselect(Cmd, Conn);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Greška pri dohvačanju djelatnika\n{ex.Message}", pomocna.MsgNazivGreska);
+                }
             }
         }
 
