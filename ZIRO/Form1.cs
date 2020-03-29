@@ -97,6 +97,18 @@ namespace ZIRO
             OtvoriFormu(Forma);
         }
 
+        private void InventurnaListaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forma = new Inventura();
+            OtvoriFormu(Forma);
+        }
+
+        private void ListaZaRashodToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forma = new Rashod();
+            OtvoriFormu(Forma);
+        }
+
         private void ZatvoriToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ActiveMdiChild == null)
@@ -109,6 +121,8 @@ namespace ZIRO
         {
             Application.Exit();
         }
+
+
         #endregion
     }
 }
