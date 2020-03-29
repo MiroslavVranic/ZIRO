@@ -8,13 +8,15 @@ namespace ZIRO
 {
     public partial class ZiR : Form
     {
+        #region PROPERTIES
         readonly DataBase dbc = new DataBase();
         readonly Pomocna pomocna = new Pomocna();
         readonly UpitiDB upiti = new UpitiDB();
 
         public static Dictionary<string, string> Djelatnici = new Dictionary<string, string>();
         public static Dictionary<string, string> Uredaji = new Dictionary<string, string>();
-        
+        #endregion
+
         public ZiR()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace ZIRO
             cmbStatus.SelectedIndex = 0;
         }
 
+        #region METHODS
         public void ListaDijelatnika()
         {
             var dbs = "SELECT oib, ime, prezime FROM djelatnici WHERE datOtkaza IS NULL;";
@@ -122,6 +125,41 @@ namespace ZIRO
             }
         }
 
+        private void Btn_razduzi_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtDjelatnik.Text) || String.IsNullOrWhiteSpace(txtInventar.Text))
+            {
+                ProvjeraCelija();
+            }
+            else
+            {
+                string Uredaj = Uredaji.FirstOrDefault(u => u.Value == txtInventar.Text.Trim()).Key;
+                string Djelatnik = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
+                bool provjera = upiti.ProvjeraZaduzenja(Djelatnik, Uredaj);
+                if (provjera == false)
+                    MessageBox.Show($"Povrat se ne može napraviti!", "Pažnja");
+                if (Djelatnik == null || Uredaj == null)
+                    MessageBox.Show($"Uređaj i/ili djelatnik ne postoje u bazi!", "Pažnja");
+                else
+                {
+                    string Unos = $"UPDATE zaduzenja SET datRazduzenja=@datRazduzenja WHERE " +
+                        $"djelatnikOib=@djelatnikOib AND uredajInvBroj=@uredajInvBroj";
+                    var Conn = new SqlConnection(dbc.strConnection);
+                    var Cmd = new SqlCommand(Unos, Conn);
+                    Cmd.Parameters.AddWithValue("@djelatnikOib", Djelatnik);
+                    Cmd.Parameters.AddWithValue("@uredajInvBroj", Uredaj);
+                    Cmd.Parameters.AddWithValue("@datRazduzenja", DateTime.Parse(dtpZaduzen.Text));
+                    try
+                    {
+                        bool success = upiti.BoolUnos(Cmd, Conn);
+                        if (success == true)
+                            btn_pretrazi.PerformClick();
+                    }
+                    catch (Exception ex) { MessageBox.Show($"{pomocna.MsgPorukaInsertError}\n{ ex.Message}", pomocna.MsgNazivGreska); }
+                }
+            }
+        }
+
         private void Btn_zaduzi_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(txtDjelatnik.Text) || String.IsNullOrWhiteSpace(txtInventar.Text))
@@ -132,7 +170,7 @@ namespace ZIRO
             {
                 string Uredaj = Uredaji.FirstOrDefault(u => u.Value == txtInventar.Text.Trim()).Key;
                 string Djelatnik = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
-                bool provjera = ProvjeraZaduzenja(Uredaj);
+                bool provjera = upiti.ProvjeraZaduzenja(Uredaj);
                 if(provjera == true) 
                 {
                     if (Djelatnik == null || Uredaj == null)
@@ -156,59 +194,11 @@ namespace ZIRO
                     }
                 }
                 else
-                    MessageBox.Show($"Uređaj je zadužen i nemeže biti dva puta izdan!", "Pažnja");
+                    MessageBox.Show($"Uređaj je zadužen i nemože biti dva puta izdan!", "Pažnja");
             }
         }
+        #endregion
 
-        public bool ProvjeraZaduzenja(string invBroj)
-        {
-            bool success = false;
-            string dalPostojis = $"SELECT * FROM zaduzenja WHERE " +
-                $"uredajInvBroj=@uredajInvBroj AND datRazduzenja IS NULL";
-            var Conn = new SqlConnection(dbc.strConnection);
-            var Cmd = new SqlCommand(dalPostojis, Conn);
-            Cmd.Parameters.AddWithValue("@uredajInvBroj", invBroj);
-            try
-            {
-                Conn.Open();
-                SqlDataReader korisnik = Cmd.ExecuteReader();
-                if (korisnik.HasRows)
-                    success = false;
-                else
-                    success = true;
-            }
-            catch (Exception ex) { MessageBox.Show($"Dgodila se greška prilikom pretrage zaduženja!\n{ex.Message}", "Pažnja"); }
-            finally
-            {
-                Conn.Close();
-            }
-            return success;
-        } 
-        public bool ProvjeraZaduzenja(string djelatnik, string invBroj)
-        {
-            bool success = false;
-            string dalPostojis = $"SELECT * FROM zaduzenja WHERE " +
-                $"djelatnikOib=@djelatnikOib AND uredajInvBroj=@uredajInvBroj AND datRazduzenja IS NULL";
-            var Conn = new SqlConnection(dbc.strConnection);
-            var Cmd = new SqlCommand(dalPostojis, Conn);
-            Cmd.Parameters.AddWithValue("@djelatnikOib", djelatnik);
-            Cmd.Parameters.AddWithValue("@uredajInvBroj", invBroj);
-            try
-            {
-                Conn.Open();
-                SqlDataReader korisnik = Cmd.ExecuteReader();
-                if (korisnik.HasRows)
-                    success = true;
-                else
-                    success = false;
-            }
-            catch (Exception ex) { MessageBox.Show($"Dgodila se greška prilikom pretrage zaduženja!\n{ex.Message}", "Pažnja"); }
-            finally
-            {
-                Conn.Close();
-            }
-            return success;
-        }
         #region POLJA FORME PROVJERA I BRISANJE
         private void ProvjeraCelija()
         {
@@ -223,41 +213,5 @@ namespace ZIRO
             MessageBox.Show(pomocna.MsgPorukaPraznaCelija, pomocna.MsgNazivPozor);
         }
         #endregion
-
-        private void Btn_razduzi_Click(object sender, EventArgs e)
-        {
-            if (String.IsNullOrWhiteSpace(txtDjelatnik.Text) || String.IsNullOrWhiteSpace(txtInventar.Text))
-            {
-                ProvjeraCelija();
-            }
-            else
-            {
-                string Uredaj = Uredaji.FirstOrDefault(u => u.Value == txtInventar.Text.Trim()).Key;
-                string Djelatnik = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
-                bool provjera = ProvjeraZaduzenja(Djelatnik, Uredaj);
-                if (provjera == false)
-                    MessageBox.Show($"Povrat se ne može napraviti!", "Pažnja");
-                if (Djelatnik == null || Uredaj == null)
-                    MessageBox.Show($"Uređaj i/ili djelatnik ne postoje u bazi!", "Pažnja");
-                else
-                {
-                    string Unos = $"UPDATE zaduzenja SET datRazduzenja=@datRazduzenja WHERE " +
-                        $"djelatnikOib=@djelatnikOib AND uredajInvBroj=@uredajInvBroj";
-                    var Conn = new SqlConnection(dbc.strConnection);
-                    var Cmd = new SqlCommand(Unos, Conn);
-                    Cmd.Parameters.AddWithValue("@djelatnikOib", Djelatnik);
-                    Cmd.Parameters.AddWithValue("@uredajInvBroj", Uredaj);
-                    Cmd.Parameters.AddWithValue("@datRazduzenja", DateTime.Parse(dtpZaduzen.Text));
-                    try
-                    {
-                        bool success = upiti.BoolUnos(Cmd, Conn);
-                        if (success == true)
-                            btn_pretrazi.PerformClick();
-                    }
-                    catch (Exception ex) { MessageBox.Show($"{pomocna.MsgPorukaInsertError}\n{ ex.Message}", pomocna.MsgNazivGreska); }
-                }
-            }
-
-        }
     }
 }
