@@ -164,6 +164,65 @@ namespace ZIRO
             }
         }
 
+        private void BtnOtakz_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtOib.Text))
+                MessageBox.Show($"Odaberi postojećeg djelatnika");
+            else
+            {
+                string Uredi = $"UPDATE djelatnici SET [datOtkaza]=@datOtkaza WHERE [oib] =@oib";
+                var Conn = new SqlConnection(dbc.strConnection);
+                var Cmd = new SqlCommand(Uredi, Conn);
+                Cmd.Parameters.AddWithValue("@datOtkaza", DateTime.Parse(dtpOtkaz.Text));
+                Cmd.Parameters.AddWithValue("@oib", txtOib.Text.Trim());
+
+                try
+                {
+                    bool success = upiti.BoolUnos(Cmd, Conn);
+                    if (success == true)
+                    {
+                        UspjesanUnos();
+                    }
+                    else
+                        MessageBox.Show(pomocna.MsgPorukaInsertError, pomocna.MsgNazivGreska);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
+                }
+            }
+        }
+
+        private void BtnBrisanjeOtkaza_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtOib.Text))
+                MessageBox.Show($"Odaberi postojećeg djelatnika");
+            else
+            {
+                
+                string Uredi = $"UPDATE djelatnici SET [datOtkaza]=NULL WHERE [oib] =@oib";
+                var Conn = new SqlConnection(dbc.strConnection);
+                var Cmd = new SqlCommand(Uredi, Conn);
+                Cmd.Parameters.AddWithValue("@oib", txtOib.Text.Trim());
+
+                try
+                {
+                    bool success = upiti.BoolUnos(Cmd, Conn);
+                    if (success == true)
+                    {
+                        UspjesanUnos();
+                    }
+                    else
+                        MessageBox.Show(pomocna.MsgPorukaInsertError, pomocna.MsgNazivGreska);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(pomocna.MsgPorukaInsertError + ex.ToString(), pomocna.MsgNazivGreska);
+                }
+            }
+
+        }
+
         // Odabir reda iz tablice za izmjene
         private void Dgv_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
