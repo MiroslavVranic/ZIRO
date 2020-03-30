@@ -60,7 +60,7 @@
             // txtIme
             // 
             this.txtIme.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIme.Location = new System.Drawing.Point(68, 53);
+            this.txtIme.Location = new System.Drawing.Point(76, 52);
             this.txtIme.Name = "txtIme";
             this.txtIme.Size = new System.Drawing.Size(206, 25);
             this.txtIme.TabIndex = 1;
@@ -69,7 +69,7 @@
             // 
             this.lbl_zaposlenDatum.AutoSize = true;
             this.lbl_zaposlenDatum.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_zaposlenDatum.Location = new System.Drawing.Point(460, 55);
+            this.lbl_zaposlenDatum.Location = new System.Drawing.Point(452, 55);
             this.lbl_zaposlenDatum.Name = "lbl_zaposlenDatum";
             this.lbl_zaposlenDatum.Size = new System.Drawing.Size(64, 17);
             this.lbl_zaposlenDatum.TabIndex = 28;
@@ -105,7 +105,7 @@
             // txtPrezime
             // 
             this.txtPrezime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrezime.Location = new System.Drawing.Point(68, 86);
+            this.txtPrezime.Location = new System.Drawing.Point(76, 85);
             this.txtPrezime.Name = "txtPrezime";
             this.txtPrezime.Size = new System.Drawing.Size(206, 25);
             this.txtPrezime.TabIndex = 2;
@@ -172,7 +172,7 @@
             // txtOib
             // 
             this.txtOib.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOib.Location = new System.Drawing.Point(68, 119);
+            this.txtOib.Location = new System.Drawing.Point(76, 118);
             this.txtOib.Name = "txtOib";
             this.txtOib.Size = new System.Drawing.Size(206, 25);
             this.txtOib.TabIndex = 3;
@@ -181,7 +181,7 @@
             // 
             this.lbl_otkaz.AutoSize = true;
             this.lbl_otkaz.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_otkaz.Location = new System.Drawing.Point(478, 121);
+            this.lbl_otkaz.Location = new System.Drawing.Point(470, 121);
             this.lbl_otkaz.Name = "lbl_otkaz";
             this.lbl_otkaz.Size = new System.Drawing.Size(44, 17);
             this.lbl_otkaz.TabIndex = 36;
@@ -259,7 +259,7 @@
             // 
             this.lblOdjel.AutoSize = true;
             this.lblOdjel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOdjel.Location = new System.Drawing.Point(480, 88);
+            this.lblOdjel.Location = new System.Drawing.Point(472, 88);
             this.lblOdjel.Name = "lblOdjel";
             this.lblOdjel.Size = new System.Drawing.Size(42, 17);
             this.lblOdjel.TabIndex = 41;
