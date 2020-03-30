@@ -261,7 +261,7 @@ namespace ZIRO
                         ListaZaduzenja += "\t";
                         ListaZaduzenja += row.Cells["nazivUredaja"].Value.ToString();
                         ListaZaduzenja += "\t";
-                        ListaZaduzenja += row.Cells["datZaduzenja"].Value.ToString();
+                        ListaZaduzenja += DateTime.Parse(row.Cells["datZaduzenja"].Value.ToString()).ToShortDateString().Trim();
                         ListaZaduzenja += Environment.NewLine;
                     }                   
                 }
@@ -303,7 +303,7 @@ namespace ZIRO
                         ListaZaduzenja += "\t";
                         ListaZaduzenja += row.Cells["nazivUredaja"].Value.ToString().Trim();
                         ListaZaduzenja += "\t";
-                        ListaZaduzenja += DateTime.Parse(row.Cells["datRazduzenja"].Value.ToString()).ToShortDateString().Trim();
+                        ListaZaduzenja += DateTime.Parse(row.Cells["datRazduzenja"].Value.ToString()).ToShortDateString();
                         ListaZaduzenja += Environment.NewLine;
                     }
                 }

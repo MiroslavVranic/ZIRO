@@ -192,5 +192,14 @@ namespace ZIRO
             txtSerijskiBroj.Text = dgv.Rows[RowIndex].Cells[5].Value.ToString();
         }
 
+        private void SpremiUnosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btn_spremi.PerformClick();
+        }
+
+        private void IzmjeniUnosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btn_izmjeni.PerformClick();
+        }
     }
 }

@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtNazivOpreme = new System.Windows.Forms.TextBox();
             this.lbl_kupljenoDatum = new System.Windows.Forms.Label();
             this.dtpKupljeno = new System.Windows.Forms.DateTimePicker();
-            this.lbl_trenutniKorisnik = new System.Windows.Forms.Label();
             this.btn_izmjeni = new System.Windows.Forms.Button();
             this.btn_spremi = new System.Windows.Forms.Button();
             this.dgv = new System.Windows.Forms.DataGridView();
@@ -85,15 +84,6 @@
             this.dtpKupljeno.Size = new System.Drawing.Size(182, 22);
             this.dtpKupljeno.TabIndex = 3;
             // 
-            // lbl_trenutniKorisnik
-            // 
-            this.lbl_trenutniKorisnik.AutoSize = true;
-            this.lbl_trenutniKorisnik.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_trenutniKorisnik.Location = new System.Drawing.Point(12, 22);
-            this.lbl_trenutniKorisnik.Name = "lbl_trenutniKorisnik";
-            this.lbl_trenutniKorisnik.Size = new System.Drawing.Size(0, 17);
-            this.lbl_trenutniKorisnik.TabIndex = 26;
-            // 
             // btn_izmjeni
             // 
             this.btn_izmjeni.Location = new System.Drawing.Point(784, 83);
@@ -118,8 +108,8 @@
             // 
             // dgv
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -274,15 +264,17 @@
             // 
             this.spremiUnosToolStripMenuItem.Name = "spremiUnosToolStripMenuItem";
             this.spremiUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.spremiUnosToolStripMenuItem.Text = "Spremi unos ";
+            this.spremiUnosToolStripMenuItem.Click += new System.EventHandler(this.SpremiUnosToolStripMenuItem_Click);
             // 
             // izmjeniUnosToolStripMenuItem
             // 
             this.izmjeniUnosToolStripMenuItem.Name = "izmjeniUnosToolStripMenuItem";
             this.izmjeniUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.izmjeniUnosToolStripMenuItem.Text = "Izmjeni unos";
+            this.izmjeniUnosToolStripMenuItem.Click += new System.EventHandler(this.IzmjeniUnosToolStripMenuItem_Click);
             // 
             // btnBrisanjeRashoda
             // 
@@ -329,7 +321,6 @@
             this.Controls.Add(this.txtNazivOpreme);
             this.Controls.Add(this.lbl_kupljenoDatum);
             this.Controls.Add(this.dtpKupljeno);
-            this.Controls.Add(this.lbl_trenutniKorisnik);
             this.Controls.Add(this.btn_izmjeni);
             this.Controls.Add(this.btn_spremi);
             this.Controls.Add(this.dgv);
@@ -351,7 +342,6 @@
         private System.Windows.Forms.TextBox txtNazivOpreme;
         private System.Windows.Forms.Label lbl_kupljenoDatum;
         private System.Windows.Forms.DateTimePicker dtpKupljeno;
-        private System.Windows.Forms.Label lbl_trenutniKorisnik;
         private System.Windows.Forms.Button btn_izmjeni;
         private System.Windows.Forms.Button btn_spremi;
         private System.Windows.Forms.DataGridView dgv;

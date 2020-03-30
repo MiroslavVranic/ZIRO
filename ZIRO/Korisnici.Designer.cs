@@ -219,15 +219,17 @@
             // 
             this.spremiUnosToolStripMenuItem.Name = "spremiUnosToolStripMenuItem";
             this.spremiUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.spremiUnosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.spremiUnosToolStripMenuItem.Text = "Spremi unos ";
+            this.spremiUnosToolStripMenuItem.Click += new System.EventHandler(this.spremiUnosToolStripMenuItem_Click);
             // 
             // izmjeniUnosToolStripMenuItem
             // 
             this.izmjeniUnosToolStripMenuItem.Name = "izmjeniUnosToolStripMenuItem";
             this.izmjeniUnosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.izmjeniUnosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.izmjeniUnosToolStripMenuItem.Text = "Izmjeni unos";
+            this.izmjeniUnosToolStripMenuItem.Click += new System.EventHandler(this.izmjeniUnosToolStripMenuItem_Click);
             // 
             // Korisnici
             // 

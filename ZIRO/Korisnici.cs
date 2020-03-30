@@ -227,5 +227,14 @@ namespace ZIRO
 
         #endregion
 
+        private void spremiUnosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnSpremi.PerformClick();
+        }
+
+        private void izmjeniUnosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnIzmjeni.PerformClick();
+        }
     }
 }
