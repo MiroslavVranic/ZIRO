@@ -19,8 +19,9 @@ namespace ZIRO
         readonly Pomocna pomocna = new Pomocna();
 
         public int StraniKljuc { get; private set; }
-        public string Username { get; set; }
-        public string TrenutniKorisnik { get; set; }
+        public static string Username { get; set; }
+        public static string TrenutniKorisnik { get; set; }
+        public static string UlogaKorisnika { get; set; }
 
         // DATAGRIDVIEW select 
         public DataTable DGVselect(string DBS)
@@ -120,7 +121,7 @@ namespace ZIRO
                 Conn.Open();
                 return StraniKljuc = (int)Cmd.ExecuteScalar();
             }
-            catch (Exception ex) { MessageBox.Show($"Strani ključ nije nađen\n{ ex.Message }"); }
+            catch (Exception ex) { MessageBox.Show($"Strani ključ nije nađen\n{ ex }"); }
             finally
             {
                 Conn.Close();
@@ -139,6 +140,32 @@ namespace ZIRO
                     builder.Append(bytes[i].ToString("x2"));
                 }
                 return builder.ToString();
+            }
+        }
+        public void KorsinikAplikacije(string korisnickoIme)
+        {            
+            string Trazi = $"SELECT djelatnici.ime, djelatnici.prezime, korisnici.uloga FROM djelatnici LEFT JOIN korisnici " +
+                $"ON djelatnici.oib = korisnici.djelatniciOib WHERE username=@username;";
+            var Conn = new SqlConnection(strConnection);
+            var Cmd = new SqlCommand(Trazi, Conn);
+            Cmd.Parameters.AddWithValue("@username", korisnickoIme);
+            try
+            {
+                Conn.Open();
+                SqlDataReader reader = Cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var ime = reader[0].ToString();
+                    var prezime = reader[1].ToString();
+                    var uloga = reader[2].ToString();
+                    TrenutniKorisnik = $"{ime} {prezime}";
+                    UlogaKorisnika = $"{uloga}";
+                }
+            }
+            catch (Exception ex) { MessageBox.Show($"Korisničko ime nije nađeno u bazi!\n{ ex.Message }", pomocna.MsgNazivGreska); }
+            finally
+            {
+                Conn.Close();
             }
         }
     }

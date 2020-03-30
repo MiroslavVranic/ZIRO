@@ -90,7 +90,8 @@ namespace ZIRO
                 SqlDataReader korisnik = Cmd.ExecuteReader();
                 if (korisnik.HasRows)
                 {
-                    dbc.Username = txtKorIme.Text;
+                    DataBase.Username = txtKorIme.Text;
+                    dbc.KorsinikAplikacije(txtKorIme.Text);
                     this.DialogResult = DialogResult.OK;
                 }
                 else

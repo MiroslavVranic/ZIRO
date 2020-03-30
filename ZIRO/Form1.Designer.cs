@@ -44,7 +44,13 @@
             this.inventurnaListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaZaRashodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pomoćToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblUlogiraniKorisnik = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblImeUlogiranogKorinika = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblUlogaUlogiranogKorisnika = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuGLforma.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuGLforma
@@ -132,8 +138,9 @@
             // dodajKorisnikaToolStripMenuItem
             // 
             this.dodajKorisnikaToolStripMenuItem.Name = "dodajKorisnikaToolStripMenuItem";
-            this.dodajKorisnikaToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.dodajKorisnikaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dodajKorisnikaToolStripMenuItem.Text = "Dodaj korisnika";
+            this.dodajKorisnikaToolStripMenuItem.Visible = false;
             this.dodajKorisnikaToolStripMenuItem.Click += new System.EventHandler(this.DodajKorisnikaToolStripMenuItem_Click);
             // 
             // dodajOdjelToolStripMenuItem
@@ -163,14 +170,14 @@
             // inventurnaListaToolStripMenuItem
             // 
             this.inventurnaListaToolStripMenuItem.Name = "inventurnaListaToolStripMenuItem";
-            this.inventurnaListaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.inventurnaListaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.inventurnaListaToolStripMenuItem.Text = "Inventurna lista";
             this.inventurnaListaToolStripMenuItem.Click += new System.EventHandler(this.InventurnaListaToolStripMenuItem_Click);
             // 
             // listaZaRashodToolStripMenuItem
             // 
             this.listaZaRashodToolStripMenuItem.Name = "listaZaRashodToolStripMenuItem";
-            this.listaZaRashodToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaZaRashodToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.listaZaRashodToolStripMenuItem.Text = "Lista za rashod";
             this.listaZaRashodToolStripMenuItem.Click += new System.EventHandler(this.ListaZaRashodToolStripMenuItem_Click);
             // 
@@ -180,11 +187,47 @@
             this.pomoćToolStripMenuItem1.Size = new System.Drawing.Size(60, 21);
             this.pomoćToolStripMenuItem1.Text = "Pomoć";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblUlogiraniKorisnik,
+            this.lblImeUlogiranogKorinika,
+            this.toolStripStatusLabel1,
+            this.lblUlogaUlogiranogKorisnika});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 689);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(934, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblUlogiraniKorisnik
+            // 
+            this.lblUlogiraniKorisnik.Name = "lblUlogiraniKorisnik";
+            this.lblUlogiraniKorisnik.Size = new System.Drawing.Size(98, 17);
+            this.lblUlogiraniKorisnik.Text = "Ulgirani korisinik:";
+            // 
+            // lblImeUlogiranogKorinika
+            // 
+            this.lblImeUlogiranogKorinika.Name = "lblImeUlogiranogKorinika";
+            this.lblImeUlogiranogKorinika.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(91, 17);
+            this.toolStripStatusLabel1.Text = "Uloga korisnika:";
+            // 
+            // lblUlogaUlogiranogKorisnika
+            // 
+            this.lblUlogaUlogiranogKorisnika.Name = "lblUlogaUlogiranogKorisnika";
+            this.lblUlogaUlogiranogKorisnika.Size = new System.Drawing.Size(0, 17);
+            // 
             // Form_ZiRO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 691);
+            this.ClientSize = new System.Drawing.Size(934, 711);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuGLforma);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuGLforma;
@@ -193,6 +236,8 @@
             this.Load += new System.EventHandler(this.Form_ZiRO_Load);
             this.menuGLforma.ResumeLayout(false);
             this.menuGLforma.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,6 +261,11 @@
         private System.Windows.Forms.ToolStripMenuItem inventurnaListaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listaZaRashodToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblUlogiraniKorisnik;
+        private System.Windows.Forms.ToolStripStatusLabel lblImeUlogiranogKorinika;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel lblUlogaUlogiranogKorisnika;
     }
 }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtDjelatnik = new System.Windows.Forms.TextBox();
             this.lbl_djelatnik = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
@@ -36,7 +37,7 @@
             this.btn_razduzi = new System.Windows.Forms.Button();
             this.btn_pretrazi = new System.Windows.Forms.Button();
             this.lbl_inventar = new System.Windows.Forms.Label();
-            this.lbl_trenutniKorisnik = new System.Windows.Forms.Label();
+            this.lblTrenutniKorisnik = new System.Windows.Forms.Label();
             this.dtpZaduzen = new System.Windows.Forms.DateTimePicker();
             this.menuOstaleForme = new System.Windows.Forms.MenuStrip();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
@@ -71,6 +72,9 @@
             // 
             // dgv
             // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(10, 200);
             this.dgv.Name = "dgv";
@@ -130,14 +134,14 @@
             this.lbl_inventar.TabIndex = 14;
             this.lbl_inventar.Text = "Inventar:";
             // 
-            // lbl_trenutniKorisnik
+            // lblTrenutniKorisnik
             // 
-            this.lbl_trenutniKorisnik.AutoSize = true;
-            this.lbl_trenutniKorisnik.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_trenutniKorisnik.Location = new System.Drawing.Point(10, 10);
-            this.lbl_trenutniKorisnik.Name = "lbl_trenutniKorisnik";
-            this.lbl_trenutniKorisnik.Size = new System.Drawing.Size(0, 17);
-            this.lbl_trenutniKorisnik.TabIndex = 15;
+            this.lblTrenutniKorisnik.AutoSize = true;
+            this.lblTrenutniKorisnik.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrenutniKorisnik.Location = new System.Drawing.Point(12, 35);
+            this.lblTrenutniKorisnik.Name = "lblTrenutniKorisnik";
+            this.lblTrenutniKorisnik.Size = new System.Drawing.Size(0, 17);
+            this.lblTrenutniKorisnik.TabIndex = 15;
             // 
             // dtpZaduzen
             // 
@@ -239,7 +243,7 @@
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.dtpZaduzen);
-            this.Controls.Add(this.lbl_trenutniKorisnik);
+            this.Controls.Add(this.lblTrenutniKorisnik);
             this.Controls.Add(this.lbl_inventar);
             this.Controls.Add(this.btn_pretrazi);
             this.Controls.Add(this.btn_razduzi);
@@ -269,7 +273,7 @@
         private System.Windows.Forms.Button btn_razduzi;
         private System.Windows.Forms.Button btn_pretrazi;
         private System.Windows.Forms.Label lbl_inventar;
-        private System.Windows.Forms.Label lbl_trenutniKorisnik;
+        private System.Windows.Forms.Label lblTrenutniKorisnik;
         private System.Windows.Forms.DateTimePicker dtpZaduzen;
         private System.Windows.Forms.MenuStrip menuOstaleForme;
         private System.Windows.Forms.ComboBox cmbStatus;

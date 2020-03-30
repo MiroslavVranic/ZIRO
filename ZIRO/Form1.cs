@@ -23,19 +23,16 @@ namespace ZIRO
                 }
                 else
                 {
-                    Forma = new ZiR();
-                    OtvoriFormu(Forma);
-                    //string _korime = EditClass.KorisnickoIme;
-                    //string IzTablice = "korisnici";
-                    //string GdjeTrazim = "korisnickoIme";
-                    //string Uloga = Uredi.UlogaUlogiranogKor(_korime, IzTablice, GdjeTrazim);
-                    //if (Uloga == "Administrator")
-                    //{
-                    //    dodajKorisnikaToolStripMenuItem.Visible = true;
-                    //    FormaKPP();
-                    //}
-                    //else
-                    //    FormaKPP();
+                    Forma = new ZiR();                    
+                    lblImeUlogiranogKorinika.Text = DataBase.TrenutniKorisnik;
+                    lblUlogaUlogiranogKorisnika.Text = DataBase.UlogaKorisnika;
+                    if (DataBase.UlogaKorisnika == "Administrator")
+                    {
+                        dodajKorisnikaToolStripMenuItem.Visible = true;
+                        OtvoriFormu(Forma);
+                    }
+                    else
+                        OtvoriFormu(Forma);
                 }
             }
         }

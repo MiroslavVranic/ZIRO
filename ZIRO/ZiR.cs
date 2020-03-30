@@ -38,6 +38,7 @@ namespace ZIRO
                 Name = "checkBoxColumn"
             };
             dgv.Columns.Insert(0, checkBoxColumn);
+            lblTrenutniKorisnik.Text = DataBase.TrenutniKorisnik;
         }
 
         #region METHODS
@@ -267,7 +268,7 @@ namespace ZIRO
                 izvozWord.NaslovDokumenta = "REVERS";
                 izvozWord.Datum = DateTime.Parse(dtpZaduzen.Text);
                 izvozWord.ImePrezime = txtDjelatnik.Text;
-                izvozWord.IzdanoOd = dbc.TrenutniKorisnik;
+                izvozWord.IzdanoOd = DataBase.TrenutniKorisnik;
                 izvozWord.Zaduzen = txtDjelatnik.Text;
                 izvozWord.ListaZaduzenja = ListaZaduzenja;
                 izvozWord.Revers();
@@ -309,7 +310,7 @@ namespace ZIRO
                 izvozWord.NaslovDokumenta = "POVRAT REVERSA";
                 izvozWord.Datum = DateTime.Parse(dtpRazduzen.Text);
                 izvozWord.ImePrezime = txtDjelatnik.Text;
-                izvozWord.IzdanoOd = dbc.TrenutniKorisnik;
+                izvozWord.IzdanoOd = DataBase.TrenutniKorisnik;
                 izvozWord.Zaduzen = txtDjelatnik.Text;
                 izvozWord.ListaZaduzenja = ListaZaduzenja;
                 izvozWord.Povrat();

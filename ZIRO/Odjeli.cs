@@ -68,7 +68,7 @@ namespace ZIRO
             }
         }
 
-        private void btn_izmjeni_Click(object sender, EventArgs e)
+        private void Btn_izmjeni_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(txtNaziv.Text))
             {
@@ -147,7 +147,7 @@ namespace ZIRO
             btn_izmjeni.PerformClick();
         }
 
-        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {

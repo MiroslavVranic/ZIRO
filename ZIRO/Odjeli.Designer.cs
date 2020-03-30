@@ -83,7 +83,7 @@
             this.btn_izmjeni.TabStop = false;
             this.btn_izmjeni.Text = "Izmjeni (F3)";
             this.btn_izmjeni.UseVisualStyleBackColor = true;
-            this.btn_izmjeni.Click += new System.EventHandler(this.btn_izmjeni_Click);
+            this.btn_izmjeni.Click += new System.EventHandler(this.Btn_izmjeni_Click);
             // 
             // btn_spremi
             // 
@@ -120,7 +120,7 @@
             this.dgv.RowHeadersWidth = 51;
             this.dgv.Size = new System.Drawing.Size(752, 420);
             this.dgv.TabIndex = 20;
-            this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
+            this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_CellContentClick);
             this.dgv.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Dgv_RowHeaderMouseDoubleClick);
             // 
             // lbl_djelatnik
