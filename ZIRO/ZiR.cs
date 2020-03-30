@@ -262,15 +262,15 @@ namespace ZIRO
                         ListaZaduzenja += "\t";
                         ListaZaduzenja += row.Cells["datZaduzenja"].Value.ToString();
                         ListaZaduzenja += Environment.NewLine;
-                    }
-                    izvozWord.NaslovDokumenta = "REVERS";
-                    izvozWord.Datum = DateTime.Parse(dtpZaduzen.Text);
-                    izvozWord.ImePrezime = txtDjelatnik.Text;
-                    izvozWord.IzdanoOd = dbc.TrenutniKorisnik;
-                    izvozWord.Zaduzen = txtDjelatnik.Text;
-                    izvozWord.ListaZaduzenja = ListaZaduzenja;
-                    izvozWord.Revers();
-                }                
+                    }                   
+                }
+                izvozWord.NaslovDokumenta = "REVERS";
+                izvozWord.Datum = DateTime.Parse(dtpZaduzen.Text);
+                izvozWord.ImePrezime = txtDjelatnik.Text;
+                izvozWord.IzdanoOd = dbc.TrenutniKorisnik;
+                izvozWord.Zaduzen = txtDjelatnik.Text;
+                izvozWord.ListaZaduzenja = ListaZaduzenja;
+                izvozWord.Revers();
             }
         }
 
@@ -306,7 +306,6 @@ namespace ZIRO
                         ListaZaduzenja += Environment.NewLine;
                     }
                 }
-                MessageBox.Show(ListaZaduzenja);
                 izvozWord.NaslovDokumenta = "POVRAT REVERSA";
                 izvozWord.Datum = DateTime.Parse(dtpRazduzen.Text);
                 izvozWord.ImePrezime = txtDjelatnik.Text;

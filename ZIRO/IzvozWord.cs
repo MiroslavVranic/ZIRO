@@ -23,14 +23,18 @@ namespace ZIRO
 
         public void Revers()
         {
-            StvoriDokument(@"\\zagw2k8fs01\users\vranicm\Documents\GitHub\ZIRO\ZIRO\bin\Debug\Reversi\REVERS.docx",
-                @"\\zagw2k8fs01\users\vranicm\Documents\GitHub\ZIRO\ZIRO\bin\Debug\Reversi\TestniRevers.docx");
+            string path = Directory.GetCurrentDirectory();
+            string BiancoDokument = @"\Reversi\REVERS.docx";
+            string NoviDokument = $@"\Reversi\{NaslovDokumenta}_{Zaduzen}_{Datum.ToShortDateString()}.docx";
+            StvoriDokument($@"{path}{BiancoDokument}", $@"{path}{NoviDokument}");
         }
 
         public void Povrat()
         {
-            StvoriDokument(@"\\zagw2k8fs01\users\vranicm\Documents\GitHub\ZIRO\ZIRO\bin\Debug\Reversi\REVERS.docx",
-                @"\\zagw2k8fs01\users\vranicm\Documents\GitHub\ZIRO\ZIRO\bin\Debug\Reversi\TestniPovrat.docx");
+            string path = Directory.GetCurrentDirectory();
+            string BiancoDokument = @"\Reversi\REVERS.docx";
+            string NoviDokument = $@"\Reversi\{NaslovDokumenta}_{Zaduzen}_{Datum.ToShortDateString()}.docx";
+            StvoriDokument($@"{path}{BiancoDokument}", $@"{path}{NoviDokument}");
         }
 
         private void Zamjeni(Word.Application wordApp, object ToFindText, object replaceWithText)
@@ -97,7 +101,7 @@ namespace ZIRO
 
             revers.Close();
             aplikacija.Quit();
-            MessageBox.Show("Revers je kreiran!", pomocna.MsgNazivPozor);
+            MessageBox.Show($"{NaslovDokumenta} {Zaduzen} {Datum.ToShortDateString()} je kreiran!", pomocna.MsgNazivPozor);
         }
     }
 }
