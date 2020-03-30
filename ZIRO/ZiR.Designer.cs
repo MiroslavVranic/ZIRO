@@ -224,6 +224,7 @@
             this.btnPovratReversa.TabIndex = 36;
             this.btnPovratReversa.Text = "Povrat reversa";
             this.btnPovratReversa.UseVisualStyleBackColor = true;
+            this.btnPovratReversa.Click += new System.EventHandler(this.BtnPovratReversa_Click);
             // 
             // ZiR
             // 

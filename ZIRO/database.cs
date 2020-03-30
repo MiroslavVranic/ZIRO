@@ -56,24 +56,8 @@ namespace ZIRO
                 Conn.Close();
             }
             return DataT;
-            /*
-            var Conn = new SqlConnection(ConnString);
-            SqlCommand Cmd = new SqlCommand(DBS, Conn);
-            var DataT = new DataTable();
-            var Adapt = new SqlDataAdapter(DBS, Conn);
-            try
-            {
-                Conn.Open();
-                Adapt.Fill(DataT);
-            }
-            catch (Exception ex) { throw ex; }
-            finally
-            {
-                Conn.Close();
-            }
-            return DataT;
-            */
         }
+
         // Autocomplete lista za fomre
         public AutoCompleteStringCollection Kolekcija(string DBS, string PrviUvjet)
         {

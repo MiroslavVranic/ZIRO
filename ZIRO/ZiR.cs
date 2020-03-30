@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ZIRO
@@ -30,6 +31,13 @@ namespace ZIRO
             KolekcijaInventar();
             KolekcijaDjelatnici();
             cmbStatus.SelectedIndex = 0;
+            var checkBoxColumn = new DataGridViewCheckBoxColumn
+            {
+                HeaderText = "",
+                Width = 30,
+                Name = "checkBoxColumn"
+            };
+            dgv.Columns.Insert(0, checkBoxColumn);
         }
 
         #region METHODS
@@ -88,7 +96,7 @@ namespace ZIRO
             var dbAc = "SELECT ime, prezime FROM djelatnici WHERE datOtkaza IS NULL";
             var acLista = dbc.Kolekcija(dbAc, ime, prezime);
             txtDjelatnik.AutoCompleteCustomSource = acLista;
-        } 
+        }
 
         public void KolekcijaInventar()
         {
@@ -181,7 +189,7 @@ namespace ZIRO
                 string Uredaj = Uredaji.FirstOrDefault(u => u.Value == txtInventar.Text.Trim()).Key;
                 string Djelatnik = Djelatnici.FirstOrDefault(d => d.Value == txtDjelatnik.Text).Key;
                 bool provjera = upiti.ProvjeraZaduzenja(Uredaj);
-                if(provjera == true) 
+                if (provjera == true)
                 {
                     if (Djelatnik == null || Uredaj == null)
                         MessageBox.Show($"Uređaj i/ili djelatnik ne postoje u bazi!", "Pažnja");
@@ -226,12 +234,87 @@ namespace ZIRO
 
         private void BtnRevers_Click(object sender, EventArgs e)
         {
-            izvozWord.Datum = dtpZaduzen.ToString();
-            izvozWord.ImePrezime = txtDjelatnik.Text;
-            izvozWord.IzdanoOd = dbc.TrenutniKorisnik;
-            izvozWord.Zaduzen = txtDjelatnik.Text;
-            //izvozWord.ListaZaduzenja = dgv.SelectedRows();
-            izvozWord.Revers();
+            int provjera = 0;
+            for (int i = 0; i < dgv.Rows.Count; i++)
+            {
+                bool isCellChecked = Convert.ToBoolean(dgv.Rows[i].Cells[0].Value);
+                if (isCellChecked == true)
+                    provjera += 1;
+            }
+            if (provjera == 0)
+            {
+                MessageBox.Show("Mora biti odabran bar jedan unos!", pomocna.MsgNazivPozor);
+                if (String.IsNullOrWhiteSpace(txtDjelatnik.Text))
+                    pomocna.PraznaCelija(txtDjelatnik);
+            }
+            else
+            {
+                pomocna.OkCelija(txtDjelatnik);
+                string ListaZaduzenja = string.Empty;
+                foreach (DataGridViewRow row in dgv.Rows)
+                {                    
+                    bool isSelected = Convert.ToBoolean(row.Cells["checkBoxColumn"].Value);
+                    if (isSelected)
+                    {
+                        ListaZaduzenja += row.Cells["invBroj"].Value.ToString();
+                        ListaZaduzenja += "\t";
+                        ListaZaduzenja += row.Cells["nazivUredaja"].Value.ToString();
+                        ListaZaduzenja += "\t";
+                        ListaZaduzenja += row.Cells["datZaduzenja"].Value.ToString();
+                        ListaZaduzenja += Environment.NewLine;
+                    }
+                    izvozWord.NaslovDokumenta = "REVERS";
+                    izvozWord.Datum = DateTime.Parse(dtpZaduzen.Text);
+                    izvozWord.ImePrezime = txtDjelatnik.Text;
+                    izvozWord.IzdanoOd = dbc.TrenutniKorisnik;
+                    izvozWord.Zaduzen = txtDjelatnik.Text;
+                    izvozWord.ListaZaduzenja = ListaZaduzenja;
+                    izvozWord.Revers();
+                }                
+            }
+        }
+
+        private void BtnPovratReversa_Click(object sender, EventArgs e)
+        {
+            int provjera = 0;
+            for (int i = 0; i < dgv.Rows.Count; i++)
+            {
+                bool isCellChecked = Convert.ToBoolean(dgv.Rows[i].Cells[0].Value);
+                if (isCellChecked == true)
+                    provjera += 1;
+            }
+            if (provjera == 0)
+            {
+                MessageBox.Show("Mora biti odabran bar jedan unos!", pomocna.MsgNazivPozor);
+                if (String.IsNullOrWhiteSpace(txtDjelatnik.Text))
+                    pomocna.PraznaCelija(txtDjelatnik);
+            }
+            else                
+            {
+                pomocna.OkCelija(txtDjelatnik);
+                string ListaZaduzenja = string.Empty;
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    bool isSelected = Convert.ToBoolean(row.Cells["checkBoxColumn"].Value);
+                    if (isSelected)
+                    {
+                        ListaZaduzenja += row.Cells["invBroj"].Value.ToString().Trim();
+                        ListaZaduzenja += "\t";
+                        ListaZaduzenja += row.Cells["nazivUredaja"].Value.ToString().Trim();
+                        ListaZaduzenja += "\t";
+                        ListaZaduzenja += DateTime.Parse(row.Cells["datRazduzenja"].Value.ToString()).ToShortDateString().Trim();
+                        ListaZaduzenja += Environment.NewLine;
+                    }
+                }
+                MessageBox.Show(ListaZaduzenja);
+                izvozWord.NaslovDokumenta = "POVRAT REVERSA";
+                izvozWord.Datum = DateTime.Parse(dtpRazduzen.Text);
+                izvozWord.ImePrezime = txtDjelatnik.Text;
+                izvozWord.IzdanoOd = dbc.TrenutniKorisnik;
+                izvozWord.Zaduzen = txtDjelatnik.Text;
+                izvozWord.ListaZaduzenja = ListaZaduzenja;
+                izvozWord.Povrat();
+            }
         }
     }
 }

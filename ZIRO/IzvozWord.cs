@@ -12,19 +12,27 @@ namespace ZIRO
 {
     class IzvozWord
     {
-        public string Datum { get; set; }
+        readonly Pomocna pomocna = new Pomocna();
+
+        public string NaslovDokumenta { get; set; }
+        public DateTime Datum { get; set; }
         public string ImePrezime { get; set; }
-        public List<string> ListaZaduzenja {get; set;}
+        public string ListaZaduzenja { get; set; }
         public string IzdanoOd { get; set; }
         public string Zaduzen { get; set; }
-
 
         public void Revers()
         {
             StvoriDokument(@"\\zagw2k8fs01\users\vranicm\Documents\GitHub\ZIRO\ZIRO\bin\Debug\Reversi\REVERS.docx",
                 @"\\zagw2k8fs01\users\vranicm\Documents\GitHub\ZIRO\ZIRO\bin\Debug\Reversi\TestniRevers.docx");
         }
-        //Find and Replace Method
+
+        public void Povrat()
+        {
+            StvoriDokument(@"\\zagw2k8fs01\users\vranicm\Documents\GitHub\ZIRO\ZIRO\bin\Debug\Reversi\REVERS.docx",
+                @"\\zagw2k8fs01\users\vranicm\Documents\GitHub\ZIRO\ZIRO\bin\Debug\Reversi\TestniPovrat.docx");
+        }
+
         private void Zamjeni(Word.Application wordApp, object ToFindText, object replaceWithText)
         {
             object matchCase = true;
@@ -51,7 +59,6 @@ namespace ZIRO
                 ref matchControl);
         }
 
-        //Creeate the Doc Method
         private void StvoriDokument(object filename, object SaveAs)
         {
             Word.Application aplikacija = new Word.Application();
@@ -71,19 +78,17 @@ namespace ZIRO
                                         ref missing, ref missing, ref missing, ref missing);
                 revers.Activate();
 
-                //find and replace
-                Zamjeni(aplikacija, "<datum>", Datum.ToString());
+                Zamjeni(aplikacija, "<REVERS>", NaslovDokumenta);
+                Zamjeni(aplikacija, "<datum>", Datum.ToShortDateString());
                 Zamjeni(aplikacija, "<ImePrezime>", ImePrezime);
-                //Zamjeni(aplikacija, "<zaduzenja>", ListaZaduzenja);
+                Zamjeni(aplikacija, "<zaduzenja>", ListaZaduzenja);
                 Zamjeni(aplikacija, "<izdano>", IzdanoOd);
                 Zamjeni(aplikacija, "<preuzeto>", Zaduzen);
             }
             else
             {
-                MessageBox.Show("File not Found!");
+                MessageBox.Show("Dokument REVERS nije uspješno otvoren!", pomocna.MsgNazivPozor);
             }
-
-            //Save as
             revers.SaveAs2(ref SaveAs, ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
@@ -92,7 +97,7 @@ namespace ZIRO
 
             revers.Close();
             aplikacija.Quit();
-            MessageBox.Show("File Created!");
+            MessageBox.Show("Revers je kreiran!", pomocna.MsgNazivPozor);
         }
     }
 }
