@@ -78,7 +78,7 @@ namespace ZIRO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, pomocna.MsgNazivGreska);
+                MessageBox.Show(ex.ToString(), pomocna.MsgNazivGreska);
             }
             finally
             {
@@ -103,7 +103,7 @@ namespace ZIRO
                     kolekcija.Add($"{prviString} {drugiString}");
                 }
             }
-            catch (Exception ex){ MessageBox.Show( ex.Message, pomocna.MsgNazivGreska); }
+            catch (Exception ex){ MessageBox.Show( ex.ToString(), pomocna.MsgNazivGreska); }
             finally
             {
                 Conn.Close();
@@ -121,7 +121,7 @@ namespace ZIRO
                 Conn.Open();
                 return StraniKljuc = (int)Cmd.ExecuteScalar();
             }
-            catch (Exception ex) { MessageBox.Show($"Strani ključ nije nađen\n{ ex }"); }
+            catch (Exception ex) { MessageBox.Show($"Strani ključ nije nađen\n{ ex.Message }"); }
             finally
             {
                 Conn.Close();

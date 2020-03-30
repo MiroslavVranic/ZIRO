@@ -250,6 +250,6 @@ namespace ZIRO
         private void IzmjeniUnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btn_izmjeni.PerformClick();
-        }
+        }        
     }
 }
